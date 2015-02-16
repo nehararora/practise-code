@@ -1,0 +1,21 @@
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'jetty'
+
+httpPort = 8080
+stopPort = 9080
+stopKey = "stopKey"
+
+repositories{
+    
+    mavenCentral()
+}
+
+
+dependencies{
+    compile 'junit:junit:4.12'
+    compile 'com.sun.jersey:jersey-servlet:1.18.1'
+    compile 'javax.ws.rs:jsr311-api:1.1.1'
+
+    
+}
