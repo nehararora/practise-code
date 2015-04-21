@@ -78,35 +78,62 @@ class GeometricProgression(object):
     """
     Geometric Progression: In the simplest form acts as a GP iterator.
     """
-    def __init__(self, count, start=1, base=1):
+    def __init__(self, count, scale_factor=1, common_ratio=1):
         """
         Initialize
         :param count:
-        :param start:
-        :param base:
+        :param scale_factor:
+        :param common_ratio:
         :return:
         """
+        assert common_ratio is not 0, "Common Ration cannot be null"
+
+        self.count = count
+        self._current = 0
+        self.a = scale_factor
+        self.r = common_ratio
 
     def __iter__(self):
         """
         """
         return self
+
+    def _get_nth(self, n):
+        """
+        :param n:
+        :return:
+        """
+        return self.a * (self.r ** (n-1))
+
     def __next__(self):
         """
+        Python 3 support.
         """
-        return None
+        return self.next()
+
     def next(self):
         """
+        Return the next element of the progression
+        using the formula an = a(r^(n-1))
         """
-        return None
+        if self._current is self.count:
+            raise StopIteration
+
+        self._current += 1
+
+        return self._get_nth(self._current)
+
 
 class GeometricProgressionTest(unittest.TestCase):
     """
     Geometric progression test class.
     """
     def test_generator(self):
+
+        with self.assertRaises(AssertionError):
+            GeometricProgression(2, common_ratio=0)
         self.assertTrue(GeometricProgression(10) is not None)
-        self.assertEqual(None, [x for x in GeometricProgression(10)])
+        self.assertEqual([], [x for x in GeometricProgression(10, scale_factor=5, common_ratio=2)])
 
 
 
