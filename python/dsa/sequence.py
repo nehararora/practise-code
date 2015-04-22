@@ -49,7 +49,8 @@ class ArithmeticProgression(object):
         return self.next()
 
     def sum(self):
-        print("{} {} {}".format(self.count, self.start, self._get_nth(self.count)))
+        """
+        """
         return (self.count * (self.start + self._get_nth(self.count))) / 2
 
 
@@ -71,7 +72,6 @@ class TestArithmeticProgression(unittest.TestCase):
     def test_last(self):
         self.assertEqual(10, ArithmeticProgression(10)._get_nth(10))
         self.assertEqual(1000, ArithmeticProgression(count=10, start=100, diff=100)._get_nth(10))
-        print([x for x in ArithmeticProgression(count=10, start=100, diff=100)])
 
 
 class GeometricProgression(object):
@@ -123,6 +123,20 @@ class GeometricProgression(object):
 
         return self._get_nth(self._current)
 
+    def mean(self):
+        """
+        Geometric mean of specified elements.
+        :return: Geometric mean
+        """
+
+    def sum(self):
+        """
+        Produces the summation of the sequence.
+        using the formula a*(1- (r^m)) / (1-r) where a
+        is the first term, and m the number of terms.
+        """
+        return self.a * (1-(self.r ** self.count))/ (1-self.r)
+
 
 class GeometricProgressionTest(unittest.TestCase):
     """
@@ -132,8 +146,29 @@ class GeometricProgressionTest(unittest.TestCase):
 
         with self.assertRaises(AssertionError):
             GeometricProgression(2, common_ratio=0)
+
         self.assertTrue(GeometricProgression(10) is not None)
-        self.assertEqual([], [x for x in GeometricProgression(10, scale_factor=5, common_ratio=2)])
+        self.assertEqual([1, 1, 1, 1, 1], [x for x in GeometricProgression(5)])
+
+    def test_sequence(self):
+        """
+        verify a couple of known sequences.
+        """
+        self.assertEqual([1, -3, 9, -27, 81, -243],
+                         [x for x in GeometricProgression(6, 1, -3)])
+
+        self.assertEqual([1, 1, 1, 1, 1],
+                         [x for x in GeometricProgression(5, 1, 1)])
+
+        self.assertEqual([4, 40, 400, 4000, 40000],
+                         [x for x in GeometricProgression(5, 4, 10)])
+
+        # self.assertEqual([9, 3, 1/3, 1/9],
+        #                 [x for x in GeometricProgression(5, 9, 1/3)])
+
+    def test_sum(self):
+        with self.assertRaises(ZeroDivisionError):
+            GeometricProgression(1, 1, 1).sum()
 
 
 
