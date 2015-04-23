@@ -163,14 +163,30 @@ class GeometricProgressionTest(unittest.TestCase):
         self.assertEqual([4, 40, 400, 4000, 40000],
                          [x for x in GeometricProgression(5, 4, 10)])
 
-        # self.assertEqual([9, 3, 1/3, 1/9],
-        #                 [x for x in GeometricProgression(5, 9, 1/3)])
+        # TODO: need to fix for floating point math
+        # self.assertEqual([9, 3, round(1/3, 5), round(1/9, 5)],
+        #                 [x for x in GeometricProgression(5, 9, round(1/3, 5))])
 
     def test_sum(self):
         with self.assertRaises(ZeroDivisionError):
             GeometricProgression(1, 1, 1).sum()
 
+        self.assertEqual(312, GeometricProgression(4, 2, 5).sum())
+        self.assertEqual(2097150, GeometricProgression(20, -6, -2).sum())
+        self.assertEqual(416.622976, GeometricProgression(10, 250, .4).sum())
 
+
+class FibonacciProgression(object):
+    """
+    Fibonacci Iterator.
+    """
+
+
+class FibonacciProgression(unittest.TestCase):
+    """
+    Fibonacci sequence test class.
+    """
+    
 
 if __name__ == '__main__':
     unittest.main()
