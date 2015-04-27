@@ -180,13 +180,47 @@ class FibonacciProgression(object):
     """
     Fibonacci Iterator.
     """
+    def __init__(self, count, first=0, second=1):
+        """
+        Initialize the initial elements of the progression.
+
+        :param first:
+        :param second:
+        :return:
+        """
+        self.count = count
+        self._current = 0
+        self.two_before = second - first
+        self.before = second
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        "Python 3"
+        return self.next()
+
+    def next(self):
+        if self._current is self.count:
+            raise StopIteration
+
+        self.two_before, self.before = self.before, self.two_before + self.before
+        return self.before
 
 
-class FibonacciProgression(unittest.TestCase):
+class FibonacciProgressionTest(unittest.TestCase):
     """
     Fibonacci sequence test class.
     """
-    
+    def test_generator(self):
+        self.assertTrue(FibonacciProgression(1) is not None)
+        self.assertTrue(FibonacciProgression(1, 2, 3) is not None)
+        with self.assertRaises(TypeError):
+            FibonacciProgression(1, 2, 3, 4)
+
+    def test_sequence(self):
+        self.assertEqual([], [x for x in GeometricProgression(2)])
+        self.assertEqual([], [x for x in GeometricProgression(3)])
 
 if __name__ == '__main__':
     unittest.main()
