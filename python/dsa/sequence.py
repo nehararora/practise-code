@@ -135,7 +135,7 @@ class GeometricProgression(object):
         using the formula a*(1- (r^m)) / (1-r) where a
         is the first term, and m the number of terms.
         """
-        return self.a * (1-(self.r ** self.count))/ (1-self.r)
+        return self.a * (1-(self.r ** self.count))/(1-self.r)
 
 
 class GeometricProgressionTest(unittest.TestCase):
@@ -182,7 +182,7 @@ class FibonacciProgression(object):
     """
     def __init__(self, count, first=0, second=1):
         """
-        Initialize the initial elements of the progression.
+        Initialize the progression.
 
         :param first:
         :param second:
@@ -190,22 +190,24 @@ class FibonacciProgression(object):
         """
         self.count = count
         self._current = 0
-        self.two_before = second - first
-        self.before = second
+        # need to set first and second to initial element.
+        self.first = first
+        self.second = second
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        "Python 3"
+        """Python 3 support"""
         return self.next()
 
     def next(self):
         if self._current is self.count:
             raise StopIteration
-
-        self.two_before, self.before = self.before, self.two_before + self.before
-        return self.before
+        value = self.first
+        self.first, self.second = self.second, self.first + self.second
+        self._current += 1
+        return value
 
 
 class FibonacciProgressionTest(unittest.TestCase):
@@ -215,12 +217,10 @@ class FibonacciProgressionTest(unittest.TestCase):
     def test_generator(self):
         self.assertTrue(FibonacciProgression(1) is not None)
         self.assertTrue(FibonacciProgression(1, 2, 3) is not None)
-        with self.assertRaises(TypeError):
-            FibonacciProgression(1, 2, 3, 4)
 
     def test_sequence(self):
-        self.assertEqual([], [x for x in GeometricProgression(2)])
-        self.assertEqual([], [x for x in GeometricProgression(3)])
+        self.assertEqual([0, 1, 1, 2, 3], [x for x in FibonacciProgression(5)])
+        self.assertEqual([-1, 0, -1, -1, -2, -3], [x for x in FibonacciProgression(6, -1, 0)])
 
 if __name__ == '__main__':
     unittest.main()
