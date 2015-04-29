@@ -6,6 +6,8 @@ FibonacciProgression:
 
 """
 
+__author__ = "nehar"
+
 import unittest
 
 
