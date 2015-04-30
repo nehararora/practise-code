@@ -5,9 +5,6 @@ The three-way set disjointness problem is defined as follows: Given three sets
 of items, A, B, and C, they are three-way disjoint if there is no element
 common to all three sets, ie, there exists no x such that x is in A, B, and C.
 
-Assume that A, B, and C are sets of items that can be ordered (integers); furthermore,
-assume that it is possible to sort n integers in O(n log n) time. Give an O(n log n)
-algorithm to decide whether the sets are three-way set disjoint.
 """
 
 __auhor__ = "nehar"
@@ -37,6 +34,7 @@ class SetDisjointness(object):
         Basic naive triple for loop implementation.
         Algorithm iterates over the three sets and compares
         every element to every other.
+        O(n^3)
         :return: None
         """
         for a in self.s1:
@@ -49,6 +47,22 @@ class SetDisjointness(object):
         # no match - sets are disjoint.
         return True
     # naive
+
+    def short_circuit_is_disjoint(self):
+        """
+        Short circuit third comparison on first mismatch.
+        O(n^2) - since possible n mathces
+        :return: None
+        """
+        for a in self.s1:
+            for b in self.s2:
+                # only compare to 3rd seq, if matched
+                if a == b:
+                    for c in self.s3:
+                        if a == c:
+                            # match!
+                            return False
+        return True
 
 
 class TestSetDisjointness(unittest.TestCase):
@@ -72,14 +86,20 @@ class TestSetDisjointness(unittest.TestCase):
     def test_naive_disjoint(self):
 
         self.assertTrue(SetDisjointness([1], [1], [2]).naive_is_disjoint())
-
         self.assertFalse(SetDisjointness([1], [1], [1]).naive_is_disjoint())
-
         self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
                                         [10, -1, 11, 12]).naive_is_disjoint())
-
         self.assertFalse(SetDisjointness([1, 2, 3, 4, 42, 6], [7, 8, 9, 42],
                                          [10, -1, 42, 12]).naive_is_disjoint())
+
+    def test_short_circuit_disjoint(self):
+
+        self.assertTrue(SetDisjointness([1], [1], [2]).short_circuit_is_disjoint())
+        self.assertFalse(SetDisjointness([1], [1], [1]).short_circuit_is_disjoint())
+        self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
+                                        [10, -1, 11, 12]).short_circuit_is_disjoint())
+        self.assertFalse(SetDisjointness([1, 2, 3, 4, 42, 6], [7, 8, 9, 42],
+                                         [10, -1, 42, 12]).short_circuit_is_disjoint())
 
 if __name__ == "__main__":
     unittest.main()
