@@ -7,7 +7,7 @@ common to all three sets, ie, there exists no x such that x is in A, B, and C.
 
 """
 
-__auhor__ = "nehar"
+__author__ = "nehar"
 
 import unittest
 
