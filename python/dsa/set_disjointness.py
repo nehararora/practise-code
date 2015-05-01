@@ -51,7 +51,7 @@ class SetDisjointness(object):
     def short_circuit_is_disjoint(self):
         """
         Short circuit third comparison on first mismatch.
-        O(n^2) - since possible n mathces
+        O(n^2) - since possible n matches.
         :return: None
         """
         for a in self.s1:
@@ -62,6 +62,31 @@ class SetDisjointness(object):
                         if a == c:
                             # match!
                             return False
+        return True
+
+    def sorting_is_disjoint(self):
+        """
+        Sorting based solution.
+        Since the 3 sequences are sets, merging and then sorting them should
+        produce a run of 3 adjacent duplicates if they are not set-disjoint.
+        o(n) to merge, o(nlogn) to sort, o(n) to determine dups so ~ o(nlogn)
+        Note: python default sorting implementation: http://en.wikipedia.org/wiki/Timsort
+        :return: None
+        """
+        # merge the sets
+        s = list(self.s1) + list(self.s2) + list(self.s3)
+
+        # sort them merged list
+        s = sorted(s)
+
+        # check if adjacent elements are the same...
+        for i in range(len(s)):
+            try:
+                if s[i] is s[i+1] is s[i+2]:
+                    return False
+            except IndexError:
+                # handles the case when we run out of elements
+                pass
         return True
 
 
@@ -85,6 +110,9 @@ class TestSetDisjointness(unittest.TestCase):
 
     def test_naive_disjoint(self):
 
+        # the empty set is considered disjoint with itself.
+        self.assertTrue(SetDisjointness([], [], []).naive_is_disjoint())
+        self.assertTrue(SetDisjointness([1], [1], []).naive_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], [2]).naive_is_disjoint())
         self.assertFalse(SetDisjointness([1], [1], [1]).naive_is_disjoint())
         self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
@@ -94,12 +122,25 @@ class TestSetDisjointness(unittest.TestCase):
 
     def test_short_circuit_disjoint(self):
 
+        self.assertTrue(SetDisjointness([], [], []).short_circuit_is_disjoint())
+        self.assertTrue(SetDisjointness([1], [1], []).short_circuit_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], [2]).short_circuit_is_disjoint())
         self.assertFalse(SetDisjointness([1], [1], [1]).short_circuit_is_disjoint())
         self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
                                         [10, -1, 11, 12]).short_circuit_is_disjoint())
         self.assertFalse(SetDisjointness([1, 2, 3, 4, 42, 6], [7, 8, 9, 42],
                                          [10, -1, 42, 12]).short_circuit_is_disjoint())
+
+    def test_sorting_disjoint(self):
+
+        self.assertTrue(SetDisjointness([], [], []).sorting_is_disjoint())
+        self.assertTrue(SetDisjointness([1], [1], []).sorting_is_disjoint())
+        self.assertTrue(SetDisjointness([1], [1], [2]).sorting_is_disjoint())
+        self.assertFalse(SetDisjointness([1], [1], [1]).sorting_is_disjoint())
+        self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
+                                        [10, -1, 11, 12]).sorting_is_disjoint())
+        self.assertFalse(SetDisjointness([1, 2, 3, 4, 42, 6], [7, 8, 9, 42],
+                                         [10, -1, 42, 12]).sorting_is_disjoint())
 
 if __name__ == "__main__":
     unittest.main()
