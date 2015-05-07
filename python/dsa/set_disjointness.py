@@ -76,7 +76,7 @@ class SetDisjointness(object):
         # merge the sets
         s = list(self.s1) + list(self.s2) + list(self.s3)
 
-        # sort them merged list
+        # sort them merged lists
         s = sorted(s)
 
         # check if adjacent elements are the same...
@@ -87,6 +87,29 @@ class SetDisjointness(object):
             except IndexError:
                 # handles the case when we run out of elements
                 pass
+        return True
+
+    def map_is_disjoint(self):
+        """
+        Map based solution to 3 way set disjointness.
+        totals up counts for each element in a map.
+        o(n) since straight traversal through the lists
+        and then o(1) map lookup.
+        :return:
+        """
+        # merge the sets
+        s = list(self.s1) + list(self.s2) + list(self.s3)
+        counts = {}
+
+        # count em up
+        for element in s:
+            counts[element] = counts.get(element, 0) + 1
+
+        # since sets have unique items, count >3 for anything ==> bingo!
+        for key in counts:
+            if counts[key] >= 3:
+                return False
+
         return True
 
 
@@ -114,6 +137,7 @@ class TestSetDisjointness(unittest.TestCase):
         self.assertTrue(SetDisjointness([], [], []).naive_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], []).naive_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], [2]).naive_is_disjoint())
+        self.assertTrue(SetDisjointness([1, 2], [2], [1]).naive_is_disjoint())
         self.assertFalse(SetDisjointness([1], [1], [1]).naive_is_disjoint())
         self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
                                         [10, -1, 11, 12]).naive_is_disjoint())
@@ -125,6 +149,7 @@ class TestSetDisjointness(unittest.TestCase):
         self.assertTrue(SetDisjointness([], [], []).short_circuit_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], []).short_circuit_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], [2]).short_circuit_is_disjoint())
+        self.assertTrue(SetDisjointness([1, 2], [2], [1]).short_circuit_is_disjoint())
         self.assertFalse(SetDisjointness([1], [1], [1]).short_circuit_is_disjoint())
         self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
                                         [10, -1, 11, 12]).short_circuit_is_disjoint())
@@ -136,11 +161,24 @@ class TestSetDisjointness(unittest.TestCase):
         self.assertTrue(SetDisjointness([], [], []).sorting_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], []).sorting_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], [2]).sorting_is_disjoint())
+        self.assertTrue(SetDisjointness([1, 2], [2], [1]).sorting_is_disjoint())
         self.assertFalse(SetDisjointness([1], [1], [1]).sorting_is_disjoint())
         self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
                                         [10, -1, 11, 12]).sorting_is_disjoint())
         self.assertFalse(SetDisjointness([1, 2, 3, 4, 42, 6], [7, 8, 9, 42],
                                          [10, -1, 42, 12]).sorting_is_disjoint())
+
+    def test_map_disjoint(self):
+
+        self.assertTrue(SetDisjointness([], [], []).map_is_disjoint())
+        self.assertTrue(SetDisjointness([1], [1], []).map_is_disjoint())
+        self.assertTrue(SetDisjointness([1], [1], [2]).map_is_disjoint())
+        self.assertTrue(SetDisjointness([1, 2], [2], [1]).map_is_disjoint())
+        self.assertFalse(SetDisjointness([1], [1], [1]).map_is_disjoint())
+        self.assertTrue(SetDisjointness([1, 2, 3, 4, 5, 6], [7, 8, 9, 0],
+                                        [10, -1, 11, 12]).map_is_disjoint())
+        self.assertFalse(SetDisjointness([1, 2, 3, 4, 42, 6], [7, 8, 9, 42],
+                                         [10, -1, 42, 12]).map_is_disjoint())
 
 if __name__ == "__main__":
     unittest.main()
