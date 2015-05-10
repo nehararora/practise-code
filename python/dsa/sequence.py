@@ -1,8 +1,10 @@
 """
 sequence.py: Illustrates Progressions.
 ArithmeticProgression: Arithmetic progression iterator.
-GeometricProgression:
-FibonacciProgression:
+GeometricProgression: Geometric progression
+FibonacciProgression: Fibonacci series
+FindMissingNumber:
+
 
 """
 
@@ -36,7 +38,7 @@ class ArithmeticProgression(object):
     def next(self):
         """
         Returns the next element of the progression
-        using the formual an = a1 + (n-1)*d
+        using the formula an = a1 + (n-1)*d
         """
         if self._current is self.count:
             raise StopIteration
@@ -54,26 +56,6 @@ class ArithmeticProgression(object):
         """
         """
         return (self.count * (self.start + self._get_nth(self.count))) / 2
-
-
-class TestArithmeticProgression(unittest.TestCase):
-    """
-    Arithmetic Progression test class.
-    """
-    def test_generator(self):
-        self.assertTrue(ArithmeticProgression(10) is not None)
-        self.assertEqual([1, 2, 3, 4, 5], [x for x in ArithmeticProgression(5)])
-
-    def test_sequences(self):
-        self.assertEqual([x for x in ArithmeticProgression(100)], [x for x in range(1, 101)])
-
-    def test_sum(self):
-        self.assertEqual(5050, ArithmeticProgression(100).sum())
-        self.assertEqual(55, ArithmeticProgression(10).sum())
-
-    def test_last(self):
-        self.assertEqual(10, ArithmeticProgression(10)._get_nth(10))
-        self.assertEqual(1000, ArithmeticProgression(count=10, start=100, diff=100)._get_nth(10))
 
 
 class GeometricProgression(object):
@@ -140,44 +122,6 @@ class GeometricProgression(object):
         return self.a * (1-(self.r ** self.count))/(1-self.r)
 
 
-class GeometricProgressionTest(unittest.TestCase):
-    """
-    Geometric progression test class.
-    """
-    def test_generator(self):
-
-        with self.assertRaises(AssertionError):
-            GeometricProgression(2, common_ratio=0)
-
-        self.assertTrue(GeometricProgression(10) is not None)
-        self.assertEqual([1, 1, 1, 1, 1], [x for x in GeometricProgression(5)])
-
-    def test_sequence(self):
-        """
-        verify a couple of known sequences.
-        """
-        self.assertEqual([1, -3, 9, -27, 81, -243],
-                         [x for x in GeometricProgression(6, 1, -3)])
-
-        self.assertEqual([1, 1, 1, 1, 1],
-                         [x for x in GeometricProgression(5, 1, 1)])
-
-        self.assertEqual([4, 40, 400, 4000, 40000],
-                         [x for x in GeometricProgression(5, 4, 10)])
-
-        # TODO: need to fix for floating point math
-        # self.assertEqual([9, 3, round(1/3, 5), round(1/9, 5)],
-        #                 [x for x in GeometricProgression(5, 9, round(1/3, 5))])
-
-    def test_sum(self):
-        with self.assertRaises(ZeroDivisionError):
-            GeometricProgression(1, 1, 1).sum()
-
-        self.assertEqual(312, GeometricProgression(4, 2, 5).sum())
-        self.assertEqual(2097150, GeometricProgression(20, -6, -2).sum())
-        self.assertEqual(416.622976, GeometricProgression(10, 250, .4).sum())
-
-
 class FibonacciProgression(object):
     """
     Fibonacci Iterator.
@@ -212,17 +156,49 @@ class FibonacciProgression(object):
         return value
 
 
-class FibonacciProgressionTest(unittest.TestCase):
+class FindMissingNumber(object):
     """
-    Fibonacci sequence test class.
-    """
-    def test_generator(self):
-        self.assertTrue(FibonacciProgression(1) is not None)
-        self.assertTrue(FibonacciProgression(1, 2, 3) is not None)
+    Algorithms to find missing number given sequence in the range 0-n.
 
-    def test_sequence(self):
-        self.assertEqual([0, 1, 1, 2, 3], [x for x in FibonacciProgression(5)])
-        self.assertEqual([-1, 0, -1, -1, -2, -3], [x for x in FibonacciProgression(6, -1, 0)])
+    A sequence S contains n - 1 unique integers in the range [0, n - 1], that
+    is, there is one number from this range that is not in S. Design an O(n)-
+    time algorithm for finding that number. You are only allowed to use O(1)
+    additional space besides the sequence S itself.
+
+    Exercise C-3.45, Chapter 3, Data Structures and Algorithms in Python.
+    """
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def naive_find_missing(seq):
+        """
+        Naive implementation for finding the missing number.
+        linear time algorithm.
+        """
+        for i, num in enumerate(seq):
+            if i is not num:
+                return i
+
+        # if nothing missing, return None
+        return None
+
+    @staticmethod
+    def summation_find_missing(seq):
+        """
+        Implementation based on sum of n numbers.
+        O(n( - note that the builtin len() is constant time.
+        """
+        n = seq[len(seq) - 1]
+
+        summation = n * (n+1)/2
+        total = 0
+        for i in seq:
+            total += i
+
+        return summation - total
 
 if __name__ == '__main__':
-    unittest.main()
+    import sequence_test
+    suite = unittest.TestLoader().loadTestsFromModule(sequence_test)
+    unittest.TextTestRunner(verbosity=2).run(suite)

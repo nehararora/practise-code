@@ -10,6 +10,7 @@ import unittest
 import threading
 import time
 import requests
+import urlparse
 from wsgiref.simple_server import make_server
 
 
@@ -177,7 +178,6 @@ class MyTestHttpServer(threading.Thread):
             response_text = 'Hello World!'
             endpoint = environ['PATH_INFO'][1:]
 
-            import urlparse
             if endpoint == 'get_with_params':
                 #echo back uri parameters as dict...
                 response_text = str(dict(urlparse.parse_qsl(environ['QUERY_STRING'])))

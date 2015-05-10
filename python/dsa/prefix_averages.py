@@ -21,7 +21,7 @@ class PrefixAverages(object):
         if type(s) is not list:
             raise TypeError
 
-    def naive_prefix_average(self):
+    def naive(self):
         """
         Naive implementation of prefix average calculation.
 
@@ -33,8 +33,21 @@ class PrefixAverages(object):
             total = 0
             for i in range(j+1):
                 total += self.s[i]
-            a[j] = float(total)/(j+1)
-            print(a[j])
+            a[j] = round(float(total)/(j+1), 2)
+        return a
+
+    def linear(self):
+        """
+        Linear time implementation - uses prior computations
+        for total instead of anew every-time.
+
+        :return: new sequence containing prefix averages.
+        """
+        a = [0] * len(self.s)
+        total = 0
+        for i in range(len(self.s)):
+            total += self.s[i]
+            a[i] = round(float(total)/(i+1), 2)
         return a
 
 
@@ -57,8 +70,18 @@ class TestPrefixAverages(unittest.TestCase):
 
     def test_naive_prefix_average(self):
 
-        self.assertEqual([], PrefixAverages().naive_prefix_average())
-        self.assertEqual([7.0, 5.0, 3.0, 2.75, 4.0, 3.33], PrefixAverages(
-            [7, 3, -1, 2, 9, 0, 0.8, 52, 2.2, 900]).naive_prefix_average())
-        self.assertEqual([],
-            PrefixAverages([12, 14, 13, 15, 19, 17, 16, 11, 18, 20]).naive_prefix_average())
+        self.assertEqual([], PrefixAverages().naive())
+        self.assertEqual([7.0, 5.0, 3.0, 2.75, 4.0, 3.33, 2.97, 9.1, 8.33, 97.5],
+                         PrefixAverages([7, 3, -1, 2, 9,
+                                         0, 0.8, 52, 2.2, 900]).naive())
+
+        self.assertEqual([1, 1.5, 2, 2.5], PrefixAverages([1, 2, 3, 4]).naive())
+
+    def test_linear_prefix_average(self):
+
+        self.assertEqual([], PrefixAverages().linear())
+        self.assertEqual([7.0, 5.0, 3.0, 2.75, 4.0, 3.33, 2.97, 9.1, 8.33, 97.5],
+                         PrefixAverages([7, 3, -1, 2, 9,
+                                         0, 0.8, 52, 2.2, 900]).linear())
+
+        self.assertEqual([1, 1.5, 2, 2.5], PrefixAverages([1, 2, 3, 4]).linear())
