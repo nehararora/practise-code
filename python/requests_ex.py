@@ -78,13 +78,13 @@ class TestHttpClient(unittest.TestCase):
         r = self.client.get("http://{0}:{1}/400".format(url, port))
         self.assertEqual(400, r.status_code)
 
-        #TODO: GETs with params
+        # TODO: GETs with params
         r = self.client.get("http://{0}:{1}/get_with_params".format(url, port),
                             params=self.params)
         self.assertEqual(200, r.status_code)
         self.assertEqual(str(self.params), r.text)
 
-        #GETs with ...?
+        # GETs with ...?
     ###
 
     def test_post(self):

@@ -58,10 +58,6 @@ class TestGeometricProgression(unittest.TestCase):
         self.assertEqual([4, 40, 400, 4000, 40000],
                          [x for x in GeometricProgression(5, 4, 10)])
 
-        # TODO: need to fix for floating point math
-        # self.assertEqual([9, 3, round(1/3, 5), round(1/9, 5)],
-        #                 [x for x in GeometricProgression(5, 9, round(1/3, 5))])
-
     def test_sum(self):
         with self.assertRaises(ZeroDivisionError):
             GeometricProgression(1, 1, 1).sum()
