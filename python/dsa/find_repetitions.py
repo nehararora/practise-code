@@ -1,8 +1,11 @@
 """
-find_repetitions.py: Implementation of sequence repetition algorithms.
+find_repetitions.py: Implementation of find repetitions in a sequence
+algorithms.
 """
 
 __author__ = 'nehar'
+
+# TODO: complete find repetitions.
 
 
 class FindRepetitions(object):
