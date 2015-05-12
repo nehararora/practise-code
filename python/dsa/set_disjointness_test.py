@@ -28,6 +28,10 @@ class TestSetDisjointness(unittest.TestCase):
             SetDisjointness(1, 2, 3)
 
     def test_naive_disjoint(self):
+        """
+        Test naive 3-Way Set Disjointness implementation
+        :return:
+        """
 
         # the empty set is considered disjoint with itself.
         self.assertTrue(SetDisjointness([], [], []).naive_is_disjoint())
@@ -41,6 +45,10 @@ class TestSetDisjointness(unittest.TestCase):
                                          [10, -1, 42, 12]).naive_is_disjoint())
 
     def test_short_circuit_disjoint(self):
+        """
+        Test short-circuited set Disjointness implementation
+        :return:
+        """
 
         self.assertTrue(SetDisjointness([], [], []).short_circuit_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], []).short_circuit_is_disjoint())
@@ -53,7 +61,10 @@ class TestSetDisjointness(unittest.TestCase):
                                          [10, -1, 42, 12]).short_circuit_is_disjoint())
 
     def test_sorting_disjoint(self):
-
+        """
+        Test Sorting based Set-Disjointness implementation
+        :return:
+        """
         self.assertTrue(SetDisjointness([], [], []).sorting_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], []).sorting_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], [2]).sorting_is_disjoint())
