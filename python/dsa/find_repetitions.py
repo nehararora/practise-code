@@ -25,8 +25,24 @@ class FindRepetitions(object):
 
         exercise 3.54, Chapter 3, Data Structures and Algorithms in Python,
         Goodrich et al.
-
+        ~ O(n)
         :return:
         """
-        self.s
-        pass
+
+        # maintain counts in a dictionary
+        counts = dict()
+
+        # o(log(n))
+        for a in self.s:
+            counts[a] = counts.get(a, 0) + 1
+
+        # find the key with the maximum count
+        max_key = None
+        max_count = 0
+
+        for key in counts:
+            if max_count < counts[key]:
+                max_count = counts[key]
+                max_key = key
+
+        return max_key
