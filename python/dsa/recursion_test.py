@@ -29,16 +29,19 @@ class TestRecursion(unittest.TestCase):
         with self.assertRaises(ValueError):
             factorial(-4)
 
-
     def test_ruler(self):
         """
 
         :return:
         """
         # TODO: fix - test, instead of printing...
-        Ruler(inches=2, major_length=4).draw()
+        x = "---- 0\n-\n--\n-\n---\n-\n--\n-\n---- 1\n-\n--\n-\n---\n-\n--\n-\n---- 2\n"
+        self.assertEquals(x, Ruler(inches=2, major_length=4).draw())
         print("\n\n"*5)
-        Ruler(inches=1, major_length=5).draw()
-        print("\n\n"*5)
-        Ruler(inches=3, major_length=3).draw()
 
+        x = "----- 0\n-\n--\n-\n---\n-\n--\n-\n----\n-\n--\n-\n---\n-\n--\n-\n----- 1\n"
+        self.assertEquals(x, Ruler(inches=1, major_length=5).draw())
+        print("\n\n"*5)
+
+        x = """--- 0\n-\n--\n-\n--- 1\n-\n--\n-\n--- 2\n-\n--\n-\n--- 3\n"""
+        self.assertEqual(x, Ruler(inches=3, major_length=3).draw())

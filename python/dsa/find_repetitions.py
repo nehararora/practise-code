@@ -14,7 +14,16 @@ class FindRepetitions(object):
         self.s = seq
 
     def find_duplicates(self):
-        pass
+        """
+        Find and return all duplicates in input list.
+
+        :return: List of duplicate entries.
+        """
+        counts = dict()
+        for a in self.s:
+            counts[a] = counts.get(a, 0) + 1
+
+        return {key for key in counts if counts[key] > 1}
 
     def find_max_repetitions(self):
         """

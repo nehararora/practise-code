@@ -21,3 +21,12 @@ class TestFindRepetitions(unittest.TestCase):
         self.assertEquals(10, f.find_max_repetitions())
 
         self.assertEquals(None, FindRepetitions([]).find_max_repetitions())
+
+    def test_find_duplicates(self):
+        f = FindRepetitions([1, 2, 3, 4, 1, 3, 3, 10, 10, 10, 10])
+        self.assertEquals({3, 10, 1}, f.find_duplicates())
+
+        f = FindRepetitions([1, 2, 3, 4, 5, 6])
+        self.assertEquals(set(), f.find_duplicates())
+
+        self.assertEquals(set(), FindRepetitions([]).find_duplicates())

@@ -22,18 +22,21 @@ def factorial(n):
         return n * factorial(n-1)
 
 
-# TODO: draw_ruler
 class Ruler(object):
+    """
+    Recursive implementation of a typical English ruler.
 
+    Section 4.1.2, Data Structures and Algorithms in Python, Goodrich et al.
+    """
     def __init__(self, inches, major_length, tick_label=''):
         self.inches = inches
         self.major_length = major_length
         self.tick_label = tick_label
+        self.ruler = ''
 
     def draw(self):
         """
-        Draws the markings of a typical English ruler.
-        For each inch, places a tick with a numeric label
+        Draw - For each inch, places a tick with a numeric label
         :return:
         Section 4.1.2, Data Structures and Algorithms in Python, Goodrich et al.
         """
@@ -41,13 +44,15 @@ class Ruler(object):
         for j in range(1, 1 + self.inches):
             self.draw_interval(self.major_length - 1)
             self.draw_line(self.major_length, str(j))  # draw lin j
+        return self.ruler
 
-    @staticmethod
-    def draw_line(tick_length, tick_label=''):
+    def draw_line(self, tick_length, tick_label=''):
         line = '-' * tick_length
         if tick_label:
             line += ' ' + tick_label
-        print(line)
+
+        # add current line to the ruler
+        self.ruler += line + '\n'
 
     def draw_interval(self, center_length):
         """
