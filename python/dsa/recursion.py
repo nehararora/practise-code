@@ -39,7 +39,7 @@ def binary_search(data, target, low, high):
         # find the mid point
         mid = (low + high)//2
 
-        if data[mid] is target:
+        if data[mid] == target:
             return True
 
         elif data[mid] > target:
@@ -47,6 +47,54 @@ def binary_search(data, target, low, high):
         else:
             return binary_search(data, target, mid+1, high)
 
+
+def recursive_sum(seq=[]):
+    """
+    Recursive sum of elements of a sequence.
+    O(n) since n recursions, each constant time.
+    Section 4.3.1, Data Structures and Algorithms in Python, Goodrich et al.
+
+    :param seq: Sequence of elements
+    :return: Sum
+    """
+    n = len(seq)
+    if n == 0:
+        return 0
+    else:
+        return recursive_sum(seq[0:n-1]) + seq[n-1]
+
+
+def recursive_reverse(seq=[]):
+    """
+    Reverses elements of sequence using linear recursion.
+    O(n) since each activation remove 2 elements.
+    Section 4.4, Data Structures and Algorithms in Python, Goodrich et al.
+
+    :param seq: Sequence to be reversed
+    :return: Reversed sequence
+    """
+
+    n = len(seq)
+    # consider a 0 length sequence reversed as well
+    if n == 0 or n == 1:
+        return seq
+
+    # swap the elements at the end and recurse
+    return [seq[n-1]] + recursive_reverse(seq[1:n-1]) + [seq[0]]
+
+
+def naive_power(x, n):
+    """
+    Raises x to the power n (x^n) using recursion.
+
+    :param x:
+    :param n:
+    :return:
+    """
+    if n == 0:
+        return 1
+    else:
+        return x * naive_power(x, n-1)
 
 class Ruler(object):
     """
