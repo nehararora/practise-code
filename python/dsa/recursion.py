@@ -22,6 +22,32 @@ def factorial(n):
         return n * factorial(n-1)
 
 
+def binary_search(data, target, low, high):
+    """
+    Recursive binary search implementation.
+
+    :param data:
+    :param target:
+    :param low:
+    :param high:
+    :return:
+    """
+
+    if low > high:
+        return False
+    else:
+        # find the mid point
+        mid = (low + high)//2
+
+        if data[mid] is target:
+            return True
+
+        elif data[mid] > target:
+            return binary_search(data, target, low, mid-1)
+        else:
+            return binary_search(data, target, mid+1, high)
+
+
 class Ruler(object):
     """
     Recursive implementation of a typical English ruler.

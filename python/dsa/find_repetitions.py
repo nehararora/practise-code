@@ -5,8 +5,6 @@ algorithms.
 
 __author__ = 'nehar'
 
-# TODO: complete find repetitions.
-
 
 class FindRepetitions(object):
 

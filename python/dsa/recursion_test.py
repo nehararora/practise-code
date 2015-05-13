@@ -7,7 +7,7 @@ __author__ = 'nehar'
 import unittest
 from recursion import factorial
 from recursion import Ruler
-
+from recursion import binary_search
 
 
 class TestRecursion(unittest.TestCase):
@@ -34,7 +34,6 @@ class TestRecursion(unittest.TestCase):
 
         :return:
         """
-        # TODO: fix - test, instead of printing...
         x = "---- 0\n-\n--\n-\n---\n-\n--\n-\n---- 1\n-\n--\n-\n---\n-\n--\n-\n---- 2\n"
         self.assertEquals(x, Ruler(inches=2, major_length=4).draw())
         print("\n\n"*5)
@@ -45,3 +44,10 @@ class TestRecursion(unittest.TestCase):
 
         x = """--- 0\n-\n--\n-\n--- 1\n-\n--\n-\n--- 2\n-\n--\n-\n--- 3\n"""
         self.assertEqual(x, Ruler(inches=3, major_length=3).draw())
+
+    def test_binary_search(self):
+        """
+        Test recursive Binary search.
+        :return:
+        """
+        binary_search([1, 2, 3, 4, 5], 5, 0, 4)
