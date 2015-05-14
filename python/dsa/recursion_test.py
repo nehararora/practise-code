@@ -15,6 +15,7 @@ from recursion import naive_power
 from recursion import recurrence_power
 from recursion import find_max
 from recursion import harmonic_number
+from recursion import str_to_integer
 
 
 class TestRecursion(unittest.TestCase):
@@ -131,10 +132,30 @@ class TestRecursion(unittest.TestCase):
         self.assertEquals(round(25/12, 2), round(harmonic_number(4), 2))
         self.assertEquals(round(137/60, 2), round(harmonic_number(5), 2))
 
+    def test_harmonic_number(self):
+        """
+        Test recursive implementation of harmonic number calculation.
+        """
+        self.assertEquals(1, harmonic_number(1))
+        self.assertEquals(3/2, harmonic_number(2))
+        self.assertEquals(11/6, harmonic_number(3))
+        self.assertEquals(round(25/12, 2), round(harmonic_number(4), 2))
+        self.assertEquals(round(137/60, 2), round(harmonic_number(5), 2))
+
     def test_recurrence_power(self):
-        self.assertEquals(1, recurrence_power(2, 0))
-        self.assertEquals(2, recurrence_power(2, 1))
-        self.assertEquals(4, recurrence_power(2, 2))
-        self.assertEquals(-1, recurrence_power(-1, 1))
-        self.assertEquals(27, recurrence_power(3, 3))
-        self.assertEquals(-27, recurrence_power(-3, 3))
+        self.assertEquals(0, str_to_integer("0"))
+        self.assertEquals(1, str_to_integer("1"))
+        self.assertEquals(2, str_to_integer("2"))
+        self.assertEquals(1345, str_to_integer("1345"))
+        self.assertEquals(13531, str_to_integer("13531"))
+
+        # we can't handle negatives yet
+        self.assertEquals(-12, str_to_integer("-12"))
+        self.assertEquals(-1, str_to_integer("-1"))
+        self.assertEquals(-146444, str_to_integer("-146444"))
+
+        with self.assertRaises(ValueError):
+            str_to_integer("oogabooga")
+
+        # TODO: this will fail right now as we don't have a syntax check.
+        # self.assertEquals(1-46444, str_to_integer("1-46444"))

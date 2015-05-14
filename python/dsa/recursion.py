@@ -179,6 +179,26 @@ def harmonic_number(n):
     return 1/n + harmonic_number(n-1)
 
 
+def str_to_integer(string):
+    """
+    Recursive function for converting a string of digits into the integer it represents.
+    For example, 13531 represents the integer 13,531.
+
+    Works by recursively chopping off the end and multiplying by 10.
+    Exercise R-4.7, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    :param string: String representation of the number.
+    :return: integer representation.
+    """
+    n = len(string)
+    if n == 0:
+        return 0
+
+    if string[0] == '-':
+        return -1 * str_to_integer(string[1:n])
+
+    return int(string[0]) * (10 ** (n-1)) + str_to_integer(string[1:n])
+
+
 class Ruler(object):
     """
     Recursive implementation of a typical English ruler.
