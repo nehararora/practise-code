@@ -14,6 +14,7 @@ from recursion import recursive_reverse
 from recursion import naive_power
 from recursion import recurrence_power
 from recursion import find_max
+from recursion import harmonic_number
 
 
 class TestRecursion(unittest.TestCase):
@@ -112,7 +113,6 @@ class TestRecursion(unittest.TestCase):
     def test_naive_power(self):
         """
         Test naive recursive power function implementation.
-        :return:
         """
         self.assertEquals(1, naive_power(2, 0))
         self.assertEquals(2, naive_power(2, 1))
@@ -120,6 +120,16 @@ class TestRecursion(unittest.TestCase):
         self.assertEquals(-1, naive_power(-1, 1))
         self.assertEquals(27, naive_power(3, 3))
         self.assertEquals(-27, naive_power(-3, 3))
+
+    def test_harmonic_number(self):
+        """
+        Test recursive implementation of harmonic number calculation.
+        """
+        self.assertEquals(1, harmonic_number(1))
+        self.assertEquals(3/2, harmonic_number(2))
+        self.assertEquals(11/6, harmonic_number(3))
+        self.assertEquals(round(25/12, 2), round(harmonic_number(4), 2))
+        self.assertEquals(round(137/60, 2), round(harmonic_number(5), 2))
 
     def test_recurrence_power(self):
         self.assertEquals(1, recurrence_power(2, 0))

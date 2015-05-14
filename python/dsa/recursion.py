@@ -162,6 +162,23 @@ def recurrence_power(x, n):
         return result
 
 
+def harmonic_number(i):
+    """
+    Describe a recursive function for computing the nth Harmonic number, Hn = ∑ 1/i.
+
+    Exercise R-4.6, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    :param i:
+    :param n:
+    :return: nth harmonic number.
+    1/1 + 1/2 + 1/3 + 1/4 + ... + 1/n
+    """
+
+    # the 1st harmonic number is 1...
+    if i == 1:
+        return 1
+    return 1/i + harmonic_number(i-1)
+
+
 class Ruler(object):
     """
     Recursive implementation of a typical English ruler.
