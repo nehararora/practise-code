@@ -8,9 +8,12 @@ import unittest
 from recursion import factorial
 from recursion import Ruler
 from recursion import binary_search
-from recursion import recursive_sum
+from recursion import sum_linear
+from recursion import sum_binary
 from recursion import recursive_reverse
 from recursion import naive_power
+from recursion import recurrence_power
+from recursion import find_max
 
 
 class TestRecursion(unittest.TestCase):
@@ -55,17 +58,28 @@ class TestRecursion(unittest.TestCase):
         """
         binary_search([1, 2, 3, 4, 5], 5, 0, 4)
 
-    def test_recursive_sum(self):
+    def test_recursive_sum_linear(self):
         """
         Test Linear recursive sum of sequence.
 
         :return:
         """
-        self.assertEquals(0, recursive_sum())
-        self.assertEquals(0, recursive_sum([]))
-        self.assertEquals(1, recursive_sum([1]))
-        self.assertEquals(3, recursive_sum([1, 2]))
-        self.assertEquals(6, recursive_sum([1, 2, 3]))
+        self.assertEquals(0, sum_linear())
+        self.assertEquals(0, sum_linear([]))
+        self.assertEquals(1, sum_linear([1]))
+        self.assertEquals(3, sum_linear([1, 2]))
+        self.assertEquals(6, sum_linear([1, 2, 3]))
+
+    def test_recursive_sum_binary(self):
+        """
+
+        :return:
+        """
+        self.assertEquals(0, sum_binary())
+        self.assertEquals(0, sum_binary([]))
+        self.assertEquals(1, sum_binary([1]))
+        self.assertEquals(3, sum_binary([1, 2]))
+        self.assertEquals(6, sum_binary([1, 2, 3]))
 
     def test_recursive_reverse(self):
         """
@@ -82,6 +96,19 @@ class TestRecursion(unittest.TestCase):
         self.assertEquals([5, 9, 8, 2, 6, 3, 4],
                           recursive_reverse([4, 3, 6, 2, 8, 9, 5]))
 
+    def test_find_max(self):
+        """
+        Test recursive find_max.
+
+        :return:
+        """
+        self.assertEquals(1, find_max([1]))
+        self.assertEquals(10, find_max([5, 10, 1]))
+        self.assertEquals(-1, find_max([-10, -20, -1]))
+        with self.assertRaises(TypeError):
+            self.assertEquals(1, find_max([]))
+        self.assertEquals(0, find_max([0]))
+
     def test_naive_power(self):
         """
         Test naive recursive power function implementation.
@@ -93,3 +120,11 @@ class TestRecursion(unittest.TestCase):
         self.assertEquals(-1, naive_power(-1, 1))
         self.assertEquals(27, naive_power(3, 3))
         self.assertEquals(-27, naive_power(-3, 3))
+
+    def test_recurrence_power(self):
+        self.assertEquals(1, recurrence_power(2, 0))
+        self.assertEquals(2, recurrence_power(2, 1))
+        self.assertEquals(4, recurrence_power(2, 2))
+        self.assertEquals(-1, recurrence_power(-1, 1))
+        self.assertEquals(27, recurrence_power(3, 3))
+        self.assertEquals(-27, recurrence_power(-3, 3))

@@ -48,9 +48,9 @@ def binary_search(data, target, low, high):
             return binary_search(data, target, mid+1, high)
 
 
-def recursive_sum(seq=[]):
+def sum_linear(seq=[]):
     """
-    Recursive sum of elements of a sequence.
+    Linear recursive sum of elements of a sequence.
     O(n) since n recursions, each constant time.
     Section 4.3.1, Data Structures and Algorithms in Python, Goodrich et al.
 
@@ -61,7 +61,45 @@ def recursive_sum(seq=[]):
     if n == 0:
         return 0
     else:
-        return recursive_sum(seq[0:n-1]) + seq[n-1]
+        return sum_linear(seq[0:n-1]) + seq[n-1]
+
+
+def sum_binary(seq=[]):
+    """
+    Binary recursive sum of elements of a sequence.
+    O(n) running time since 2n-1 fx calls
+    Section 4.4, Data Structures and Algorithms in Python, Goodrich et al.
+    :param seq:
+    :return:
+    """
+    n = len(seq)
+    if n == 0:
+        return 0
+    elif n == 1:
+        return seq[0]
+    else:
+        mid = n//2
+        return sum_binary(seq[0:mid]) + sum_binary(seq[mid:n])
+
+
+def find_max(seq=[]):
+    """
+    A recursive algorithm for finding the maximum element in a sequence, S, of n elements.
+
+    Exercise R-4.1, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    :param seq:
+    :return:
+    """
+    n = len(seq)
+    # only element in list is max by itself
+    if n == 0:
+        raise TypeError
+    elif n == 1:
+        return seq[0]
+
+    x = find_max(seq[0:n-1])
+
+    return seq[n-1] if seq[n-1] > x else x
 
 
 def recursive_reverse(seq=[]):
@@ -95,6 +133,34 @@ def naive_power(x, n):
         return 1
     else:
         return x * naive_power(x, n-1)
+
+
+def recurrence_power(x, n):
+    """
+    Raises x to the power n using the recurrence relation.
+    power(x, n)
+        = 1 if n==0
+        = x * power(x, ceil(n/2))^2 if n > 0 is odd
+        = (power(x, ceil()n/2))^2   if n > 0 is even
+
+    running time ~ O(log(n)) as n is halved each time.
+    :param x: base
+    :param n: exponent
+    :return: x**n
+    """
+    if n == 0:
+        return 1
+    else:
+        # create partial
+        partial = recurrence_power(x, n//2)
+        # square to get results
+        result = partial * partial
+
+        # if odd, include the extra x
+        if n % 2 == 1:
+            result *= x
+        return result
+
 
 class Ruler(object):
     """
