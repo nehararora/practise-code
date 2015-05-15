@@ -149,7 +149,6 @@ class TestRecursion(unittest.TestCase):
         self.assertEquals(1345, str_to_integer("1345"))
         self.assertEquals(13531, str_to_integer("13531"))
 
-        # we can't handle negatives yet
         self.assertEquals(-12, str_to_integer("-12"))
         self.assertEquals(-1, str_to_integer("-1"))
         self.assertEquals(-146444, str_to_integer("-146444"))

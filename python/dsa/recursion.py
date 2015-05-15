@@ -243,3 +243,20 @@ class Ruler(object):
             self.draw_interval(center_length - 1)
             self.draw_line(center_length)
             self.draw_interval(center_length - 1)
+
+
+def find_min_max(seq):
+    """
+    Function to find minimum and maximum values in a sequence (without using loops.)
+    Exercise C-4.9, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    :param seq: Input sequence
+    :return: a tuple of minimum and maximum values from seq.
+    """
+
+    n = len(seq)
+    if n == 2:
+        return (seq[0], seq[1]) if seq[0] < seq[1] else (seq[1], seq[0])
+
+    min, max = find_min_max(seq[0:n-2])
+    return
+    #return seq[n-1] if seq[n-1] > x else x
