@@ -260,7 +260,7 @@ def str_to_integer(string):
     return int(string[0]) * (10 ** (n-1)) + str_to_integer(string[1:n])
 
 
-def towers_of_hanoi():
+def towers_of_hanoi(source, middle, target):
     """
     In the Towers of Hanoi puzzle, we are given a platform with three pegs, a,
     b, and c, sticking out of it. On peg a is a stack of n disks, each larger
@@ -273,8 +273,16 @@ def towers_of_hanoi():
     another peg using the third as “temporary storage.”)
 
     Exercise R-4.14, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    :param source: Source stack/peg - assumed to contain discs in order of size.
+    :param middle: Middle peg.
+    :param target: Target peg - at end of the run, all discs are here in order of size.
+
     """
     # TODO: towers of hanoi
+    n = len(source)
+
+    # move single disc to final destination
+
 
 
 def is_palindrome(string):
