@@ -48,7 +48,7 @@ def binary_search(data, target, low, high):
             return binary_search(data, target, mid+1, high)
 
 
-def sum_linear(seq=[]):
+def sum_linear(seq=None):
     """
     Linear recursive sum of elements of a sequence.
     O(n) since n recursions, each constant time.
@@ -57,6 +57,8 @@ def sum_linear(seq=[]):
     :param seq: Sequence of elements
     :return: Sum
     """
+    if not seq:
+        seq = []
     n = len(seq)
     if n == 0:
         return 0
@@ -64,7 +66,7 @@ def sum_linear(seq=[]):
         return sum_linear(seq[0:n-1]) + seq[n-1]
 
 
-def sum_binary(seq=[]):
+def sum_binary(seq=None):
     """
     Binary recursive sum of elements of a sequence.
     O(n) running time since 2n-1 fx calls
@@ -72,6 +74,8 @@ def sum_binary(seq=[]):
     :param seq:
     :return:
     """
+    if not seq:
+        seq = []
     n = len(seq)
     if n == 0:
         return 0
@@ -82,7 +86,7 @@ def sum_binary(seq=[]):
         return sum_binary(seq[0:mid]) + sum_binary(seq[mid:n])
 
 
-def find_max(seq=[]):
+def find_max(seq=None):
     """
     A recursive algorithm for finding the maximum element in a sequence, S, of n elements.
 
@@ -90,6 +94,8 @@ def find_max(seq=[]):
     :param seq:
     :return:
     """
+    if not seq:
+        seq = []
     n = len(seq)
     # only element in list is max by itself
     if n == 0:
@@ -102,7 +108,59 @@ def find_max(seq=[]):
     return seq[n-1] if seq[n-1] > x else x
 
 
-def recursive_reverse(seq=[]):
+def find_min_max(seq=None):
+    """
+    Function to find minimum and maximum values in a sequence (without using loops.)
+    Exercise C-4.9, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    :param seq: Input sequence
+    :return: a tuple of minimum and maximum values from seq.
+    """
+    if not seq:
+        seq = []
+
+    n = len(seq)
+    if n == 0:
+        raise TypeError
+    if n == 1:
+        return seq[0], seq[0]
+    if n == 2:
+        return (seq[0], seq[1]) if seq[0] < seq[1] else (seq[1], seq[0])
+
+    min_val, max_val = find_min_max(seq[0:n-2])
+
+    min_val = seq[n-1] if seq[n-1] < min_val else min_val
+    min_val = seq[n-2] if seq[n-2] < min_val else min_val
+    max_val = seq[n-1] if seq[n-1] > max_val else max_val
+    max_val = seq[n-2] if seq[n-2] > max_val else max_val
+
+    return min_val, max_val
+
+
+def product(m, n):
+    """
+    Recursive algorithm to compute the product of two positive integers,
+    m and n, using only addition and subtraction.
+
+    Exercise C-4.12, Chapter 4, Data Structures and Algorithms in Python,
+    Goodrich et al.
+    """
+    if type(m) is not int:
+        raise TypeError
+    if type(n) is not int:
+        raise TypeError
+
+    if m < 0 or n < 0:
+        raise TypeError
+
+    if m == 0 or n == 0:
+        return 0
+    if n == 1:
+        return m
+
+    return m + product(m, n-1)
+
+
+def recursive_reverse(seq=None):
     """
     Reverses elements of sequence using linear recursion.
     O(n) since each activation remove 2 elements.
@@ -111,6 +169,8 @@ def recursive_reverse(seq=[]):
     :param seq: Sequence to be reversed
     :return: Reversed sequence
     """
+    if not seq:
+        seq = []
 
     n = len(seq)
     # consider a 0 length sequence reversed as well
@@ -185,6 +245,7 @@ def str_to_integer(string):
     For example, 13531 represents the integer 13,531.
 
     Works by recursively chopping off the end and multiplying by 10.
+
     Exercise R-4.7, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
     :param string: String representation of the number.
     :return: integer representation.
@@ -197,6 +258,73 @@ def str_to_integer(string):
         return -1 * str_to_integer(string[1:n])
 
     return int(string[0]) * (10 ** (n-1)) + str_to_integer(string[1:n])
+
+
+def towers_of_hanoi():
+    """
+    In the Towers of Hanoi puzzle, we are given a platform with three pegs, a,
+    b, and c, sticking out of it. On peg a is a stack of n disks, each larger
+    than the next, so that the smallest is on the top and the largest is on the
+    bottom. The puzzle is to move all the disks from peg a to peg c, moving one
+    disk at a time, so that we never place a larger disk on top of a smaller
+    one. See Figure 4.15 for an example of the case n = 4. Describe a recursive
+    algorithm for solving the Towers of Hanoi puzzle for arbitrary n. (Hint:
+    Consider first the sub-problem of moving all but the nth disk from peg a to
+    another peg using the third as “temporary storage.”)
+
+    Exercise R-4.14, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    """
+    # TODO: towers of hanoi
+
+
+def is_palindrome(string):
+    """
+    Short recursive Python function that determines if a string s is a
+    palindrome, that is, it is equal to its reverse. For example, 'racecar'
+    and 'gohangasalamiimalasagnahog' are palindromes.
+
+    Exercise R-4.17, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    :return:
+    """
+    n = len(string)
+    if n < 2:
+        return True
+
+    if string[0] != string[-1]:
+        return False
+
+    return is_palindrome(string[1:-1])
+
+
+def count_vowels_and_consonants(string):
+    """
+    Recursive function for counting vowels than consonants in a string.
+    :return:
+    """
+    if type(string) is not str:
+        raise TypeError
+    n = len(string)
+    if n == 0:
+        return 0, 0
+
+    v, c = count_vowels_and_consonants(string[1:n])
+
+    if string[0] in ('a', 'i', 'e', 'o', 'u'):
+        return v + 1, c
+    elif string[0].isalpha():
+        return v, c + 1
+    else:
+        return v, c
+
+
+def more_vowels_or_consonants(string):
+    """
+    Recursive function for determining if a string s has more vowels than consonants.
+
+    Exercise R-4.18, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+    :return:
+    """
+    # TODO: complete vowels and consonants count.
 
 
 class Ruler(object):
@@ -243,20 +371,3 @@ class Ruler(object):
             self.draw_interval(center_length - 1)
             self.draw_line(center_length)
             self.draw_interval(center_length - 1)
-
-
-def find_min_max(seq):
-    """
-    Function to find minimum and maximum values in a sequence (without using loops.)
-    Exercise C-4.9, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
-    :param seq: Input sequence
-    :return: a tuple of minimum and maximum values from seq.
-    """
-
-    n = len(seq)
-    if n == 2:
-        return (seq[0], seq[1]) if seq[0] < seq[1] else (seq[1], seq[0])
-
-    min, max = find_min_max(seq[0:n-2])
-    return
-    #return seq[n-1] if seq[n-1] > x else x
