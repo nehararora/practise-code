@@ -260,29 +260,34 @@ def str_to_integer(string):
     return int(string[0]) * (10 ** (n-1)) + str_to_integer(string[1:n])
 
 
-def towers_of_hanoi(source, middle, target):
+def towers_of_hanoi(n, source, middle, target):
     """
-    In the Towers of Hanoi puzzle, we are given a platform with three pegs, a,
-    b, and c, sticking out of it. On peg a is a stack of n disks, each larger
-    than the next, so that the smallest is on the top and the largest is on the
-    bottom. The puzzle is to move all the disks from peg a to peg c, moving one
-    disk at a time, so that we never place a larger disk on top of a smaller
-    one. See Figure 4.15 for an example of the case n = 4. Describe a recursive
-    algorithm for solving the Towers of Hanoi puzzle for arbitrary n. (Hint:
-    Consider first the sub-problem of moving all but the nth disk from peg a to
-    another peg using the third as “temporary storage.”)
+    Algorithm to solve the Towers of Hanoi problem.
+    Given a platform with three pegs, source, middle, and target, and a stack
+    of n disks, each larger than the next, so that the smallest is on the top
+    and the largest on the bottom; the puzzle is to move all the disks from
+    source to peg target, moving one disk at a time, so that we never place a
+    larger disk on top of a smaller one.
 
     Exercise R-4.14, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
-    :param source: Source stack/peg - assumed to contain discs in order of size.
+
+    :param n: number of discs on source
+    :param source: source stack/peg - assumed to contain discs in order of size.
     :param middle: Middle peg.
     :param target: Target peg - at end of the run, all discs are here in order of size.
 
     """
-    # TODO: towers of hanoi
-    n = len(source)
-
-    # move single disc to final destination
-
+    # n = len(source)
+    if source is None or middle is None or target is None:
+        raise ValueError
+    if n >= 0:
+        # move n-1 to middle
+        towers_of_hanoi(n-1, source=source, middle=target, target=middle)
+        # move nth disc to target
+        if source:
+            target.append(source.pop())
+        # move n-1 discs from middle to target
+        towers_of_hanoi(n-1, source=middle, middle=source, target=target)
 
 
 def is_palindrome(string):

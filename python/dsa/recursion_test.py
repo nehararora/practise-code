@@ -209,7 +209,38 @@ class TestRecursion(unittest.TestCase):
 
         :return:
         """
-        self.assertEquals(None, towers_of_hanoi(source=[], middle=[], target=[]))
+
+        self.assertEquals(None, towers_of_hanoi(n=1, source=[], middle=[], target=[]))
+        with self.assertRaises(ValueError):
+            towers_of_hanoi(n=1, source=None, middle=[], target=[])
+        with self.assertRaises(ValueError):
+            towers_of_hanoi(n=2, source=[], middle=None, target=[])
+        with self.assertRaises(ValueError):
+            towers_of_hanoi(n=3, source=[], middle=[], target=None)
+
+        source = [1]
+        middle = []
+        target = []
+        towers_of_hanoi(n=3, source=source, middle=middle, target=target)
+        self.assertEquals([], source)
+        self.assertEquals([1], target)
+        self.assertEquals([], middle)
+
+        source = [1, 2, 3]
+        middle = []
+        target = []
+        towers_of_hanoi(n=3, source=source, middle=middle, target=target)
+        self.assertEquals([], source)
+        self.assertEquals([1, 2, 3], target)
+        self.assertEquals([], middle)
+
+        source = [4, 5, 6, 10]
+        middle = []
+        target = []
+        towers_of_hanoi(n=3, source=source, middle=middle, target=target)
+        self.assertEquals([], source)
+        self.assertEquals([4, 5, 6, 10], target)
+        self.assertEquals([], middle)
 
     def test_is_palindrome(self):
         """
