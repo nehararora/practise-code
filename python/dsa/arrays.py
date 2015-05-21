@@ -18,6 +18,9 @@ class DynamicArray(object):
 
     def __init__(self):
         """
-        Initialize the array object.
+        Create an empty array.
         :return:
         """
+        # actual count
+        self._count = 0
+        self._capacity = 1

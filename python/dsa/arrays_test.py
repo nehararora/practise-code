@@ -7,6 +7,8 @@ __author__ = 'nehar'
 
 import unittest
 
+from arrays import DynamicArray
+
 class TestArrays(unittest.TestCase):
 
     def test_dynamic_array(self):
@@ -15,3 +17,5 @@ class TestArrays(unittest.TestCase):
 
         :return:
         """
+        a = DynamicArray()
+        self.assertIsNotNone(a)
