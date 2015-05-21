@@ -1,7 +1,7 @@
 """
 recursion.py: Recursion based algorithms.
 
-primarily Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+Primarily from Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
 
 """
 __author__ = 'nehar'
