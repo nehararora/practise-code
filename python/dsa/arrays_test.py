@@ -17,5 +17,12 @@ class TestArrays(unittest.TestCase):
 
         :return:
         """
+        # test basic object properties.
         a = DynamicArray()
         self.assertIsNotNone(a)
+        self.assertEquals(1, a._capacity)
+        self.assertEquals(0, a._count)
+        self.assertEquals(0, len(a))
+        with self.assertRaises(IndexError):
+            a[0]
+
