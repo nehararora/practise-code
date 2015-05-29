@@ -24,6 +24,7 @@ class DynamicArray(object):
         """
         # actual count
         self._count = 0
+        # maximum elements the raw array can hold
         self._capacity = 1
 
         # allocate capacity
@@ -54,8 +55,44 @@ class DynamicArray(object):
         :return: object at index item.
         """
 
+        # array index out of bounds
         if not 0 <= item < self._count:
             raise IndexError("Invalid index")
+
         return self._array[item]
 
+    def append(self, item):
+        """
+        Add element to end of array.
+        Array is doubled on attempt to append beyond capacity.
 
+        :param item: Element to append
+        :return: None
+        """
+        print(self._count)
+        # resize
+        if self._count == self._capacity:
+            self._resize(2 * self._capacity)
+
+        # append element
+        self._array[self._count] = item
+
+        self._count += 1
+
+    def _resize(self, capacity):
+        """
+        Resize backing array to capacity.
+
+        :param capacity:
+        :return:
+        """
+        # make a new array
+        new_array = self._alloc(capacity)
+
+        # copy existing elements over
+        for i, item in enumerate(self._array):
+            new_array[i] = item
+
+        # replace old array
+        self._array = new_array
+        self._capacity = capacity
