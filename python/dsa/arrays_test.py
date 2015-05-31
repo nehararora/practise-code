@@ -9,6 +9,8 @@ import unittest
 
 
 from arrays import DynamicArray
+from arrays import CaesarCipher
+
 
 # TODO: add ALL dynamic array operations (e.g. delete, insert etc)
 class TestDynamicArray(unittest.TestCase):
@@ -151,3 +153,59 @@ class TestDynamicArray(unittest.TestCase):
         with self.assertRaises(ValueError):
             c.remove(4)
 
+
+class TestCaesarCipher(unittest.TestCase):
+    """
+    Test cases for the CaeserCipher implementation.
+    """
+    def test_instantiation(self):
+        """
+        Test basic object creation.
+        """
+        c = CaesarCipher(0)
+        self.assertIsNotNone(c)
+        self.assertEquals(0, c._shift)
+        self.assertEquals("ABCDEFGHIJKLMNOPQRSTUVWXYZ", c._enc_key)
+        self.assertEquals("ABCDEFGHIJKLMNOPQRSTUVWXYZ", c._dec_key)
+
+    def test_rot13(self):
+        """
+        Basic encryption test using rot13.
+        """
+
+        # rot-13 - same backwards and forwards
+        c = CaesarCipher(13)
+        print(c._enc_key)
+        self.assertEquals("NOPQRSTUVWXYZABCDEFGHIJKLM", c._enc_key)
+        self.assertEquals("NOPQRSTUVWXYZABCDEFGHIJKLM", c._dec_key)
+        self.assertEquals("URYYB", c.encrypt("HELLO"))
+        self.assertEquals("URYYB", c.encrypt("hello"))
+        self.assertEquals("URYYB FRPERG ZRFFNTR ERPVCVRAG",
+                          c.encrypt("hello secret message recipient"))
+
+    def test_enc_dec(self):
+        """
+        Test some encryption and decryption cases.
+
+        :return:
+        """
+        c = CaesarCipher(13)
+        self.assertEquals("NOPQRSTUVWXYZABCDEFGHIJKLM", c._enc_key)
+        self.assertEquals("NOPQRSTUVWXYZABCDEFGHIJKLM", c._dec_key)
+        self.assertEquals("TEST MESSAGE", c.decrypt(c.encrypt("Test Message")))
+
+        c = CaesarCipher(0)
+        self.assertEquals("ABCDEFGHIJKLMNOPQRSTUVWXYZ", c._enc_key)
+        self.assertEquals("ABCDEFGHIJKLMNOPQRSTUVWXYZ", c._dec_key)
+        self.assertEquals("TEST MESSAGE", c.encrypt("Test Message"))
+        self.assertEquals("TEST MESSAGE", c.decrypt(c.encrypt("Test Message")))
+
+        c = CaesarCipher(1)
+        self.assertEquals("BCDEFGHIJKLMNOPQRSTUVWXYZA", c._enc_key)
+        self.assertEquals("ZABCDEFGHIJKLMNOPQRSTUVWXY", c._dec_key)
+        self.assertEquals("UFTU NFTTBHF", c.encrypt("Test Message"))
+        self.assertEquals("TEST MESSAGE", c.decrypt("UFTU NFTTBHF"))
+
+        c = CaesarCipher(3)
+        self.assertEquals("WKH HDJOH LV LQ SODB; PHHW DW MRH'V.",
+                          c.encrypt("THE EAGLE IS IN PLAY; MEET AT JOE'S."))

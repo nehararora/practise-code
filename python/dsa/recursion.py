@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 recursion.py: Recursion based algorithms.
 

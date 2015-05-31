@@ -27,8 +27,7 @@ class TestRecursion(unittest.TestCase):
 
     def test_factorial(self):
         """
-
-        :return:
+        Test recursive factorial implementation.
         """
         self.assertEquals(1, factorial(0))
         self.assertEquals(1, factorial(1))
@@ -37,6 +36,7 @@ class TestRecursion(unittest.TestCase):
         self.assertEquals(3628800, factorial(10))
         self.assertEquals(1307674368000, factorial(15))
 
+        # TODO: fails under python 2.7 - ValueError not raised :(
         with self.assertRaises(ValueError):
             factorial(3/2)
         with self.assertRaises(ValueError):
@@ -184,6 +184,8 @@ class TestRecursion(unittest.TestCase):
         self.assertEquals(1, harmonic_number(1))
         self.assertEquals(3/2, harmonic_number(2))
         self.assertEquals(11/6, harmonic_number(3))
+
+        # TODO: fails under python 2.7 :(
         self.assertEquals(round(25/12, 2), round(harmonic_number(4), 2))
         self.assertEquals(round(137/60, 2), round(harmonic_number(5), 2))
 

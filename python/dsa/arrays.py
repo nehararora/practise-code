@@ -149,3 +149,72 @@ class DynamicArray(object):
         self._capacity = capacity
 
 
+class CaesarCipher(object):
+    """
+    Implementation of the simple Caesar Cipher, a type of substitution cipher.
+
+    Each letter in a message is replaced by a letter displaced by a fixed
+    number of positions in the alphabet.
+
+    Section 5.5.3, Data Structures and Algorithms in Python, Goodrich et al.
+    """
+
+    def __init__(self, shift):
+        """
+        Constructs Caesar cipher with specified rotation.
+
+        Creates the encoding and decoding 'keys' as instance variables.
+
+        :param shift: rotation integer value.
+        """
+        self._shift = shift
+
+        # use temporary lists to avoid creating multiple string objects.
+        e = [None] * 26
+        d = [None] * 26
+
+        # pre-compute encoding and decoding keys, based on ascii ordinal values.
+        for i in range(26):
+            e[i] = chr((i + shift) % 26 + ord('A'))
+            d[i] = chr((i - shift) % 26 + ord('A'))
+
+        self._enc_key = ''.join(e)
+        self._dec_key = ''.join(d)
+
+    def encrypt(self, message):
+        """
+        Encrypt message using pre-computed cipher.
+
+        :param message: input message
+        :return: encrypted message
+        """
+        return self._transform(message, self._enc_key)
+
+    def decrypt(self, message):
+        """
+        Decrypt encrypted message using pre-computed cipher.
+
+        :param message: encrypted message
+        :return: decrypted message
+        """
+        return self._transform(message, self._dec_key)
+
+    @staticmethod
+    def _transform(message, key):
+        """
+        Transform input message based on key.
+        :param message:
+        :param key:
+        :return:
+        """
+
+        # convert input to list to avoid creating multiple objects.
+        temp = list(message)
+
+        for i in range(len(temp)):
+            if temp[i].isalpha():
+                j = ord(temp[i].upper()) - ord('A')
+                temp[i] = key[j]
+
+        return ''.join(temp)
+
