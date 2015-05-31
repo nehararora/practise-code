@@ -111,7 +111,9 @@ def find_max(seq=None):
 def find_min_max(seq=None):
     """
     Function to find minimum and maximum values in a sequence (without using loops.)
+
     Exercise C-4.9, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
+
     :param seq: Input sequence
     :return: a tuple of minimum and maximum values from seq.
     """
@@ -198,6 +200,7 @@ def naive_power(x, n):
 def recurrence_power(x, n):
     """
     Raises x to the power n using the recurrence relation.
+
     power(x, n)
         = 1 if n==0
         = x * power(x, ceil(n/2))^2 if n > 0 is odd
@@ -263,6 +266,7 @@ def str_to_integer(string):
 def towers_of_hanoi(n, source, middle, target):
     """
     Algorithm to solve the Towers of Hanoi problem.
+
     Given a platform with three pegs, source, middle, and target, and a stack
     of n disks, each larger than the next, so that the smallest is on the top
     and the largest on the bottom; the puzzle is to move all the disks from

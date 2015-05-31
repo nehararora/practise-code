@@ -14,6 +14,9 @@ import unittest
 
 
 class PrefixAverages(object):
+    """
+    Prefix averages implementation.
+    """
     def __init__(self, s=[]):
         self.s = s
 
@@ -52,6 +55,10 @@ class PrefixAverages(object):
 
 
 class TestPrefixAverages(unittest.TestCase):
+    """
+    Test cases for prefix averages implementations.
+
+    """
     def test_instance(self):
         """Test basic instantiation"""
 

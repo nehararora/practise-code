@@ -1,11 +1,5 @@
 """
 sequence.py: Illustrates Progressions.
-ArithmeticProgression: Arithmetic progression iterator.
-GeometricProgression: Geometric progression
-FibonacciProgression: Fibonacci series
-FindMissingNumber:
-
-
 """
 
 __author__ = "nehar"

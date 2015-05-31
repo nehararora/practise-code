@@ -147,3 +147,5 @@ class DynamicArray(object):
         # replace old array
         self._array = new_array
         self._capacity = capacity
+
+

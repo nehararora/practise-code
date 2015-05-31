@@ -24,7 +24,7 @@ class Sorting(object):
         close to perfectly sorted.
 
         Note: Implementation modifies input array state.
-        
+
         Section 5.5.2, Data Structures and Algorithms in Python, Goodrich et al.
         """
 

@@ -11,13 +11,15 @@ import unittest
 from arrays import DynamicArray
 
 # TODO: add ALL dynamic array operations (e.g. delete, insert etc)
-class TestArrays(unittest.TestCase):
+class TestDynamicArray(unittest.TestCase):
+    """
+    Test cases for DynamicArray implementation.
+    """
 
     def test_dynamic_array(self):
         """
         dynamic array tests.
 
-        :return:
         """
         # test initial object properties.
         a = DynamicArray()
@@ -28,7 +30,13 @@ class TestArrays(unittest.TestCase):
         with self.assertRaises(IndexError):
             a[0]
 
+    def test_append(self):
+        """
+        Test DynamicArray append.
+
+        """
         # test some appends...
+        a = DynamicArray()
         a.append(1)
         self.assertEquals(1, a._capacity)  # capacity unchanged
         self.assertEquals(1, a._count)  # count increases
@@ -59,6 +67,11 @@ class TestArrays(unittest.TestCase):
         self.assertEquals(5, len(a))
         self.assertEquals([1, 2, 3, 4, 5], [x for x in a])
 
+    def test_insert(self):
+        """
+        Test DynamicArray insert.
+
+        """
         # try some inserts...
         b = DynamicArray()
 
@@ -92,6 +105,11 @@ class TestArrays(unittest.TestCase):
         self.assertEquals(5, len(b))
         self.assertEquals([1, 2, 3, 4, 5], [x for x in b])
 
+    def test_remove(self):
+        """
+        Test DynamicArray remove.
+
+        """
         # test remove
         c = DynamicArray()
         c.append(1)

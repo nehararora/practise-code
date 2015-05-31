@@ -1,6 +1,5 @@
 """
-find_repetitions.py: Implementation of find repetitions in a sequence
-algorithms.
+find_repetitions.py: Implementation of find repetitions in a sequence algorithms.
 """
 
 __author__ = 'nehar'
