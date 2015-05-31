@@ -47,19 +47,31 @@ class DynamicArray(object):
         """
         return self._count
 
-    def __getitem__(self, item):
+    def __getitem__(self, index):
         """
         Element access.
 
-        :param item: index of element to access.
-        :return: object at index item.
+        :param index: index of element to access.
+        :return: object at index.
         """
 
         # array index out of bounds
-        if not 0 <= item < self._count:
+        if not 0 <= index < self._count:
             raise IndexError("Invalid index")
 
-        return self._array[item]
+        return self._array[index]
+
+    def __repr__(self):
+        """
+        Object representation.
+        :return: List representation.
+        """
+
+        try:
+            return str([self._array[i] for i in range(self._count)])
+        except ValueError as e:
+            print(e)
+            return str([])
 
     def append(self, item):
         """
@@ -69,7 +81,6 @@ class DynamicArray(object):
         :param item: Element to append
         :return: None
         """
-        print(self._count)
         # resize
         if self._count == self._capacity:
             self._resize(2 * self._capacity)
@@ -78,6 +89,46 @@ class DynamicArray(object):
         self._array[self._count] = item
 
         self._count += 1
+
+    def insert(self, k, item):
+        """
+        Insert value at index k.
+
+        :param k: index to insert at.
+        :param item: value to insert.
+        :return: None
+        """
+        # resize to double capacity
+        if self._count == self._capacity:
+            self._resize(2 * self._capacity)
+
+        # shift elements to the right...
+        for j in range(self._count, k, -1):
+            self._array[j] = self._array[j-1]
+
+        # insert value at
+        self._array[k] = item
+        self._count += 1
+
+    # TODO: implement array shrinking.
+    def remove(self, value):
+        """
+        Removes  first occurrence of value.
+        :param value: Value to remove.
+        :return: None
+        :raises ValueError: Raised if value is not found.
+        """
+
+        # look for a match
+        for i in range(self._count):
+            if self._array[i] == value:  # found match
+                # shift elements towards the left
+                for j in range(i, self._count - 1):
+                    self._array[j] = self._array[j+1]
+                self._array[self._count-1] = None # mark for GC
+                self._count -= 1
+                return
+        raise ValueError("{} not found".format(value))
 
     def _resize(self, capacity):
         """
