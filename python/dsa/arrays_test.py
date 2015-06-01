@@ -7,9 +7,9 @@ __author__ = 'nehar'
 
 import unittest
 
-
 from arrays import DynamicArray
 from arrays import CaesarCipher
+from arrays import MultiDimensional
 
 # TODO: add ALL dynamic array operations (e.g. delete, insert etc)
 class TestDynamicArray(unittest.TestCase):
@@ -223,3 +223,54 @@ class TestCaesarCipher(unittest.TestCase):
         c = CaesarCipher(3)
         self.assertEquals("WKH HDJOH LV LQ SODB; PHHW DW MRH'V.",
                           c.encrypt("THE EAGLE IS IN PLAY; MEET AT JOE'S."))
+
+
+class TestMultiDimensional(unittest.TestCase):
+    """
+    Test cases for multi dimensional array implementation.
+    """
+    def test_instantiation(self):
+        """
+        Test object creation.
+
+        """
+
+        m = MultiDimensional(row=1, col=1)
+        self.assertEquals(1, m._row)
+        self.assertEquals(1, m._col)
+        self.assertEquals([[1]], m._data)
+
+        m = MultiDimensional(row=1, col=2, value=2)
+        self.assertEquals([[2, 2]], m._data)
+
+        m = MultiDimensional(2, 5, value=42)
+        self.assertEquals([[42, 42, 42, 42, 42],
+                           [42, 42, 42, 42, 42]], m._data)
+
+    def test_compute_sum_std(self):
+        """
+        Test standard control structure based compute sum.
+        """
+
+        m = MultiDimensional(row=1, col=1)
+        self.assertEquals(1, m.compute_sum_std())
+
+        m = MultiDimensional(row=1, col=2, value=2)
+        self.assertEquals(4, m.compute_sum_std())
+
+        m = MultiDimensional(row=2, col=5, value=42)
+        self.assertEquals(42*5*2, m.compute_sum_std())
+
+    def test_compute(self):
+        """
+        Test comprehension based compute sum.
+        """
+
+        m = MultiDimensional(row=1, col=2)
+        self.assertEquals(1, m.compute_sum())
+
+        m = MultiDimensional(row=1, col=2, value=2)
+        self.assertEquals(4, m.compute_sum())
+
+        m = MultiDimensional(row=2, col=5, value=42)
+        self.assertEquals(42*5*2, m.compute_sum())

@@ -227,10 +227,50 @@ class MultiDimensional(object):
 
     Chapter 4 exercises, Data Structures and Algorithms in Python, Goodrich et al.
     """
+    def __init__(self, row, col, value=1):
+        """
+        Initialize the matrix with 'value' at each location a[i][j].
+
+        :param row:
+        :param col:
+        :param value:
+        """
+        self._row = row
+        self._col = col
+        self._data = [[value] * col for j in range(row)]
+
     def compute_sum_std(self):
         """
         Uses standard control structures to compute the sum of all numbers in
         an n × n data set, represented as a list of lists.
+
+        Exercise R-5.11, Data Structures and Algorithms in Python, Goodrich et al.
+
         :return: sum of matrix elements.
         """
+        total = 0
+        # there are better ways to do this, but use nested for loops.
+        for r in range(self._row):
+            for c in range(self._col):
+                total += self._data[r][c]
 
+        return total
+
+    def compute_sum(self):
+        """
+        Uses built in sum and list comprehension to compute the sum of all
+        numbers in an n × n data set, represented as a list of lists.
+
+        Exercise R-5.12, Data Structures and Algorithms in Python, Goodrich et al.
+
+        :return: sum of matrix elements.
+        """
+        total = 0
+
+        print(self._data)
+        #matrix = [[0 for i in range(5)] for j in range(5)]
+        print([[self._data[i][j] for j in range(self._col)] for i in range(self._row)])
+
+        total += [[i for i in row] for row in self._data[self._row]]
+
+        return total
