@@ -1,6 +1,5 @@
 """
-set_disjointness_test.py: Test cases for the set disjointness algorithms
-in set_disjointness.py.
+set_disjointness_test.py: Test cases for the set disjointness algorithms.
 """
 
 __author__ = 'nehar'
@@ -30,7 +29,6 @@ class TestSetDisjointness(unittest.TestCase):
     def test_naive_disjoint(self):
         """
         Test naive 3-Way Set Disjointness implementation
-        :return:
         """
 
         # the empty set is considered disjoint with itself.
@@ -47,7 +45,6 @@ class TestSetDisjointness(unittest.TestCase):
     def test_short_circuit_disjoint(self):
         """
         Test short-circuited set Disjointness implementation
-        :return:
         """
 
         self.assertTrue(SetDisjointness([], [], []).short_circuit_is_disjoint())
@@ -63,7 +60,6 @@ class TestSetDisjointness(unittest.TestCase):
     def test_sorting_disjoint(self):
         """
         Test Sorting based Set-Disjointness implementation
-        :return:
         """
         self.assertTrue(SetDisjointness([], [], []).sorting_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], []).sorting_is_disjoint())
@@ -76,6 +72,9 @@ class TestSetDisjointness(unittest.TestCase):
                                          [10, -1, 42, 12]).sorting_is_disjoint())
 
     def test_map_disjoint(self):
+        """
+        Test map based set disjointness implementation.
+        """
 
         self.assertTrue(SetDisjointness([], [], []).map_is_disjoint())
         self.assertTrue(SetDisjointness([1], [1], []).map_is_disjoint())

@@ -11,7 +11,6 @@ import unittest
 from arrays import DynamicArray
 from arrays import CaesarCipher
 
-
 # TODO: add ALL dynamic array operations (e.g. delete, insert etc)
 class TestDynamicArray(unittest.TestCase):
     """
@@ -88,7 +87,7 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEquals(2, b._count)  # count increases
         self.assertEquals(2, len(b))
         self.assertEquals([2, 4], [x for x in b])
-        print(b)
+
         b.insert(1, 3)
         self.assertEquals(4, b._capacity)  # capacity unchanged
         self.assertEquals(3, b._count)  # count increases
@@ -110,7 +109,6 @@ class TestDynamicArray(unittest.TestCase):
     def test_remove(self):
         """
         Test DynamicArray remove.
-
         """
         # test remove
         c = DynamicArray()
@@ -153,6 +151,23 @@ class TestDynamicArray(unittest.TestCase):
         with self.assertRaises(ValueError):
             c.remove(4)
 
+    def test_negative_indexing(self):
+        """
+        Test negative index element access.
+        """
+        c = DynamicArray()
+        c.append(1)
+        c.append(2)
+        c.append(3)
+        c.append(4)
+        c.append(5)
+        self.assertEquals(5, c[-1])
+        self.assertEquals(4, c[-2])
+        self.assertEquals(3, c[-3])
+        self.assertEquals(2, c[-4])
+        self.assertEquals(1, c[-5])
+        with self.assertRaises(IndexError):
+            c[-6]
 
 class TestCaesarCipher(unittest.TestCase):
     """
@@ -175,7 +190,6 @@ class TestCaesarCipher(unittest.TestCase):
 
         # rot-13 - same backwards and forwards
         c = CaesarCipher(13)
-        print(c._enc_key)
         self.assertEquals("NOPQRSTUVWXYZABCDEFGHIJKLM", c._enc_key)
         self.assertEquals("NOPQRSTUVWXYZABCDEFGHIJKLM", c._dec_key)
         self.assertEquals("URYYB", c.encrypt("HELLO"))

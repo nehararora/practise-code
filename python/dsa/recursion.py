@@ -70,10 +70,11 @@ def sum_linear(seq=None):
 def sum_binary(seq=None):
     """
     Binary recursive sum of elements of a sequence.
+
     O(n) running time since 2n-1 fx calls
     Section 4.4, Data Structures and Algorithms in Python, Goodrich et al.
     :param seq:
-    :return:
+    :return: sum of sequence.
     """
     if not seq:
         seq = []
@@ -93,7 +94,7 @@ def find_max(seq=None):
 
     Exercise R-4.1, Chapter 4, Data Structures and Algorithms in Python, Goodrich et al.
     :param seq:
-    :return:
+    :return: maximum value.
     """
     if not seq:
         seq = []

@@ -44,8 +44,7 @@ class TestRecursion(unittest.TestCase):
 
     def test_ruler(self):
         """
-
-        :return:
+        Test recursive ruler implementation.
         """
         x = "---- 0\n-\n--\n-\n---\n-\n--\n-\n---- 1\n-\n--\n-\n---\n-\n--\n-\n---- 2\n"
         self.assertEquals(x, Ruler(inches=2, major_length=4).draw())
@@ -61,7 +60,6 @@ class TestRecursion(unittest.TestCase):
     def test_binary_search(self):
         """
         Test recursive Binary search.
-        :return:
         """
         self.assertTrue(binary_search([1, 2, 3, 4, 5], 5, 0, 5))
         self.assertTrue(binary_search([11, 12, 13, 15, 20], 11, 0, 5))
@@ -69,8 +67,6 @@ class TestRecursion(unittest.TestCase):
     def test_sum_linear(self):
         """
         Test Linear recursive sum of sequence.
-
-        :return:
         """
         self.assertEquals(0, sum_linear())
         self.assertEquals(0, sum_linear([]))
@@ -80,8 +76,7 @@ class TestRecursion(unittest.TestCase):
 
     def test_sum_binary(self):
         """
-
-        :return:
+        Test recursive binary sum.
         """
         self.assertEquals(0, sum_binary())
         self.assertEquals(0, sum_binary([]))
@@ -92,8 +87,6 @@ class TestRecursion(unittest.TestCase):
     def test_recursive_reverse(self):
         """
         Test linear recursion based reverse.
-
-        :return:
         """
         self.assertEquals([], recursive_reverse())
         self.assertEquals([1], recursive_reverse([1]))
@@ -107,8 +100,6 @@ class TestRecursion(unittest.TestCase):
     def test_find_max(self):
         """
         Test recursive find_max.
-
-        :return:
         """
         self.assertEquals(1, find_max([1]))
         self.assertEquals(10, find_max([5, 10, 1]))
@@ -120,8 +111,6 @@ class TestRecursion(unittest.TestCase):
     def test_find_min_max(self):
         """
         Test recursive find_min_max.
-
-        :return:
         """
         with self.assertRaises(TypeError):
             find_min_max()
@@ -190,6 +179,9 @@ class TestRecursion(unittest.TestCase):
         self.assertEquals(round(137/60, 2), round(harmonic_number(5), 2))
 
     def test_str_to_integer(self):
+        """
+        Test recursive string to integer.
+        """
         self.assertEquals(0, str_to_integer("0"))
         self.assertEquals(1, str_to_integer("1"))
         self.assertEquals(2, str_to_integer("2"))
@@ -208,8 +200,7 @@ class TestRecursion(unittest.TestCase):
 
     def test_towers_of_hanoi(self):
         """
-
-        :return:
+        Test recursive towers of hanoi implementaion.
         """
 
         self.assertEquals(None, towers_of_hanoi(n=1, source=[], middle=[], target=[]))
@@ -258,7 +249,7 @@ class TestRecursion(unittest.TestCase):
 
     def test_count_vowels_and_consonants(self):
         """
-        Test recursive volwels & consonants count.
+        Test recursive vowels & consonants count.
         """
         self.assertEquals((1, 2), count_vowels_and_consonants("abc"))
         self.assertEquals((2, 3), count_vowels_and_consonants("nehar"))

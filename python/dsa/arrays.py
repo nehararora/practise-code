@@ -56,6 +56,9 @@ class DynamicArray(object):
         """
 
         # array index out of bounds
+        if index < 0:
+            index += self._count
+
         if not 0 <= index < self._count:
             raise IndexError("Invalid index")
 
@@ -135,7 +138,7 @@ class DynamicArray(object):
         Resize backing array to capacity.
 
         :param capacity:
-        :return:
+        :return: None
         """
         # make a new array
         new_array = self._alloc(capacity)
@@ -217,4 +220,17 @@ class CaesarCipher(object):
                 temp[i] = key[j]
 
         return ''.join(temp)
+
+class MultiDimensional(object):
+    """
+    Multi dimensional array related exercises.
+
+    Chapter 4 exercises, Data Structures and Algorithms in Python, Goodrich et al.
+    """
+    def compute_sum_std(self):
+        """
+        Uses standard control structures to compute the sum of all numbers in
+        an n × n data set, represented as a list of lists.
+        :return: sum of matrix elements.
+        """
 
