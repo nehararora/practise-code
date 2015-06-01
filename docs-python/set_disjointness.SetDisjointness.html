@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>set_disjointness.SetDisjointness : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            practise/python API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>set_disjointness.SetDisjointness(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="set_disjointness.html" class="code">set_disjointness</a></code>
+          
+          <a href="classIndex.html#set_disjointness.SetDisjointness">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Demo class for Set Disjointness solutions.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id26">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="set_disjointness.SetDisjointness.html#__init__" class="code">__init__</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="set_disjointness.SetDisjointness.html#naive_is_disjoint" class="code">naive_is_disjoint</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="set_disjointness.SetDisjointness.html#short_circuit_is_disjoint" class="code">short_circuit_is_disjoint</a></td>
+    <td><span>Short circuit third comparison on first mismatch. O(n^2) - since 
+possible n matches. :return: None</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="set_disjointness.SetDisjointness.html#sorting_is_disjoint" class="code">sorting_is_disjoint</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="set_disjointness.SetDisjointness.html#map_is_disjoint" class="code">map_is_disjoint</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="function">
+  <a name="set_disjointness.SetDisjointness.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, s1, s2, s3):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Initialize sets. For completes assumes sequence may not be sets. :param 
+s1: Sequence 1 :param s2: Sequence 2 :param s3: Sequence 3 :return:</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="set_disjointness.SetDisjointness.naive_is_disjoint">
+    
+  </a>
+  <a name="naive_is_disjoint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    naive_is_disjoint(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Basic naive triple for loop implementation. Algorithm iterates over the 
+three sets and compares every element to every other. O(n^3) :return: 
+None</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="set_disjointness.SetDisjointness.short_circuit_is_disjoint">
+    
+  </a>
+  <a name="short_circuit_is_disjoint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    short_circuit_is_disjoint(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Short circuit third comparison on first mismatch. O(n^2) - since 
+possible n matches. :return: None</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="set_disjointness.SetDisjointness.sorting_is_disjoint">
+    
+  </a>
+  <a name="sorting_is_disjoint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sorting_is_disjoint(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Sorting based solution. Since the 3 sequences are sets, merging and then
+sorting them should produce a run of 3 adjacent duplicates if they are not 
+set-disjoint. o(n) to merge, o(nlogn) to sort, o(n) to determine dups so ~ 
+o(nlogn) Note: python default sorting implementation: 
+http://en.wikipedia.org/wiki/Timsort :return: None</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="set_disjointness.SetDisjointness.map_is_disjoint">
+    
+  </a>
+  <a name="map_is_disjoint">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    map_is_disjoint(self):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Map based solution to 3 way set disjointness. totals up counts for each 
+element in a map. o(n) since straight traversal through the lists and then 
+o(1) map lookup. :return:</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for practise/python, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-05-31 22:16:29.
+      </address>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>recursion : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            practise/python API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>recursion</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          
+          
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>recursion.py: Recursion based algorithms.</p>
+<p>Primarily from Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id11">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#factorial" class="code">factorial</a></td>
+    <td><span>Basic recursive factorial. O(n)</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#binary_search" class="code">binary_search</a></td>
+    <td><span>Recursive binary search implementation.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#sum_linear" class="code">sum_linear</a></td>
+    <td><span>Linear recursive sum of elements of a sequence. O(n) since n recursions,
+each constant time. Section 4.3.1, Data Structures and Algorithms in 
+Python, Goodrich et al.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#sum_binary" class="code">sum_binary</a></td>
+    <td><span>Binary recursive sum of elements of a sequence.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#find_max" class="code">find_max</a></td>
+    <td><span>A recursive algorithm for finding the maximum element in a sequence, S, 
+of n elements.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#find_min_max" class="code">find_min_max</a></td>
+    <td><span>Function to find minimum and maximum values in a sequence (without using
+loops.)</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#product" class="code">product</a></td>
+    <td><span>Recursive algorithm to compute the product of two positive integers, m 
+and n, using only addition and subtraction.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#recursive_reverse" class="code">recursive_reverse</a></td>
+    <td><span>Reverses elements of sequence using linear recursion. O(n) since each 
+activation remove 2 elements. Section 4.4, Data Structures and Algorithms 
+in Python, Goodrich et al.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#naive_power" class="code">naive_power</a></td>
+    <td><span>Raises x to the power n (x^n) using recursion.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#recurrence_power" class="code">recurrence_power</a></td>
+    <td><span>Raises x to the power n using the recurrence relation.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#harmonic_number" class="code">harmonic_number</a></td>
+    <td><span>Describe a recursive function for computing the nth Harmonic number, Hn 
+= ∑ 1/i. 1/1 + 1/2 + 1/3 + 1/4 + ... + 1/n</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#str_to_integer" class="code">str_to_integer</a></td>
+    <td><span>Recursive function for converting a string of digits into the integer it
+represents. For example, 13531 represents the integer 13,531.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#towers_of_hanoi" class="code">towers_of_hanoi</a></td>
+    <td><span>Algorithm to solve the Towers of Hanoi problem.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#is_palindrome" class="code">is_palindrome</a></td>
+    <td><span>Short recursive Python function that determines if a string s is a 
+palindrome, that is, it is equal to its reverse. For example, 'racecar' and
+'gohangasalamiimalasagnahog' are palindromes.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#count_vowels_and_consonants" class="code">count_vowels_and_consonants</a></td>
+    <td><span>Recursive function for counting vowels than consonants in a string. 
+:return:</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="recursion.html#more_vowels_or_consonants" class="code">more_vowels_or_consonants</a></td>
+    <td><span>Recursive function for determining if a string s has more vowels than 
+consonants.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="recursion.Ruler.html" class="code">Ruler</a></td>
+    <td><span>Recursive implementation of a typical English ruler.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="function">
+  <a name="recursion.factorial">
+    
+  </a>
+  <a name="factorial">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    factorial(n):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Basic recursive factorial. O(n)</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.binary_search">
+    
+  </a>
+  <a name="binary_search">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    binary_search(data, target, low, high):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Recursive binary search implementation.</p>
+<p>:param data: :param target: :param low: :param high: :return:</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.sum_linear">
+    
+  </a>
+  <a name="sum_linear">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sum_linear(seq=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Linear recursive sum of elements of a sequence. O(n) since n recursions,
+each constant time. Section 4.3.1, Data Structures and Algorithms in 
+Python, Goodrich et al.</p>
+<p>:param seq: Sequence of elements :return: Sum</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.sum_binary">
+    
+  </a>
+  <a name="sum_binary">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sum_binary(seq=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Binary recursive sum of elements of a sequence.</p>
+<p>O(n) running time since 2n-1 fx calls Section 4.4, Data Structures and 
+Algorithms in Python, Goodrich et al. :param seq: :return: sum of 
+sequence.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.find_max">
+    
+  </a>
+  <a name="find_max">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    find_max(seq=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>A recursive algorithm for finding the maximum element in a sequence, S, 
+of n elements.</p>
+<p>Exercise R-4.1, Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al. :param seq: :return: maximum value.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.find_min_max">
+    
+  </a>
+  <a name="find_min_max">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    find_min_max(seq=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Function to find minimum and maximum values in a sequence (without using
+loops.)</p>
+<p>Exercise C-4.9, Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al.</p>
+<p>:param seq: Input sequence :return: a tuple of minimum and maximum 
+values from seq.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.product">
+    
+  </a>
+  <a name="product">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    product(m, n):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Recursive algorithm to compute the product of two positive integers, m 
+and n, using only addition and subtraction.</p>
+<p>Exercise C-4.12, Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.recursive_reverse">
+    
+  </a>
+  <a name="recursive_reverse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    recursive_reverse(seq=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Reverses elements of sequence using linear recursion. O(n) since each 
+activation remove 2 elements. Section 4.4, Data Structures and Algorithms 
+in Python, Goodrich et al.</p>
+<p>:param seq: Sequence to be reversed :return: Reversed sequence</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.naive_power">
+    
+  </a>
+  <a name="naive_power">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    naive_power(x, n):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Raises x to the power n (x^n) using recursion.</p>
+<p>:param x: :param n: :return:</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.recurrence_power">
+    
+  </a>
+  <a name="recurrence_power">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    recurrence_power(x, n):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <pre>Raises x to the power n using the recurrence relation.
+
+power(x, n)
+    = 1 if n==0
+    = x * power(x, ceil(n/2))^2 if n &gt; 0 is odd
+    = (power(x, ceil()n/2))^2   if n &gt; 0 is even
+
+running time ~ O(log(n)) as n is halved each time.
+:param x: base
+:param n: exponent
+:return: x**n</pre>
+  </div>
+</div><div class="function">
+  <a name="recursion.harmonic_number">
+    
+  </a>
+  <a name="harmonic_number">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    harmonic_number(n):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Describe a recursive function for computing the nth Harmonic number, Hn 
+= ∑ 1/i. 1/1 + 1/2 + 1/3 + 1/4 + ... + 1/n</p>
+<p>Exercise R-4.6, Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al. :param n: :return: nth harmonic number.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.str_to_integer">
+    
+  </a>
+  <a name="str_to_integer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    str_to_integer(string):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Recursive function for converting a string of digits into the integer it
+represents. For example, 13531 represents the integer 13,531.</p>
+<p>Works by recursively chopping off the end and multiplying by 10.</p>
+<p>Exercise R-4.7, Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al. :param string: String representation of the number. 
+:return: integer representation.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.towers_of_hanoi">
+    
+  </a>
+  <a name="towers_of_hanoi">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    towers_of_hanoi(n, source, middle, target):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Algorithm to solve the Towers of Hanoi problem.</p>
+<p>Given a platform with three pegs, source, middle, and target, and a 
+stack of n disks, each larger than the next, so that the smallest is on the
+top and the largest on the bottom; the puzzle is to move all the disks from
+source to peg target, moving one disk at a time, so that we never place a 
+larger disk on top of a smaller one.</p>
+<p>Exercise R-4.14, Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al.</p>
+<p>:param n: number of discs on source :param source: source stack/peg - 
+assumed to contain discs in order of size. :param middle: Middle peg. 
+:param target: Target peg - at end of the run, all discs are here in order 
+of size.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.is_palindrome">
+    
+  </a>
+  <a name="is_palindrome">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    is_palindrome(string):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Short recursive Python function that determines if a string s is a 
+palindrome, that is, it is equal to its reverse. For example, 'racecar' and
+'gohangasalamiimalasagnahog' are palindromes.</p>
+<p>Exercise R-4.17, Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al. :return:</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.count_vowels_and_consonants">
+    
+  </a>
+  <a name="count_vowels_and_consonants">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    count_vowels_and_consonants(string):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Recursive function for counting vowels than consonants in a string. 
+:return:</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="recursion.more_vowels_or_consonants">
+    
+  </a>
+  <a name="more_vowels_or_consonants">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    more_vowels_or_consonants(string):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Recursive function for determining if a string s has more vowels than 
+consonants.</p>
+<p>Exercise R-4.18, Chapter 4, Data Structures and Algorithms in Python, 
+Goodrich et al. :return:</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for practise/python, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-05-31 22:16:29.
+      </address>
+
+    </div>
+  </body>
+</html>
