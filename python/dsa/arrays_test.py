@@ -123,33 +123,124 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEquals(4, c._count)
         self.assertEquals(4, len(c))
         self.assertEquals([2, 3, 4, 5], [x for x in c])
-
+        print("1 this worked!")
         c.remove(5)
         self.assertEquals(8, c._capacity)
         self.assertEquals(3, c._count)
         self.assertEquals(3, len(c))
         self.assertEquals([2, 3, 4], [x for x in c])
-
+        print("5 this worked!")
         c.remove(2)
-        self.assertEquals(8, c._capacity)
+        self.assertEquals(4, c._capacity)
         self.assertEquals(2, c._count)
         self.assertEquals(2, len(c))
         self.assertEquals([3, 4], [x for x in c])
-
+        print("2 this worked!")
         c.remove(3)
-        self.assertEquals(8, c._capacity)
+        self.assertEquals(2, c._capacity)
         self.assertEquals(1, c._count)
         self.assertEquals(1, len(c))
         self.assertEquals([4], [x for x in c])
 
         c.remove(4)
-        self.assertEquals(8, c._capacity)
+        self.assertEquals(2, c._capacity)
         self.assertEquals(0, c._count)
         self.assertEquals(0, len(c))
         self.assertEquals([], [x for x in c])
 
         with self.assertRaises(ValueError):
             c.remove(4)
+
+    def test_remove_all(self):
+        """
+        Test DynamicArray remove.
+        """
+        # test remove
+        c = DynamicArray()
+        c.append(1)
+        c.append(2)
+        c.append(3)
+        c.append(4)
+        c.append(5)
+        c.append(4)
+
+        c.remove_all(1)
+        self.assertEquals(8, c._capacity)
+        self.assertEquals(5, c._count)
+        self.assertEquals(5, len(c))
+        self.assertEquals([2, 3, 4, 5, 4], [x for x in c])
+
+        c.remove_all(5)
+        self.assertEquals(8, c._capacity)
+        self.assertEquals(4, c._count)
+        self.assertEquals(4, len(c))
+        self.assertEquals([2, 3, 4, 4], [x for x in c])
+
+        c.remove_all(2)
+        self.assertEquals(8, c._capacity)
+        self.assertEquals(3, c._count)
+        self.assertEquals(3, len(c))
+        self.assertEquals([3, 4, 4], [x for x in c])
+
+        c.remove_all(3)
+        self.assertEquals(4, c._capacity)
+        self.assertEquals(2, c._count)
+        self.assertEquals(2, len(c))
+        self.assertEquals([4, 4], [x for x in c])
+
+        c.remove_all(4)
+        self.assertEquals(2, c._capacity)
+        self.assertEquals(0, c._count)
+        self.assertEquals(0, len(c))
+        self.assertEquals([], [x for x in c])
+
+        with self.assertRaises(ValueError):
+            c.remove_all(4)
+
+    def test_pop(self):
+        """
+        Test DynamicArray pop.
+        """
+        # test pop
+        c = DynamicArray()
+        c.append(1)
+        c.append(2)
+        c.append(3)
+        c.append(4)
+        c.append(5)
+
+        c.pop()
+        self.assertEquals(8, c._capacity)
+        self.assertEquals(4, c._count)
+        self.assertEquals(4, len(c))
+        self.assertEquals([1, 2, 3, 4], [x for x in c])
+
+        c.pop()
+        self.assertEquals(8, c._capacity)
+        self.assertEquals(3, c._count)
+        self.assertEquals(3, len(c))
+        self.assertEquals([1, 2, 3], [x for x in c])
+
+        c.pop()
+        self.assertEquals(4, c._capacity)
+        self.assertEquals(2, c._count)
+        self.assertEquals(2, len(c))
+        self.assertEquals([1, 2], [x for x in c])
+
+        c.pop()
+        self.assertEquals(2, c._capacity)
+        self.assertEquals(1, c._count)
+        self.assertEquals(1, len(c))
+        self.assertEquals([1], [x for x in c])
+
+        c.pop()
+        self.assertEquals(2, c._capacity)
+        self.assertEquals(0, c._count)
+        self.assertEquals(0, len(c))
+        self.assertEquals([], [x for x in c])
+
+        with self.assertRaises(ValueError):
+            c.pop()
 
     def test_negative_indexing(self):
         """
@@ -252,6 +343,9 @@ class TestMultiDimensional(unittest.TestCase):
         Test standard control structure based compute sum.
         """
 
+        m = MultiDimensional(row=0, col=0)
+        self.assertEquals(0, m.compute_sum_std())
+
         m = MultiDimensional(row=1, col=1)
         self.assertEquals(1, m.compute_sum_std())
 
@@ -266,8 +360,11 @@ class TestMultiDimensional(unittest.TestCase):
         Test comprehension based compute sum.
         """
 
+        m = MultiDimensional(row=0, col=0)
+        self.assertEquals(0, m.compute_sum())
+
         m = MultiDimensional(row=1, col=2)
-        self.assertEquals(1, m.compute_sum())
+        self.assertEquals(2, m.compute_sum())
 
         m = MultiDimensional(row=1, col=2, value=2)
         self.assertEquals(4, m.compute_sum())

@@ -113,10 +113,12 @@ class DynamicArray(object):
         self._array[k] = item
         self._count += 1
 
-    # TODO: implement array shrinking.
     def remove(self, value):
         """
-        Removes  first occurrence of value.
+        Removes first occurrence of value.
+
+        Shrinks capacity of the array by half any time the
+        number of elements in the array goes below N/4.
         :param value: Value to remove.
         :return: None
         :raises ValueError: Raised if value is not found.
@@ -128,10 +130,74 @@ class DynamicArray(object):
                 # shift elements towards the left
                 for j in range(i, self._count - 1):
                     self._array[j] = self._array[j+1]
-                self._array[self._count-1] = None # mark for GC
+                self._array[self._count-1] = None  # mark for GC
                 self._count -= 1
+
+                # shrink array
+                if self._count == self._capacity/4:
+                    self._resize(self._capacity//2)
+
                 return
         raise ValueError("{} not found".format(value))
+
+    def remove_all(self, value):
+        """
+        Removes all occurrence of value.
+
+        Shrinks capacity of the array by half any time the
+        number of elements in the array goes below N/4.
+
+        Exercises C-5.25, Chapter 5, Data Structures and Algorithms in Python, Goodrich et al.
+
+        :param value: Value to remove.
+        :return: None
+        :raises ValueError: Raised if value is not found.
+        """
+        orig = self._count
+
+        # capture match locations
+        locations = []
+        for i in range(self._count):
+            if self._array[i] == value:  # found match
+                locations.append(i)
+
+        # remove all matches
+        for i in locations:
+            # shift elements towards the left
+            for j in range(i, self._count - 1):
+                self._array[j] = self._array[j+1]
+            self._array[self._count-1] = None  # mark for GC
+            self._count -= 1
+
+        # shrink array
+        if self._count <= self._capacity/4:
+            self._resize(self._capacity//2)
+
+        # if the size of array didn't change, there was no match
+        if orig == self._count:
+            raise ValueError("{} not found".format(value))
+
+    def pop(self):
+        """
+        Remove the last element of the array.
+
+        Shrinks capacity of the array by half any time the
+        number of elements in the array goes below N/4.
+
+        Exercise 5.16, Data Structures and Algorithms in Python, Goodrich et al.
+
+        :return: removed element.
+        """
+
+        if self._count == 0:
+            raise ValueError("Element not found")
+
+        # remove last element
+        self._array[self._count-1] = None  # mark for GC
+        self._count -= 1
+        # shrink array
+        if self._count == self._capacity/4:
+            self._resize(self._capacity//2)
 
     def _resize(self, capacity):
         """
@@ -143,9 +209,11 @@ class DynamicArray(object):
         # make a new array
         new_array = self._alloc(capacity)
 
-        # copy existing elements over
-        for i, item in enumerate(self._array):
-            new_array[i] = item
+        # copy existing elements over - new array may be smaller than old one.
+        j = 0
+        for i in range(self._count):
+            new_array[j] = self._array[i]
+            j += 1
 
         # replace old array
         self._array = new_array
@@ -221,11 +289,12 @@ class CaesarCipher(object):
 
         return ''.join(temp)
 
+
 class MultiDimensional(object):
     """
     Multi dimensional array related exercises.
 
-    Chapter 4 exercises, Data Structures and Algorithms in Python, Goodrich et al.
+    Chapter 5 exercises, Data Structures and Algorithms in Python, Goodrich et al.
     """
     def __init__(self, row, col, value=1):
         """
@@ -265,12 +334,4 @@ class MultiDimensional(object):
 
         :return: sum of matrix elements.
         """
-        total = 0
-
-        print(self._data)
-        #matrix = [[0 for i in range(5)] for j in range(5)]
-        print([[self._data[i][j] for j in range(self._col)] for i in range(self._row)])
-
-        total += [[i for i in row] for row in self._data[self._row]]
-
-        return total
+        return sum([x for row in self._data for x in row])
