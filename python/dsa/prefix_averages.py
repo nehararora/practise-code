@@ -54,6 +54,7 @@ class PrefixAverages(object):
         return a
 
 
+# TODO: move to test module
 class TestPrefixAverages(unittest.TestCase):
     """
     Test cases for prefix averages implementations.
