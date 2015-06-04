@@ -150,11 +150,9 @@ def paren_matcher(expression):
     for symbol in expression:
         # push opening parens onto stack
         if symbol in matches.keys():
-            print("push")
             s.push(symbol)
         # if next is closing symbol, need to look for match on top of stack.
         elif symbol in matches.values():
-            print(symbol)
             # if stack is already empty we've found an unbalanced closer.
             if s.empty():
                 return False
