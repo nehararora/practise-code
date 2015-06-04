@@ -67,6 +67,7 @@ class DynamicArray(object):
     def __repr__(self):
         """
         Object representation.
+
         :return: List representation.
         """
 
@@ -79,8 +80,8 @@ class DynamicArray(object):
     def append(self, item):
         """
         Add element to end of array.
-        Array is doubled on attempt to append beyond capacity.
 
+        Array is doubled on attempt to append beyond capacity.
         :param item: Element to append
         :return: None
         """
@@ -193,11 +194,14 @@ class DynamicArray(object):
             raise ValueError("Element not found")
 
         # remove last element
+        element = self._array[self._count-1]
         self._array[self._count-1] = None  # mark for GC
         self._count -= 1
         # shrink array
         if self._count == self._capacity/4:
             self._resize(self._capacity//2)
+
+        return element
 
     def _resize(self, capacity):
         """

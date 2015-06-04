@@ -123,19 +123,19 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEquals(4, c._count)
         self.assertEquals(4, len(c))
         self.assertEquals([2, 3, 4, 5], [x for x in c])
-        print("1 this worked!")
+
         c.remove(5)
         self.assertEquals(8, c._capacity)
         self.assertEquals(3, c._count)
         self.assertEquals(3, len(c))
         self.assertEquals([2, 3, 4], [x for x in c])
-        print("5 this worked!")
+
         c.remove(2)
         self.assertEquals(4, c._capacity)
         self.assertEquals(2, c._count)
         self.assertEquals(2, len(c))
         self.assertEquals([3, 4], [x for x in c])
-        print("2 this worked!")
+
         c.remove(3)
         self.assertEquals(2, c._capacity)
         self.assertEquals(1, c._count)
@@ -205,7 +205,8 @@ class TestDynamicArray(unittest.TestCase):
         c = DynamicArray()
         c.append(1)
         c.append(2)
-        c.append(3)
+        # try an object
+        c.append([1, 2])
         c.append(4)
         c.append(5)
 
@@ -213,13 +214,13 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEquals(8, c._capacity)
         self.assertEquals(4, c._count)
         self.assertEquals(4, len(c))
-        self.assertEquals([1, 2, 3, 4], [x for x in c])
+        self.assertEquals([1, 2, [1, 2], 4], [x for x in c])
 
         c.pop()
         self.assertEquals(8, c._capacity)
         self.assertEquals(3, c._count)
         self.assertEquals(3, len(c))
-        self.assertEquals([1, 2, 3], [x for x in c])
+        self.assertEquals([1, 2, [1, 2]], [x for x in c])
 
         c.pop()
         self.assertEquals(4, c._capacity)
