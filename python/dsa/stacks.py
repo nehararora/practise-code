@@ -2,6 +2,7 @@
 stacks.py: Stack based implementations.
 
 refer: Chapter 6, Data Structures and Algorithms in Python, Goodrich et al.
+
 """
 
 __author__ = 'nehar'
@@ -126,3 +127,41 @@ class StackEmptyException(Exception):
     Denote access to empty stack structure.
     """
     pass
+
+
+def paren_matcher(expression):
+    """
+    Parentheses matcher, returns true if  expression contains balanced parenthetical symbols - (,{,[, ], }, )
+    i.e. all opening symbols have corresponding closing symbols in the correct order.
+
+    Section 6.1.4, Chapter 6, Data Structures and Algorithms in Python, Goodrich et al.
+    :param expression: expression containing parenthetical symbols.
+    :return: True if exrpression is balanced, False otherwise.
+    """
+
+    # stack to track opening and closing brackets
+    s = DynamicArrayStack()
+    matches = {
+        "(": ")",
+        "{": "}",
+        "[": "]"
+    }
+
+    for symbol in expression:
+        # push opening parens onto stack
+        if symbol in matches.keys():
+            print("push")
+            s.push(symbol)
+        # if next is closing symbol, need to look for match on top of stack.
+        elif symbol in matches.values():
+            print(symbol)
+            # if stack is already empty we've found an unbalanced closer.
+            if s.empty():
+                return False
+            # if "opener" on top of stack doesn't match the "closer", unbalanced.
+            if symbol != matches[s.pop()]:
+                return False
+
+    # if stack is now empty we're balanced!
+    return s.empty()
+

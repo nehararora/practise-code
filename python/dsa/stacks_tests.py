@@ -11,7 +11,7 @@ import unittest
 from stacks import ArrayStack
 from stacks import DynamicArrayStack
 from stacks import StackEmptyException
-
+from stacks import paren_matcher
 
 class TestArrayStack(unittest.TestCase):
 
@@ -147,3 +147,30 @@ class TestDynamicArrayStack(unittest.TestCase):
         # try peeking with simple object
         s.push([1, 2])
         self.assertEqual([1, 2], s.peek())
+
+
+class TestParenChecker(unittest.TestCase):
+    """
+    Test cases for stack based parentheses checker.
+    """
+    def test_paren(self):
+
+        self.assertEqual(False, paren_matcher("[{["))
+        self.assertEqual(False, paren_matcher(")(()){([()])}"))
+        self.assertEqual(False, paren_matcher("({[])}"))
+        self.assertEqual(False, paren_matcher("("))
+
+        # our implementation considers no parens as balanced
+        self.assertEqual(True, paren_matcher(""))
+        # same for other expressions.
+        self.assertEqual(True, paren_matcher("123"))
+
+        self.assertEqual(True, paren_matcher("[]"))
+        self.assertEqual(True, paren_matcher("()"))
+        self.assertEqual(True, paren_matcher("{}"))
+        self.assertEqual(True, paren_matcher("[[[[ {[ ({[ ]}) ]} ]]]]"))
+        self.assertEqual(True, paren_matcher("()(()){([()])}"))
+        self.assertEqual(True, paren_matcher("((()(()){([()])}))"))
+
+
+
