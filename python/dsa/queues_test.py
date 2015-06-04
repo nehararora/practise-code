@@ -39,39 +39,48 @@ class TestArrayQueue(unittest.TestCase):
         self.assertEqual(0, len(s))
 
         # basic push
-        s.push(1)
+        s.enqueue(1)
         self.assertEqual(1, len(s))
-        self.assertEqual(1, len(s._array))
+        self.assertEqual(5, len(s._array))
+        self.assertEqual(1, s.first())
         self.assertEqual(1, s._array[0])
 
         # push an object
-        s.push(QueueEmptyException)
+        s.enqueue(QueueEmptyException)
         self.assertEqual(2, len(s))
-        self.assertEqual(2, len(s._array))
+        self.assertEqual(5, len(s._array))
         self.assertEqual(QueueEmptyException, s._array[1])
+        self.assertEqual(1, s.first())
+        self.assertEqual(1, s.dequeue())
+        self.assertEqual(QueueEmptyException, s.first())
 
     def test_dequeue(self):
         """
-        Test stack pop operation.
+        Test Queue dequeue operation.
         """
 
         s = ArrayQueue()
-        s.push(1)
-        s.push(2)
-        s.push(QueueEmptyException)
+        s.enqueue(1)
+        s.enqueue(2)
+        s.enqueue(QueueEmptyException)
         self.assertEqual(3, len(s))
-        self.assertEqual(QueueEmptyException, s.pop())
+        self.assertEqual(1, s.dequeue())
         self.assertEqual(2, len(s))
-        self.assertEqual(2, s.pop())
+        self.assertEqual(2, s.dequeue())
         self.assertEqual(1, len(s))
-        self.assertEqual(1, s.pop())
+        self.assertEqual(QueueEmptyException, s.dequeue())
         self.assertEqual(0, len(s))
         with self.assertRaises(QueueEmptyException):
-            s.pop()
+            s.dequeue()
+
+    def test_resize(self):
+        """
+        Test backing array resize.
+        """
 
     def test_first(self):
         """
-        Test stack peek.
+        Test Queue first.
         """
         s = ArrayQueue()
         self.assertEqual(0, len(s))
