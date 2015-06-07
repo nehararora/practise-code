@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 arrays.py: Algorithms based on array operations.
 

@@ -11,7 +11,7 @@ from arrays import DynamicArray
 from arrays import CaesarCipher
 from arrays import MultiDimensional
 
-# TODO: add ALL dynamic array operations (e.g. delete, insert etc)
+
 class TestDynamicArray(unittest.TestCase):
     """
     Test cases for DynamicArray implementation.
