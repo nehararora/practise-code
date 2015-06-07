@@ -38,7 +38,7 @@ class TestRecursion(unittest.TestCase):
 
         # TODO: fails under python 2.7 - ValueError not raised :(
         with self.assertRaises(ValueError):
-            factorial(3/2)
+            factorial(1.5)
         with self.assertRaises(ValueError):
             factorial(-4)
 
