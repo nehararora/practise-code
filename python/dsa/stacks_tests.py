@@ -13,6 +13,7 @@ from stacks import DynamicArrayStack
 from stacks import StackEmptyException
 from stacks import paren_matcher
 
+
 class TestArrayStack(unittest.TestCase):
 
     def test_instantiation(self):
@@ -79,6 +80,53 @@ class TestArrayStack(unittest.TestCase):
         # try peeking with simple object
         s.push([1, 2])
         self.assertEqual([1, 2], s.peek())
+
+    def test_transfer(self):
+        """
+        Test stack transfer
+        """
+        s1 = ArrayStack()
+        s2 = ArrayStack()
+
+        # add a few elements
+        s1.push(1)
+        s1.push(2)
+        s1.push(3)
+        self.assertEqual("[1, 2, 3]", str(s1))
+        self.assertEqual("[]", str(s2))
+
+        # transfer into s2 and verify
+        s1.transfer(s2)
+        self.assertEqual("[3, 2, 1]", str(s2))
+        self.assertEqual("[]", str(s1))
+
+    def test_remove_all(self):
+        """
+        Test recursive remove all.
+        """
+        s = ArrayStack()
+        s.push(1)
+        s.push(1)
+        s.push(1)
+        self.assertEqual(3, len(s))
+        s.remove_all()
+        self.assertEqual(0, len(s))
+
+        s = ArrayStack()
+        self.assertEqual(0, len(s))
+        s.remove_all()
+        self.assertEqual(0, len(s))
+
+    def test_reverse(self):
+        """
+        Test reverse list.
+        """
+        s = ArrayStack()
+        lst = [1, 2, 3, 4]
+        self.assertEqual([4, 3, 2, 1], s.reverse(lst))
+
+        self.assertEqual([], s.reverse([]))
+        self.assertEqual(['a'], s.reverse(['a']))
 
 
 class TestDynamicArrayStack(unittest.TestCase):
@@ -171,6 +219,3 @@ class TestParenChecker(unittest.TestCase):
         self.assertEqual(True, paren_matcher("[[[[ {[ ({[ ]}) ]} ]]]]"))
         self.assertEqual(True, paren_matcher("()(()){([()])}"))
         self.assertEqual(True, paren_matcher("((()(()){([()])}))"))
-
-
-

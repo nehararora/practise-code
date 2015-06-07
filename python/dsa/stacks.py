@@ -9,6 +9,7 @@ __author__ = 'nehar'
 
 from arrays import DynamicArray
 
+
 class ArrayStack(object):
     """
     List (array) based stack implementation.
@@ -27,6 +28,14 @@ class ArrayStack(object):
         :return: Number of elements in stack.
         """
         return len(self._array)
+
+    def __str__(self):
+        """
+        String representation of stack object.
+
+        :return: String representation.
+        """
+        return str(self._array)
 
     def push(self, item):
         """
@@ -65,6 +74,48 @@ class ArrayStack(object):
         """
         return True if len(self._array) == 0 else False
 
+    def transfer(self, to):
+        """
+        Transfer all elements from calling object onto the input stack so that
+        the element that starts at the top of calling stack is the first to be
+        inserted onto the "to" stack, and the element at the bottom of calling
+        stack ends up at the top of "to" stack.
+
+        Exercises C-6.3, Chapter 6, Data Structures and Algorithms in Python, Goodrich et al.
+
+        :param to: Stack to transfer elements to.
+        """
+
+        for i in range(len(self)):
+            to.push(self.pop())
+
+    def remove_all(self):
+        """
+        Recursive method for removing all the elements from a stack.
+
+        Exercises C-6.4, Chapter 6, Data Structures and Algorithms in Python, Goodrich et al.
+        """
+        if len(self) == 0:
+            return
+        self.pop()
+        self.remove_all()
+
+    def reverse(self, lst):
+        """
+        Reverse a list of elements by pushing them onto the stack, and writing
+        them back to the list in reverse order.
+
+        Exercises C-6.5, Chapter 6, Data Structures and Algorithms in Python, Goodrich et al.
+
+        :param lst: original list
+        :return: list in reverse order from original.
+        """
+        for l in lst:
+            self.push(l)
+        rev_list = []
+        for i in range(len(lst)):
+            rev_list.append(self.pop())
+        return rev_list
 
 class DynamicArrayStack(object):
     """
