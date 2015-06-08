@@ -11,6 +11,7 @@ import unittest
 from stacks import ArrayStack
 from stacks import DynamicArrayStack
 from stacks import StackEmptyException
+from stacks import StackFullException
 from stacks import paren_matcher
 
 
@@ -127,6 +128,18 @@ class TestArrayStack(unittest.TestCase):
 
         self.assertEqual([], s.reverse([]))
         self.assertEqual(['a'], s.reverse(['a']))
+
+    def test_max_length(self):
+        """
+        Test maximum stack size limit.
+        """
+        s = ArrayStack(max_len=4)
+        s.push(1)
+        s.push(1)
+        s.push(1)
+        s.push(1)
+        with self.assertRaises(StackFullException):
+            s.push(1)
 
 
 class TestDynamicArrayStack(unittest.TestCase):

@@ -15,11 +15,12 @@ class ArrayStack(object):
     List (array) based stack implementation.
     """
 
-    def __init__(self):
+    def __init__(self, max_len=None):
         """
         Initialize stack.
         """
         self._array = []
+        self._max = max_len
 
     def __len__(self):
         """
@@ -43,6 +44,10 @@ class ArrayStack(object):
 
         :param item: Element to place at top of stack.
         """
+        # if max size is defined check stack size.
+        if self._max is not None and len(self) == self._max:
+            raise StackFullException
+
         self._array.append(item)
 
     def pop(self):
@@ -180,6 +185,13 @@ class StackEmptyException(Exception):
     pass
 
 
+class StackFullException(Exception):
+    """
+    Denote access to a full stack structure.
+    """
+    pass
+
+
 def paren_matcher(expression):
     """
     Parentheses matcher, returns true if  expression contains balanced parenthetical symbols - (,{,[, ], }, )
@@ -187,7 +199,7 @@ def paren_matcher(expression):
 
     Section 6.1.4, Chapter 6, Data Structures and Algorithms in Python, Goodrich et al.
     :param expression: expression containing parenthetical symbols.
-    :return: True if exrpression is balanced, False otherwise.
+    :return: True if expression is balanced, False otherwise.
     """
 
     # stack to track opening and closing brackets
