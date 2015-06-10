@@ -7,8 +7,7 @@ refer: Chapter 6, Data Structures and Algorithms in Python, Goodrich et al.
 
 __author__ = 'nehar'
 
-from arrays import DynamicArray
-
+import collections
 
 class ArrayQueue(object):
     """
@@ -113,6 +112,103 @@ class ArrayQueue(object):
 
         self._array = new_array
         self._head = 0
+
+
+class DequeQueue(object):
+    """
+    collections.deque based queue.
+
+    Simple adapter that implements the queue ADT using
+    a collections.deque instance for storage.
+
+    Exercises R-6.11, Chapter 6, Data Structures and Algorithms in Python, Goodrich et al.
+    """
+
+    def __init__(self, max_len=5):
+        """
+        Initialize queue.
+        """
+        self._array = collections.deque(maxlen=max_len)
+        self._len = 0
+
+    def __len__(self):
+        """
+        Return length of the data structure.
+
+        :return: Number of elements in queue.
+        """
+        return self._len
+
+    def enqueue(self, element):
+        """
+        Append element to start (left end) of queue.
+
+        will resize on overflow.
+
+        :param element: element to append.
+        """
+        # resize on overflow
+        if self._array.maxlen == self._len:
+            self._resize(2 * len(self._array))
+
+        # enqueue and increment count
+        self._array.appendleft(element)
+        self._len += 1
+
+    def dequeue(self):
+        """
+        Remove and return element at end of queue.
+
+        :return: First element in queue.
+        """
+        if self.empty():
+            raise QueueEmptyException()
+        data = self._array.pop()
+        self._len -= 1
+
+        # shrink array by half if less that 1/4 full
+        if 0 < self._len < len(self._array)//4:
+            self._resize(len(self._array)//2)
+
+        return data
+
+    def first(self):
+        """
+        Returns the element at front of queue without removing.
+
+        :return: First element in queue.
+        """
+        if self.empty():
+            raise QueueEmptyException()
+
+        # simulate first using pop and push
+        data = self._array.pop()
+
+        self._array.append(data)
+        return data
+
+    def empty(self):
+        """
+        Checks whether queue is empty.
+
+        :return: True if empty, false otherwise.
+        """
+        return True if self._len == 0 else False
+
+    def _resize(self, size):
+        """
+        Resize backing array to specified size.
+
+        :param size: integer value specifying new size.
+        """
+        new_array = collections.deque(maxlen=size)
+
+        # move all existing elements over
+        for element in self._array:
+            new_array.append(element)
+
+        self._len = len(self._array)
+        self._array = new_array
 
 class QueueEmptyException(Exception):
     """
