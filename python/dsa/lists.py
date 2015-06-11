@@ -67,21 +67,41 @@ class SingleLinkedList(object):
 
     def before(self, node):
         """
-        Return the node preceding the specified data.
+        Return the node preceding the specified element.
 
-        :param node: search element.
+        :param node: search Node.
         :return: Node object.
         """
-        # TODO: implement
+
+        if self._len <= 1:
+            raise ValueError("Not found")
+
+        # prior node needs a search in singly linked lists :(
+        current = self.head
+
+        while current:
+            # went through the list without finding node
+            if current.next_node is None:
+                raise ValueError("Not found")
+            if current.next_node == node:
+                # previous node is the one we want.
+                return current
+            current = current.next_node
+
+            # check if node references match
 
     def after(self, node):
         """
-        Return the node succeeding the first occurrence of data.
+        Return the node succeeding specified element.
 
-        :param node: search element.
+        :param node: search Node.
         :return: Node object.
         """
-        # TODO: implement
+        if self._len <= 1 or node.next_node is None:
+            raise ValueError("Not found")
+
+        # easy since we have pointer to the next node! :)
+        return node.next_node
 
     def empty(self):
         """
@@ -108,12 +128,18 @@ class SingleLinkedList(object):
         self.head = node
         self._len += 1
 
-    def add_last(self):
+    def add_last(self, node):
         """
+        Add node at end of list.
 
-        :return:
+        :param node: Node object reference.
         """
-        # TODO: implement
+        if self.tail is None:
+            self.head = node
+        else:
+            self.tail.next_node = node
+        self.tail = node
+        self._len += 1
 
     def add_before(self):
         """

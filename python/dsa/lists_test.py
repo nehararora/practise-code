@@ -36,6 +36,15 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(2, m.data)
         self.assertEqual(n, m.next_node)
 
+    def test_equality(self):
+        """
+        Test equality operations.
+        """
+        n1, n2 = Node(1), Node(2)
+
+        self.assertEqual(n1, n1)
+        self.assertNotEqual(n1, n2)
+
     def test_first_last(self):
         """
         """
@@ -59,7 +68,39 @@ class TestSingleLinkedList(unittest.TestCase):
 
     def test_before_after(self):
         """
+        Test before(), after()
         """
+        l = SingleLinkedList()
+        with self.assertRaises(ValueError):
+            l.before(None)
+
+        n = Node("Hello")
+        l.add_first(n)
+        with self.assertRaises(ValueError):
+            l.before(n)
+
+        l = SingleLinkedList()
+        n1, n2 = Node("Foo"), Node("Bar")
+        l.add_first(n1)
+        l.add_last(n2)
+        print(l.head.data, l.tail.data)
+        self.assertEqual(n1, l.before(n2))
+
+        with self.assertRaises(ValueError):
+            l.before(Node("Not in list"))
+
+        # test after()
+        l = SingleLinkedList()
+        with self.assertRaises(ValueError):
+            l.after(Node(1))
+
+        n1, n2 = Node("Foo"), Node("Bar")
+        l.add_first(n1)
+        with self.assertRaises(ValueError):
+            l.after(n1)
+
+        l.add_last(n2)
+        self.assertEqual(n2, l.after(n1))
 
     def test_empty(self):
         """
@@ -75,9 +116,10 @@ class TestSingleLinkedList(unittest.TestCase):
 
     def test_add_first_last(self):
         """
-
-        :return:
+        Test add_first() and add_last()
         """
+
+        # create list and verify add_first...
         l = SingleLinkedList()
 
         l.add_first(node=Node(1))
@@ -87,6 +129,17 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(2, l.first().data)
         self.assertEqual(1, l.last().data)
 
+        # verify add_last on non-empty list
+        n = Node(3)
+        l.add_last(n)
+        self.assertEqual(n, l.last())
+
+        # verify add_last on empty list
+        l = SingleLinkedList()
+        n = Node(1)
+        l.add_last(n)
+        self.assertEqual(n, l.first())
+        self.assertEqual(n, l.last())
 
     def test_add_before_after(self):
         """
