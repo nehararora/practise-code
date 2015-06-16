@@ -147,6 +147,7 @@ class SingleLinkedList(object):
         :return:
         """
         # TODO: implement
+        return None
 
     def delete_before(self):
         """
@@ -154,6 +155,7 @@ class SingleLinkedList(object):
         :return:
         """
         # TODO: implement
+        return None
 
     def add_after(self):
         """
@@ -161,6 +163,7 @@ class SingleLinkedList(object):
         :return:
         """
         # TODO: implement
+        return None
 
     def delete_after(self):
         """
@@ -168,6 +171,7 @@ class SingleLinkedList(object):
         :return:
         """
         # TODO: implement
+        return None
 
     def replace(self):
         """
@@ -175,6 +179,7 @@ class SingleLinkedList(object):
         :return:
         """
         # TODO: implement
+        return None
 
     def delete_at(self):
         """
@@ -182,6 +187,7 @@ class SingleLinkedList(object):
         :return:
         """
         # TODO: implement
+        return None
 
     def __len__(self):
         """
