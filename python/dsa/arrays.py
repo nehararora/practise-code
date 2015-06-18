@@ -225,7 +225,7 @@ class DynamicArray(object):
         self._array = new_array
         self._capacity = capacity
 
-
+# TODO: implement statistical analysis based cipher breaker.
 class CaesarCipher(object):
     """
     Implementation of the simple Caesar Cipher, a type of substitution cipher.
@@ -233,7 +233,6 @@ class CaesarCipher(object):
     Each letter in a message is replaced by a letter displaced by a fixed
     number of positions in the alphabet.
 
-    Section 5.5.3, Data Structures and Algorithms in Python, Goodrich et al.
     """
 
     def __init__(self, shift):
@@ -300,7 +299,6 @@ class MultiDimensional(object):
     """
     Multi dimensional array related exercises.
 
-    Chapter 5 exercises, Data Structures and Algorithms in Python, Goodrich et al.
     """
     def __init__(self, row, col, value=1):
         """
@@ -319,8 +317,6 @@ class MultiDimensional(object):
         Uses standard control structures to compute the sum of all numbers in
         an n × n data set, represented as a list of lists.
 
-        Exercise R-5.11, Data Structures and Algorithms in Python, Goodrich et al.
-
         :return: sum of matrix elements.
         """
         total = 0
@@ -336,8 +332,29 @@ class MultiDimensional(object):
         Uses built in sum and list comprehension to compute the sum of all
         numbers in an n × n data set, represented as a list of lists.
 
-        Exercise R-5.12, Data Structures and Algorithms in Python, Goodrich et al.
-
         :return: sum of matrix elements.
         """
         return sum([x for row in self._data for x in row])
+
+def natural_join_naive(list1=[], list2=[]):
+    """
+    Computes the "natural join" of two lists.
+
+    Assumes the two lists contain 2-tuples (x, y) and (y, z), and computes (x, y, z)
+    in o(n*m) time, where n == len(list1) and m == len(list2).
+
+    :param list1: List of 2-tuples.
+    :param list2: List of 2-tuples.
+    :return: List 3-tuples joined on middle column.
+    """
+
+    joined = []
+    # iterate over every element of two lists.
+    for (a, b) in list1:
+        print(a, b)
+        for (c, d) in list2:
+            # check if the middle col matches for each tuple
+            if b == c:
+                joined.append((a, b, d))
+
+    return joined

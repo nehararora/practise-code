@@ -10,6 +10,7 @@ import unittest
 from arrays import DynamicArray
 from arrays import CaesarCipher
 from arrays import MultiDimensional
+from arrays import natural_join_naive
 
 
 class TestDynamicArray(unittest.TestCase):
@@ -372,3 +373,28 @@ class TestMultiDimensional(unittest.TestCase):
 
         m = MultiDimensional(row=2, col=5, value=42)
         self.assertEquals(42*5*2, m.compute_sum())
+
+class TestNaturalJoin(unittest.TestCase):
+    """
+    Test cases for natural join implementation.
+    """
+
+    def test_natural_join_naive(self):
+        """
+        Basic test
+        """
+        self.assertEqual([], natural_join_naive(list1=[], list2=[]))
+
+        self.assertEqual([], natural_join_naive(list1=[(1, 2)], list2=[(3, 4)]))
+
+        list1 = [(2, 1), (3, 1), (3, 3)]
+        list2 = [(3, 3), (1, 4), (5, 2), (3, 1)]
+        self.assertEqual([(2, 1, 4), (3, 1, 4), (3, 3, 3), (3, 3, 1)],
+                         natural_join_naive(list1=list1, list2=list2))
+
+        list1 = [(1, 2), (3, 2), (4, 2)]
+        list2 = [(2, 5), (2, 6), (2, 7)]
+        self.assertEqual([(1, 2, 5), (1, 2, 6), (1, 2, 7),
+                          (3, 2, 5), (3, 2, 6), (3, 2, 7),
+                          (4, 2, 5), (4, 2, 6), (4, 2, 7)],
+                         natural_join_naive(list1, list2))

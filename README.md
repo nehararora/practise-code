@@ -22,6 +22,6 @@ Each individual directory contains it's own readme file with details on the spec
 code layout.
 
 
-# why Practise (instead of Practice) ?
+# why Practise (instead of Practice)?
 Not that it matters, but wanted to highlight the "verbiness" of the activity :)
 see here for instance: http://englishtips.com/2010/04/30/practise-or-practice/
