@@ -3,8 +3,6 @@
 """
 arrays.py: Algorithms based on array operations.
 
-Primarily from Chapter 5, Data Structures and Algorithms in Python, Goodrich et al.
-
 """
 
 __author__ = 'nehar'
@@ -16,7 +14,6 @@ class DynamicArray(object):
     Dynamic Array class.
 
     Implements a dynamic array based on the low level ctypes array.
-    Section 5.1.3, Data Structures and Algorithms in Python, Goodrich et al.
     """
 
     def __init__(self):
@@ -150,8 +147,6 @@ class DynamicArray(object):
         Shrinks capacity of the array by half any time the
         number of elements in the array goes below N/4.
 
-        Exercises C-5.25, Chapter 5, Data Structures and Algorithms in Python, Goodrich et al.
-
         :param value: Value to remove.
         :return: None
         :raises ValueError: Raised if value is not found.
@@ -186,8 +181,6 @@ class DynamicArray(object):
 
         Shrinks capacity of the array by half any time the
         number of elements in the array goes below N/4.
-
-        Exercise 5.16, Data Structures and Algorithms in Python, Goodrich et al.
 
         :return: removed element.
         """
@@ -336,25 +329,53 @@ class MultiDimensional(object):
         """
         return sum([x for row in self._data for x in row])
 
-def natural_join_naive(list1=[], list2=[]):
+
+class NaturalJoin(object):
     """
-    Computes the "natural join" of two lists.
+    Natural join implementations.
 
-    Assumes the two lists contain 2-tuples (x, y) and (y, z), and computes (x, y, z)
-    in o(n*m) time, where n == len(list1) and m == len(list2).
-
-    :param list1: List of 2-tuples.
-    :param list2: List of 2-tuples.
-    :return: List 3-tuples joined on middle column.
     """
 
-    joined = []
-    # iterate over every element of two lists.
-    for (a, b) in list1:
-        print(a, b)
-        for (c, d) in list2:
-            # check if the middle col matches for each tuple
-            if b == c:
-                joined.append((a, b, d))
+    @staticmethod
+    def naive(list1=[], list2=[]):
+        """
+        Computes the "natural join" of two lists using "naive" nested loop join.
 
-    return joined
+        Assumes the two lists contain 2-tuples (x, y) and (y, z), and computes (x, y, z)
+        in o(n*m) time, where n == len(list1) and m == len(list2).
+
+        :param list1: List of 2-tuples.
+        :param list2: List of 2-tuples.
+        :return: List of 3-tuples joined on middle column.
+        """
+
+        joined = []
+        # iterate over every element of two lists.
+        for (a, b) in list1:
+            # print(a, b)
+            for (c, d) in list2:
+                # check if the middle col matches for each tuple
+                if b == c:
+                    joined.append((a, b, d))
+
+        return joined
+
+    @staticmethod
+    def sort_merge(list1=[], list2=[]):
+        """
+        Join computed using the sort-merge join.
+
+        Works by first sorting the two lists on the join key so that
+        interleaved linear scans can then merge.
+        :param list1: List of 2-tuples.
+        :param list2: List of 2-tuples.
+        :return: List of 3-tuples joined on middle column.
+        """
+        # first sort the two lists on the join column
+        list1.sort(key=lambda tup: tup[1])
+        list2.sort(key=lambda tup: tup[0])
+        # print(list1, list2)
+
+        # then scan through the two lists
+
+
