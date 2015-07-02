@@ -114,6 +114,11 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(1, len(l))
         self.assertEqual(1, l._len)
 
+
+    def test_append(self):
+        """
+        Test append method.
+        """
     def test_add_first_last(self):
         """
         Test add_first() and add_last()
@@ -146,6 +151,14 @@ class TestSingleLinkedList(unittest.TestCase):
 
         :return:
         """
+        l = SingleLinkedList()
+        n1 = Node(1)
+        n2 = Node(2)
+        n3 = Node(3)
+        # error
+
+        l.add_before()
+
     def test_delete_before_after(self):
         """
 

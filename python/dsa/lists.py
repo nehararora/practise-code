@@ -67,7 +67,7 @@ class SingleLinkedList(object):
 
     def before(self, node):
         """
-        Return the node preceding the specified element.
+        Return the node preceding the specified node.
 
         :param node: search Node.
         :return: Node object.
@@ -76,7 +76,7 @@ class SingleLinkedList(object):
         if self._len <= 1:
             raise ValueError("Not found")
 
-        # prior node needs a search in singly linked lists :(
+        # prior node needs an actual search in singly linked lists :(
         current = self.head
 
         while current:
@@ -84,11 +84,9 @@ class SingleLinkedList(object):
             if current.next_node is None:
                 raise ValueError("Not found")
             if current.next_node == node:
-                # previous node is the one we want.
+                # found the node we want.
                 return current
             current = current.next_node
-
-            # check if node references match
 
     def after(self, node):
         """
@@ -110,6 +108,24 @@ class SingleLinkedList(object):
         :return: boolean status.
         """
         return True if self._len == 0 else False
+
+    def append(self, node):
+        """
+        Append node at end of the list.
+
+        :param node: Node object reference.
+        """
+
+        # list is empty.
+        if self.head is None:
+            self.head = node
+        else:
+            # make new node current tail's next node.
+            self.tail.next_node = node
+
+        # make sure tail now point at new end of list.
+        self.tail = node
+        self._len += 1
 
     def add_first(self, node):
         """
@@ -141,47 +157,82 @@ class SingleLinkedList(object):
         self.tail = node
         self._len += 1
 
-    def add_before(self):
+    def add_before(self, node, new_node):
+        """
+        Add new_node in front of specified node.
+
+        :param node: Node object reference.
+        :param new_node: Node object reference.
         """
 
-        :return:
-        """
-        # TODO: implement
-        return None
+        if node is None or new_node is None:
+            raise ValueError("Not found")
 
-    def delete_before(self):
-        """
+        # need to find the position before node
+        current = self.head
 
-        :return:
-        """
-        # TODO: implement
-        return None
+        while current:
 
-    def add_after(self):
-        """
+            # found the position to insert at
+            if current.next_node == node:
+                # splice new_node between current and node.
+                new_node.next_node = current.next_node
+                current.next_node = new_node
 
-        :return:
-        """
-        # TODO: implement
-        return None
+            # in case we reach the end of the list
+            if current.next_node is None:
+                raise ValueError("Not found")
 
-    def delete_after(self):
-        """
+            current = current.next_node
 
-        :return:
+    def delete_before(self, node):
         """
-        # TODO: implement
-        return None
+        Remove node before specified node.
 
-    def replace(self):
-        """
-
-        :return:
+        :param node: Node object reference.
         """
         # TODO: implement
         return None
 
-    def delete_at(self):
+    def add_after(self, node):
+        """
+        Add node after specified node.
+
+        :param node: Node object reference
+        """
+        # TODO: implement
+        return None
+
+    def delete_after(self, node):
+        """
+        Remove node after specified node.
+
+        :param node: Node object reference
+        :return: Removed node.
+        """
+        # TODO: implement
+        return None
+
+    def replace(self, node, replacement):
+        """
+        Replace specified node with replacement node.
+
+        :param node: Node object reference
+        :param replacement: Node object reference
+        :return: replaced node.
+        """
+        # TODO: implement
+        return None
+
+    def replace_at(self, position, replacement):
+        """
+        Replace node at specified position with replacement.
+
+        :param position: Node object reference
+        :param replacement: Node object reference
+        :return: replaced node.
+        """
+    def delete_at(self, position):
         """
 
         :return:
