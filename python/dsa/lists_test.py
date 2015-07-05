@@ -117,7 +117,7 @@ class TestSingleLinkedList(unittest.TestCase):
 
     def test_add_first(self):
         """
-        Test add_first()
+        Test add_first() method.
         """
 
         # create list and verify add_first...
@@ -175,6 +175,46 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(n, l.first())
         self.assertEqual(n, l.last())
 
+    def test_add_before(self):
+        """
+        Test case for add_before method.
+        """
+        l = SingleLinkedList()
+        n0 = Node(0)
+        n1 = Node(1)
+        n2 = Node(2)
+        n3 = Node(3)
+
+        # check "None node" handling
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_before(None, None)
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_before(None, Node(1))
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_before(Node(1), None)
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_before(Node(1), Node(2))
+        l.add_first(n3).add_first(n2).add_first(n1)
+
+        # test existing Node not in list.
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_before(Node(5), Node("Four"))
+
+        # verify list structure.
+        l.add_before(n1, n0)
+        self.assertEqual(n0, l.first())
+        self.assertEqual(n1, l.first().next_node)
+        self.assertEqual(n2, l.first().next_node.next_node)
+        self.assertEqual(n3, l.first().next_node.next_node.next_node)
+        self.assertEqual(None, l.first().next_node.next_node.next_node.next_node)
+        self.assertEqual(n3, l.last())
+
+    def test_add_after(self):
+        """
+        Test case for add_after method.
+        """
+        # TODO: test_add_after
+
     def test_delete_first(self):
         """
         Test delete_first method.
@@ -200,7 +240,7 @@ class TestSingleLinkedList(unittest.TestCase):
 
     def test_delete_last(self):
         """
-        Test delete_last.
+        Test delete_last method.
         """
 
         l = SingleLinkedList()
@@ -222,35 +262,41 @@ class TestSingleLinkedList(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Not found"):
             l.delete_first()
 
-    def test_add_before(self):
+    def test_delete_before(self):
         """
-        """
-        l = SingleLinkedList()
-        n1 = Node(1)
-        n2 = Node(2)
-        n3 = Node(3)
-
-        # l.add_before()
-
-    def test_add_after(self):
-        """
+        TODO: test delete_before method.
         """
 
-
-    def test_delete_before_after(self):
+    def test_delete_after(self):
         """
-
-        :return:
+        TODO: Test delete_after method.
         """
 
     def test_delete_at(self):
         """
-
-        :return:
+        TODO: Test delete_at method.
         """
 
     def test_replace(self):
         """
-
-        :return:
+        TODO: Test replace method.
         """
+
+    def test_repr(self):
+        """
+        Test __repr__ method.
+        """
+
+        l = SingleLinkedList()
+        self.assertEquals("[]", l.__repr__())
+
+        l.add_first(Node("Second")).add_first(Node(1))
+        self.assertEquals("[Node[1], Node[Second]]", l.__repr__())
+        l.add_last(Node("iii"))
+        self.assertEquals("[Node[1], Node[Second], Node[iii]]", l.__repr__())
+        l.delete_first()
+        self.assertEquals("[Node[Second], Node[iii]]", l.__repr__())
+        l.delete_last()
+        self.assertEquals("[Node[Second]]", l.__repr__())
+        l.delete_first()
+        self.assertEquals("[]", l.__repr__())

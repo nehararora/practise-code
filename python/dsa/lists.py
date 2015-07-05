@@ -39,6 +39,7 @@ class Node(object):
         """
         return "Node[{}]".format(self.data)
 
+
 class SingleLinkedList(object):
     """
     Singly linked list data structure.
@@ -159,19 +160,29 @@ class SingleLinkedList(object):
         :param new_node: Node object reference.
         """
 
-        if node is None or new_node is None:
+        if node is None or new_node is None or self.head is None:
             raise ValueError("Not found")
 
         # need to find the position before node
         current = self.head
 
+        # check the first node - avoids having to use a prev pointer.
+        if current == node:
+            # if this was the head node, make new_node the head.
+            self.head = new_node
+            new_node.next_node = current
+            self._len += 1
+            return
+
         while current:
 
-            # found the position to insert at
+            # find the position to insert at
             if current.next_node == node:
                 # splice new_node between current and node.
                 new_node.next_node = current.next_node
                 current.next_node = new_node
+                self._len += 1
+                return
 
             # in case we reach the end of the list
             if current.next_node is None:
@@ -179,13 +190,15 @@ class SingleLinkedList(object):
 
             current = current.next_node
 
+        print("here {}".format(current))
+
     def add_after(self, node):
         """
         Add node after specified node.
 
         :param node: Node object reference
         """
-        # TODO: implement
+        # TODO: add_after
         return None
 
     def delete_first(self):
@@ -230,7 +243,6 @@ class SingleLinkedList(object):
         # if more than one node, find the last.
         current = self.head
         while current.next_node:
-            print(current)
             # found the prior to last node
             if current.next_node is self.tail:
                 break
@@ -249,7 +261,7 @@ class SingleLinkedList(object):
 
         :param node: Node object reference.
         """
-        # TODO: implement
+        # TODO: delete_before
         return None
 
     def delete_after(self, node):
@@ -259,7 +271,7 @@ class SingleLinkedList(object):
         :param node: Node object reference
         :return: Removed node.
         """
-        # TODO: implement
+        # TODO: delete_after
         return None
 
     def empty(self):
@@ -278,7 +290,7 @@ class SingleLinkedList(object):
         :param replacement: Node object reference
         :return: replaced node.
         """
-        # TODO: implement
+        # TODO: replace
         return None
 
     def replace_at(self, position, replacement):
@@ -294,7 +306,7 @@ class SingleLinkedList(object):
 
         :return:
         """
-        # TODO: implement
+        # TODO: delete_at
         return None
 
     def __len__(self):
@@ -304,3 +316,15 @@ class SingleLinkedList(object):
         :return: integer count.
         """
         return self._len
+
+    def __repr__(self):
+        """
+        Representation.
+        """
+        l = []
+        current = self.head
+        while current:
+            l.append(str(current))
+            current = current.next_node
+
+        return "[{}]".format(", ".join(l))
