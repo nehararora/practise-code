@@ -88,11 +88,14 @@ class SingleLinkedList(object):
         while current:
             # went through the list without finding node
             if current.next_node is None:
-                raise ValueError("Not found")
+                raise ValueError("{} Not found".format(node))
             if current.next_node == node:
                 # found the node we want.
                 return current
             current = current.next_node
+
+        # node not found in list.
+        raise ValueError("Not found")
 
     def after(self, node):
         """
@@ -163,32 +166,21 @@ class SingleLinkedList(object):
         if node is None or new_node is None or self.head is None:
             raise ValueError("Not found")
 
-        # need to find the position before node
-        current = self.head
-
-        # check the first node - avoids having to use a prev pointer.
-        if current == node:
+        # Handle the first node - before() not defined for lists of size 1.
+        if self.head == node:
             # if this was the head node, make new_node the head.
+            new_node.next_node = self.head
             self.head = new_node
-            new_node.next_node = current
+
             self._len += 1
             return self
 
-        while current:
-
-            # find the position to insert at
-            if current.next_node == node:
-                # splice new_node between current and node.
-                new_node.next_node = current.next_node
-                current.next_node = new_node
-                self._len += 1
-                return self
-
-            # in case we reach the end of the list
-            if current.next_node is None:
-                raise ValueError("Not found")
-
-            current = current.next_node
+        # find the  node to insert after
+        prev = self.before(node)
+        new_node.next_node = prev.next_node
+        prev.next_node = new_node
+        self._len += 1
+        return self
 
     def add_after(self, node, new_node):
         """

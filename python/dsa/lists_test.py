@@ -194,7 +194,9 @@ class TestSingleLinkedList(unittest.TestCase):
             l.add_before(Node(1), None)
         with self.assertRaisesRegex(ValueError, "Not found"):
             l.add_before(Node(1), Node(2))
-        l.add_first(n3).add_first(n2).add_first(n1)
+
+        # verify adding first node.
+        l.add_first(n3).add_before(n3, n2).add_first(n1)
 
         # test existing Node not in list.
         with self.assertRaisesRegex(ValueError, "Not found"):
