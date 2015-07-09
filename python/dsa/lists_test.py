@@ -213,7 +213,38 @@ class TestSingleLinkedList(unittest.TestCase):
         """
         Test case for add_after method.
         """
-        # TODO: test_add_after
+        l = SingleLinkedList()
+        n0 = Node("zero")
+        n1 = Node("one")
+        n2 = Node("two")
+        n3 = Node("three")
+
+        # check "None node" handling
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_after(None, None)
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_after(None, Node(1))
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_after(Node(1), None)
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_after(Node(1), Node(2))
+
+        l.add_first(n3).add_first(n0)
+
+        # add_after a couple of nodes
+        l.add_after(n0, n1).add_after(n1, n2)
+
+        self.assertEqual(n0, l.first())
+        self.assertEqual(n1, l.first().next_node)
+        self.assertEqual(n2, l.first().next_node.next_node)
+        self.assertEqual(n3, l.first().next_node.next_node.next_node)
+        self.assertEqual(n3, l.last())
+        self.assertEqual(None, l.first().next_node.next_node.next_node.next_node)
+
+        # test Node not in list
+        # note equal value does not the same node make
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.add_after(Node("three"), Node(4))
 
     def test_delete_first(self):
         """

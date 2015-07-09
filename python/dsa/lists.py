@@ -172,7 +172,7 @@ class SingleLinkedList(object):
             self.head = new_node
             new_node.next_node = current
             self._len += 1
-            return
+            return self
 
         while current:
 
@@ -182,7 +182,7 @@ class SingleLinkedList(object):
                 new_node.next_node = current.next_node
                 current.next_node = new_node
                 self._len += 1
-                return
+                return self
 
             # in case we reach the end of the list
             if current.next_node is None:
@@ -190,16 +190,38 @@ class SingleLinkedList(object):
 
             current = current.next_node
 
-        print("here {}".format(current))
-
-    def add_after(self, node):
+    def add_after(self, node, new_node):
         """
         Add node after specified node.
+        adding a node is straightforward, but still need to check
+        if node is in the list.
 
-        :param node: Node object reference
+        :param node: Node object reference.
+        :param new_node: Replacement node object reference.
         """
-        # TODO: add_after
-        return None
+        # null checks
+        if node is None or new_node is None or self.head is None:
+            raise ValueError("Not found")
+
+        current = self.head
+        while current:
+            # make sure node is in list
+            if current == node:
+                break
+            current = current.next_node
+
+        # node is not actually in the list
+        if current is None:
+            raise ValueError("Not found")
+
+        # splice new_node after node - if node points to None so be it.
+        new_node.next_node = node.next_node
+        node.next_node = new_node
+        # adjust tail if needed
+        self.tail = new_node if self.tail is node else self.tail
+        self._len += 1
+
+        return self
 
     def delete_first(self):
         """
