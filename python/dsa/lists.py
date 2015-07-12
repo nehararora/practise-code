@@ -102,13 +102,31 @@ class SingleLinkedList(object):
         Return the node succeeding specified element.
 
         :param node: search Node.
-        :return: Node object.
+        :return: Node object reference.
         """
         if self._len <= 1 or node.next_node is None:
             raise ValueError("Not found")
 
         # easy since we have pointer to the next node! :)
         return node.next_node
+
+    def contains(self, node):
+        """
+        Returns true if list contains specified node.
+
+        :param node: search Node
+        :return: True if node exists in list, False otherwise
+        """
+        if self._len < 1 or node is None:
+            raise ValueError("Not found")
+
+        current = self.head
+        while current:
+            # make sure node is in list
+            if current == node:
+                return True
+            current = current.next_node
+        return False
 
     def add_first(self, node):
         """
@@ -175,7 +193,7 @@ class SingleLinkedList(object):
             self._len += 1
             return self
 
-        # find the  node to insert after
+        # find the node to insert after
         prev = self.before(node)
         new_node.next_node = prev.next_node
         prev.next_node = new_node
@@ -195,15 +213,7 @@ class SingleLinkedList(object):
         if node is None or new_node is None or self.head is None:
             raise ValueError("Not found")
 
-        current = self.head
-        while current:
-            # make sure node is in list
-            if current == node:
-                break
-            current = current.next_node
-
-        # node is not actually in the list
-        if current is None:
+        if not self.contains(node):
             raise ValueError("Not found")
 
         # splice new_node after node - if node points to None so be it.
@@ -255,18 +265,12 @@ class SingleLinkedList(object):
             return n
 
         # if more than one node, find the last.
-        current = self.head
-        while current.next_node:
-            # found the prior to last node
-            if current.next_node is self.tail:
-                break
-            current = current.next_node
-
+        prev = self.before(self.tail)
         # remove the last node and move tail
-        n = current.next_node
-        self.tail = current
-        current.next_node = None
-        self._len += 1
+        n = prev.next_node
+        self.tail = prev
+        prev.next_node = None
+        self._len -= 1
         return n
 
     def delete_before(self, node):
@@ -275,8 +279,24 @@ class SingleLinkedList(object):
 
         :param node: Node object reference.
         """
-        # TODO: delete_before
-        return None
+        if self._len <= 1 or node is None:
+            raise ValueError("Not found")
+
+        # find node to delete...
+        curr = self.before(node)
+
+        # node to delete is at head...
+        if self.head is curr:
+            self.head = node
+            self._len -= 1
+            return curr
+
+        # node is not the head
+        prev = self.before(curr)
+
+        prev.next_node = curr.next_node
+        self._len -= 1
+        return curr
 
     def delete_after(self, node):
         """
@@ -285,8 +305,22 @@ class SingleLinkedList(object):
         :param node: Node object reference
         :return: Removed node.
         """
-        # TODO: delete_after
-        return None
+        # null checks
+        if self._len <= 1 or node is None:
+            raise ValueError("Not found")
+
+        # check node exists in list.
+        if not self.contains(node):
+            raise ValueError("Not found")
+
+        curr = node.next_node
+        node.next_node = curr.next_node
+        self._len -= 1
+
+        # if node is tail
+        self.tail = node if curr is self.tail else self.tail
+
+        return curr
 
     def empty(self):
         """
@@ -295,6 +329,14 @@ class SingleLinkedList(object):
         :return: boolean status.
         """
         return True if self._len == 0 else False
+
+    def delete_at(self, position):
+        """
+
+        :return:
+        """
+        # TODO: delete_at
+        return None
 
     def replace(self, node, replacement):
         """
@@ -315,13 +357,6 @@ class SingleLinkedList(object):
         :param replacement: Node object reference
         :return: replaced node.
         """
-    def delete_at(self, position):
-        """
-
-        :return:
-        """
-        # TODO: delete_at
-        return None
 
     def __len__(self):
         """
