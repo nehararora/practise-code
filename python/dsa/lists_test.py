@@ -72,12 +72,12 @@ class TestSingleLinkedList(unittest.TestCase):
         Test before(), after().
         """
         l = SingleLinkedList()
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.before(None)
 
         n = Node("Hello")
         l.add_first(n)
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.before(n)
 
         l = SingleLinkedList()
@@ -87,17 +87,17 @@ class TestSingleLinkedList(unittest.TestCase):
 
         self.assertEqual(n1, l.before(n2))
 
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.before(Node("Not in list"))
 
         # test after()
         l = SingleLinkedList()
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.after(Node(1))
 
         n1, n2 = Node("Foo"), Node("Bar")
         l.add_first(n1)
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.after(n1)
 
         l.add_last(n2)
@@ -113,13 +113,13 @@ class TestSingleLinkedList(unittest.TestCase):
         n3 = Node(3)
 
         # verify null checks
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.contains(n1)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.contains(None)
 
         l.add_first(n1)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.contains(None)
 
         self.assertTrue(l.contains(n1))
@@ -149,7 +149,7 @@ class TestSingleLinkedList(unittest.TestCase):
         l = SingleLinkedList()
 
         # verify empty list value error
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_first(None)
 
         l.add_first(node=Node(1))
@@ -169,7 +169,7 @@ class TestSingleLinkedList(unittest.TestCase):
 
         n1, n2, n3 = Node(1), Node(2), Node(3)
 
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_last(None)
 
         # add some nodes and verify length, head, tail etc.
@@ -211,20 +211,20 @@ class TestSingleLinkedList(unittest.TestCase):
         n3 = Node(3)
 
         # check "None node" handling
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_before(None, None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_before(None, Node(1))
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_before(Node(1), None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_before(Node(1), Node(2))
 
         # verify adding first node.
         l.add_first(n3).add_before(n3, n2).add_first(n1)
 
         # test existing Node not in list.
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_before(Node(5), Node("Four"))
 
         # verify list structure.
@@ -244,13 +244,13 @@ class TestSingleLinkedList(unittest.TestCase):
         n0, n1, n2, n3 = Node("zero"), Node("one"), Node("two"), Node("three")
 
         # check "None node" handling
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_after(None, None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_after(None, Node(1))
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_after(Node(1), None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_after(Node(1), Node(2))
 
         l.add_first(n3).add_first(n0)
@@ -267,7 +267,7 @@ class TestSingleLinkedList(unittest.TestCase):
 
         # test Node not in list
         # note equal value does not the same node make
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.add_after(Node("three"), Node(4))
 
     def test_delete_first(self):
@@ -276,7 +276,7 @@ class TestSingleLinkedList(unittest.TestCase):
         """
         l = SingleLinkedList()
         # verify empty list value error
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_first()
 
         # add a couple of nodes
@@ -290,7 +290,7 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(n3, l.delete_first())
 
         self.assertEqual(0, len(l))
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_first()
 
     def test_delete_last(self):
@@ -300,7 +300,7 @@ class TestSingleLinkedList(unittest.TestCase):
 
         l = SingleLinkedList()
         # verify empty list value error
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_last()
 
         # add a couple of nodes
@@ -316,7 +316,7 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(n1, l.delete_last())
         self.assertEqual(0, len(l))
 
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_last()
 
     def test_delete_before(self):
@@ -327,15 +327,15 @@ class TestSingleLinkedList(unittest.TestCase):
         n1, n2, n3 = Node(1), Node(2), Node(3)
 
         # verify null checks
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_before(None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_before(Node(1))
 
         l.add_first(n1)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_before(None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_before(n2)
 
         l.add_first(n2).add_first(n3)
@@ -343,7 +343,7 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(2, len(l))
         self.assertEqual(n2, l.delete_before(n1))
         self.assertEqual(1, len(l))
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_before(n1)
 
     def test_delete_after(self):
@@ -354,16 +354,16 @@ class TestSingleLinkedList(unittest.TestCase):
         n1, n2, n3 = Node(1), Node(2), Node(3)
 
         # empty list
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(Node(1))
 
         l.add_first(n1)
 
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(n2)
 
         l.add_first(n2).add_first(n3)
@@ -372,7 +372,7 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertEqual(2, len(l))
         self.assertEqual(n1, l.delete_after(n3))
         self.assertEqual(1, len(l))
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(n3)
 
     def test_replace(self):
@@ -383,16 +383,16 @@ class TestSingleLinkedList(unittest.TestCase):
         n1, n2, n3 = Node(1), Node(2), Node(3)
 
         # empty list
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(Node(1))
 
         l.add_first(n1)
 
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(None)
-        with self.assertRaisesRegex(ValueError, "Not found"):
+        with self.assertRaisesRegexp(ValueError, "Not found"):
             l.delete_after(n2)
 
         # replacement in a single-node list
@@ -416,6 +416,31 @@ class TestSingleLinkedList(unittest.TestCase):
         self.assertFalse(l.contains(n1))
         self.assertFalse(l.contains(n2))
         self.assertFalse(l.contains(n3))
+
+    def test_find_at(self):
+        """
+        Test find by index.
+        """
+        l = SingleLinkedList()
+        # test empty list
+        with self.assertRaisesRegexp(ValueError, "Not found"):
+            l.find_at(0)
+
+        with self.assertRaisesRegexp(ValueError, "Not found"):
+            l.find_at(1)
+
+        n1, n2, n3, = Node("One"), Node("Two"), Node("Three")
+        l.add_last(n1).add_last(n2).add_last(n3)
+
+        with self.assertRaisesRegexp(ValueError, "Not found"):
+            l.find_at(3)
+
+        self.assertEqual(n1, l.find_at(0))
+        self.assertEqual(n2, l.find_at(1))
+        self.assertEqual(n3, l.find_at(2))
+
+        with self.assertRaisesRegexp(ValueError, "Not found"):
+            l.find_at(4)
 
     def test_delete_at(self):
         """

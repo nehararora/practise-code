@@ -362,6 +362,24 @@ class SingleLinkedList(object):
         """
         return True if self._len == 0 else False
 
+    def find_at(self, position):
+        """
+        Return node at specified index.
+
+        :param position: Integer index of node to find.
+        :return: Node reference if found.
+        :raises ValueError: if not found.
+        """
+        # length is smaller than the index.
+        if self._len < position + 1:
+            raise ValueError("Not found")
+
+        current = self.head
+        for i in range(position):
+            current = current.next_node
+
+        return current
+
     def delete_at(self, position):
         """
         Delete the node specified by index position.
@@ -371,6 +389,8 @@ class SingleLinkedList(object):
         :return: Node reference of removed object.
         """
         # TODO: delete_at
+
+
         return None
 
     def replace_at(self, position, replacement):
@@ -381,6 +401,7 @@ class SingleLinkedList(object):
         :param replacement: Node object reference
         :return: replaced node.
         """
+        # TODO: replace_at
 
     def __len__(self):
         """
