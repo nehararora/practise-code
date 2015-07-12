@@ -375,14 +375,56 @@ class TestSingleLinkedList(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Not found"):
             l.delete_after(n3)
 
+    def test_replace(self):
+        """
+        Test replace method.
+        """
+        l = SingleLinkedList()
+        n1, n2, n3 = Node(1), Node(2), Node(3)
+
+        # empty list
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.delete_after(None)
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.delete_after(Node(1))
+
+        l.add_first(n1)
+
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.delete_after(None)
+        with self.assertRaisesRegex(ValueError, "Not found"):
+            l.delete_after(n2)
+
+        # replacement in a single-node list
+        self.assertTrue(l.contains(n1) and l._len == 1 and not l.contains(n2))
+        l.replace(n1, n2)
+        self.assertTrue(l.contains(n2) and l._len == 1 and not l.contains(n1))
+
+        l.add_last(n3).add_first(n1)
+        self.assertEqual(n1, l.first())
+        self.assertEqual(n2, l.first().next_node)
+        self.assertEqual(n3, l.last())
+
+        # replacements
+        n4, n5, n6 = Node("One"), Node("Two"), Node("Three")
+        l.replace(n1, n4).replace(n2, n5).replace(n3, n6)
+
+        self.assertEqual(n4, l.first())
+        self.assertEqual(n5, l.first().next_node)
+        self.assertEqual(n6, l.last())
+        self.assertEqual(3, len(l))
+        self.assertFalse(l.contains(n1))
+        self.assertFalse(l.contains(n2))
+        self.assertFalse(l.contains(n3))
+
     def test_delete_at(self):
         """
         TODO: Test delete_at method.
         """
 
-    def test_replace(self):
+    def test_replace_at(self):
         """
-        TODO: Test replace method.
+        TODO: Test replace_at method.
         """
 
     def test_repr(self):

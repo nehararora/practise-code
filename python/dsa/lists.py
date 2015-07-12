@@ -43,7 +43,10 @@ class Node(object):
 class SingleLinkedList(object):
     """
     Singly linked list data structure.
+
+    Note: doesn't handle/recognize additions etc that generate cycles.
     """
+    # TODO: handle introducing cycles? error out?
 
     def __init__(self, head=None):
         """
@@ -322,6 +325,35 @@ class SingleLinkedList(object):
 
         return curr
 
+    def replace(self, node, replacement):
+        """
+        Replace specified node with replacement node.
+
+        :param node: Node object reference
+        :param replacement: Node object reference
+        :return: replaced node.
+        """
+        # TODO: doesn't handle introducing cycles yet.
+
+        if self._len < 1 or node is None:
+            raise ValueError("Not found")
+
+        # check node exists in list.
+        if not self.contains(node):
+            raise ValueError("Not found")
+
+        # if node has a previous node, point it at replacement
+        if self.head is not node:
+            self.before(node).next_node = replacement
+
+        # node being replaced is the first in the list.
+        self.head = replacement if self.head is node else self.head
+        # node being replaced is the last in the list.
+        self.tail = replacement if self.tail is node else self.tail
+
+        replacement.next_node = node.next_node
+        return self
+
     def empty(self):
         """
         True if list does not contain elements, false otherwise.
@@ -332,21 +364,13 @@ class SingleLinkedList(object):
 
     def delete_at(self, position):
         """
+        Delete the node specified by index position.
 
-        :return:
+        :param position: Integer index of node to remove.
+
+        :return: Node reference of removed object.
         """
         # TODO: delete_at
-        return None
-
-    def replace(self, node, replacement):
-        """
-        Replace specified node with replacement node.
-
-        :param node: Node object reference
-        :param replacement: Node object reference
-        :return: replaced node.
-        """
-        # TODO: replace
         return None
 
     def replace_at(self, position, replacement):
