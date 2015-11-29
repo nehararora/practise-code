@@ -1,5 +1,5 @@
 /**
- * Contains Stack implementations.
+ * Contains <strong>Stack</strong> implementations.
  *
  * @author nehar
  *
