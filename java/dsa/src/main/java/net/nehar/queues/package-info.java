@@ -1,5 +1,5 @@
 /**
- * Contains Queue implementations.
+ * Contains <strong>Queue</strong> implementations.
  *
  * @author nehar
  *

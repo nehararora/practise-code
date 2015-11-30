@@ -1,5 +1,5 @@
 /**
- * Contains various Array based algorithm implementations.
+ * Contains various <strong>Array</strong> based algorithm implementations.
  *
  * @author nehar
  *

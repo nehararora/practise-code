@@ -1,5 +1,5 @@
 /**
- * Contains List and Sequence based implementations.
+ * Contains <Strong>List & Sequence</strong> based implementations.
  *
  * @author nehar
  *
