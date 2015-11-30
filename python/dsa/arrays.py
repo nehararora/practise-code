@@ -4,10 +4,10 @@
 arrays.py: Algorithms based on array operations.
 
 """
+import ctypes
 
 __author__ = 'nehar'
 
-import ctypes
 
 class DynamicArray(object):
     """
@@ -218,6 +218,7 @@ class DynamicArray(object):
         self._array = new_array
         self._capacity = capacity
 
+
 # TODO: implement statistical analysis based cipher breaker.
 class CaesarCipher(object):
     """
@@ -374,8 +375,13 @@ class NaturalJoin(object):
         # first sort the two lists on the join column
         list1.sort(key=lambda tup: tup[1])
         list2.sort(key=lambda tup: tup[0])
-        # print(list1, list2)
+        print(list1)
+        print(list2)
 
-        # then scan through the two lists
+        result = []
+        # TODO: iterate over the two lists in ||
+        # TODO: if join column match, join and advance 1 and 2
+        # TODO: if lcol > rcol, advance r
 
+        return result
 
