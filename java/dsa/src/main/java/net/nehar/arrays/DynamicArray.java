@@ -32,7 +32,9 @@ public class DynamicArray<T> implements IDynamicArray<T>{
         // start with an array of size 1.
         this.capacity = 1;
         // can safely cast here as the backing array is internal.
+
         array = (T[]) new Object[1];
+
     }
 
     /**

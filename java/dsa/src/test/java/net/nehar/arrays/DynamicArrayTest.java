@@ -138,6 +138,18 @@ public class DynamicArrayTest {
         assertThat(f.get(1), is(equalTo("z")));
         assertThat(f.contains("z"), is(true));
         assertThat(f.contains("e"), is(false));
-        logger.debug("...Done.");
+        logger.debug("...Done testContains.");
+    }
+
+    @Test public void testRemove(){
+        logger.debug("testRemove...");
+        DynamicArray<Character> c = new DynamicArray<>();
+        c.add(0, 'a');
+        c.add(1, 'b');
+        c.add(2, 'c');
+        assertThat(c.get(0), is(equalTo('a')));
+        assertThat(c.get(1), is(equalTo('b')));
+        assertThat(c.get(2), is(equalTo('c')));
+        logger.debug("...Done testRemove.");
     }
 }  //  end class
