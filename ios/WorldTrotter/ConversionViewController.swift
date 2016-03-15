@@ -22,6 +22,16 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
     
+    var flag: Bool! = false
+
+    let dark: UIColor! = UIColor.darkGrayColor()
+    let light: UIColor! = UIColor(
+    red: CGFloat((0xF5F4F1 & 0xFF0000) >> 16) / 255.0,
+    green: CGFloat((0xF5F4F1 & 0x00FF00) >> 8) / 255.0,
+    blue: CGFloat(0xF5F4F1 & 0x0000FF) / 255.0,
+    alpha: CGFloat(1.0)
+    )
+    
     var farenheitValue: Double? {
         didSet {
             updateCelsiusLabel()
@@ -77,5 +87,24 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
             } else {
                 return true
             }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("Will appear")
+        // TODO: check if we need to switch color
+        if flag == true {
+            print("switching to dark")
+            view.backgroundColor = dark
+            flag = false
+        } else {
+            print("switching to light")
+            view.backgroundColor = light
+            flag = true
+        }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("conversionController: I loads view")
     }
 }
