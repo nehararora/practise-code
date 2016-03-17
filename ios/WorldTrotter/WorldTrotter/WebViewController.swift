@@ -15,10 +15,11 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         webView = UIWebView()
         view = webView
-        var url: String = "http://​www.bignerdranch.com"
-        print("URL is \(url)")
-        let request = NSURLRequest(URL: url!)
-        webView.loadRequest(request)
+
+        let url = NSURL(string: "http://bignerdranch.com")
+        let requestObj = NSURLRequest(URL: url!)
+
+        webView.loadRequest(requestObj)
     }
 
 }
