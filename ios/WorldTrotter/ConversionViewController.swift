@@ -48,9 +48,12 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func fahrenheitFieldEditingChanged(textField: UITextField){
-        
-        if let text = textField.text, value = Double(text) {
-            farenheitValue = value
+
+        /* need this as opposed to something like number = Double(text) as that
+        won't be able to handle i8n (e.g , instead of . for decimal separator */
+
+        if let text = textField.text, number = numberFormatter.numberFromString(text){
+            farenheitValue = number.doubleValue
         } else {
             farenheitValue = nil
         }
