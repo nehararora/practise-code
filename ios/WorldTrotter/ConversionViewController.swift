@@ -71,12 +71,6 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     func textField(textField: UITextField,
         shouldChangeCharactersInRange range: NSRange,
         replacementString string: String) -> Bool {
-
-            // disallow non-digit (and non-'.') characters.
-            let digits = NSCharacterSet.decimalDigitCharacterSet()
-            if string.rangeOfCharacterFromSet(digits) == nil && string.rangeOfString(".") == nil {
-                return false
-            }
             
             // don't allow multiple '.'s
             let existingTextHasDecimalSeparator = textField.text?.rangeOfString(".")
@@ -106,5 +100,11 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("conversionController: I loads view")
+        let currentLocale = NSLocale.currentLocale()
+        print(currentLocale.objectForKey(NSLocaleCurrencySymbol))
+        print(currentLocale.objectForKey(NSLocaleDecimalSeparator))
+        print(currentLocale.objectForKey(NSLocaleCountryCode))
+        print(currentLocale.objectForKey(NSLocaleCurrencyCode))
+        print(currentLocale.objectForKey(NSLocaleUsesMetricSystem))
     }
 }
