@@ -13,6 +13,7 @@
 		8035913D1C96E99800238D19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8035913B1C96E99800238D19 /* LaunchScreen.storyboard */; };
 		8054EC4F1C979DCB003E7C33 /* ConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8054EC4E1C979DCB003E7C33 /* ConversionViewController.swift */; };
 		808B494C1C98EC4A00917862 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808B494B1C98EC4A00917862 /* WebViewController.swift */; };
+		808B494E1C9B957300917862 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808B494D1C9B957300917862 /* CoreLocation.framework */; };
 		80BE38BC1C98307300DC3104 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80BE38BB1C98307300DC3104 /* MapKit.framework */; };
 		80BE38BE1C98343D00DC3104 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE38BD1C98343D00DC3104 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		8035913E1C96E99800238D19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8054EC4E1C979DCB003E7C33 /* ConversionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversionViewController.swift; path = ../ConversionViewController.swift; sourceTree = "<group>"; };
 		808B494B1C98EC4A00917862 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		808B494D1C9B957300917862 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		80BE38BB1C98307300DC3104 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		80BE38BD1C98343D00DC3104 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808B494E1C9B957300917862 /* CoreLocation.framework in Frameworks */,
 				80BE38BC1C98307300DC3104 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +48,7 @@
 		803591261C96E99800238D19 = {
 			isa = PBXGroup;
 			children = (
+				808B494D1C9B957300917862 /* CoreLocation.framework */,
 				80BE38BB1C98307300DC3104 /* MapKit.framework */,
 				803591311C96E99800238D19 /* WorldTrotter */,
 				803591301C96E99800238D19 /* Products */,
@@ -260,6 +264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WorldTrotter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nehar.WorldTrotter;
@@ -271,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WorldTrotter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nehar.WorldTrotter;
