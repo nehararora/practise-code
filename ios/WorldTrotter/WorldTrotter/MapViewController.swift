@@ -25,10 +25,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         mapView.showsUserLocation = true
 
-        // add segmented control for map type
-        let segmentedControl = UISegmentedControl(items: ["Standard",
-                    "hybrid",
-                    "Satellite"])
+        // add segmented control for map type with localized lables
+        let standardString = NSLocalizedString("Standard", comment: "Standard map view")
+        let hybridString = NSLocalizedString("Hybrid", comment: "Hybrid map view")
+        let satelliteString = NSLocalizedString("Satellite", comment: "Satellite map view")
+        let segmentedControl = UISegmentedControl(items: [standardString,
+                    hybridString,
+                    satelliteString])
+
         segmentedControl.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         segmentedControl.selectedSegmentIndex = 0
 
@@ -51,7 +55,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // add user location button
         let locationButton = UIButton(type: UIButtonType.System) as UIButton
         locationButton.frame = CGRect(x: 30, y: 70, width: 75, height: 35)
-        locationButton.setTitle("Center",forState: UIControlState.Normal)
+        let centerString = NSLocalizedString("Center", comment: "Center button title")
+        locationButton.setTitle(centerString, forState: UIControlState.Normal)
         locationButton.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.25)
         locationButton.addTarget(self, action: "scrollToUser:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(locationButton)
@@ -59,7 +64,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // add button to cycle pins
         let cycleButton = UIButton(type: UIButtonType.System)
         cycleButton.frame = CGRect(x: 110, y: 70, width: 75, height: 35)
-        cycleButton.setTitle("cycle", forState: UIControlState.Normal)
+        let cycleString = NSLocalizedString("Cycle", comment: "Cycle button title")
+
+        cycleButton.setTitle(cycleString, forState: UIControlState.Normal)
         cycleButton.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.25)
         cycleButton.addTarget(self, action: "cyclePins:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(cycleButton)
