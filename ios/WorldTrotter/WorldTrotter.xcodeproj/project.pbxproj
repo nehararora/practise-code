@@ -34,6 +34,8 @@
 		808B49551C9DD61B00917862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		808B49571C9DD62000917862 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		808B49581C9DD62100917862 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		808B49591C9DE8DC00917862 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/Main.strings"; sourceTree = "<group>"; };
+		808B495A1C9DE8DC00917862 /* hi-IN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hi-IN"; path = "hi-IN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		80BE38BB1C98307300DC3104 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		80BE38BD1C98343D00DC3104 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +131,7 @@
 				en,
 				Base,
 				es,
+				"hi-IN",
 			);
 			mainGroup = 803591261C96E99800238D19;
 			productRefGroup = 803591301C96E99800238D19 /* Products */;
@@ -175,6 +178,7 @@
 				803591371C96E99800238D19 /* Base */,
 				808B49501C9DCC5000917862 /* en */,
 				808B49511C9DCCE100917862 /* es */,
+				808B49591C9DE8DC00917862 /* hi-IN */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -193,6 +197,7 @@
 				808B49551C9DD61B00917862 /* Base */,
 				808B49571C9DD62000917862 /* en */,
 				808B49581C9DD62100917862 /* es */,
+				808B495A1C9DE8DC00917862 /* hi-IN */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

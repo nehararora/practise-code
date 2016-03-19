@@ -1,0 +1,24 @@
+
+/* Class = "UITabBarItem"; title = "Map"; ObjectID = "5dJ-FM-POC"; */
+"5dJ-FM-POC.title" = "मानचित्र";
+
+/* Class = "UILabel"; text = "is really"; ObjectID = "8aZ-hJ-U1t"; */
+"8aZ-hJ-U1t.text" = "में";
+
+/* Class = "UITextField"; placeholder = "value"; ObjectID = "GZS-cM-Ter"; */
+"GZS-cM-Ter.placeholder" = "तापमान";
+
+/* Class = "UILabel"; text = "???"; ObjectID = "Jnl-pI-ncW"; */
+"Jnl-pI-ncW.text" = "???";
+
+/* Class = "UILabel"; text = "degrees Farenheit"; ObjectID = "WLu-7t-xCu"; */
+"WLu-7t-xCu.text" = "डिग्री फ़ारेनहाइट";
+
+/* Class = "UITabBarItem"; title = "Web"; ObjectID = "ojY-s4-2Mv"; */
+"ojY-s4-2Mv.title" = "इंटरनेट";
+
+/* Class = "UILabel"; text = "degree Celsius"; ObjectID = "uDi-WF-nQz"; */
+"uDi-WF-nQz.text" = "डिग्री सेल्सीयस";
+
+/* Class = "UITabBarItem"; title = "Convert"; ObjectID = "v9C-4c-FTV"; */
+"v9C-4c-FTV.title" = "कन्वर्ट";
