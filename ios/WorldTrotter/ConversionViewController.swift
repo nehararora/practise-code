@@ -72,9 +72,14 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         shouldChangeCharactersInRange range: NSRange,
         replacementString string: String) -> Bool {
             
+            // get locale
+            let locale:NSLocale = NSLocale.currentLocale()
+            let decimalSeparator: String = locale.objectForKey(NSLocaleDecimalSeparator) as! String
+            // disallow entering multiple decimal separators
+
             // don't allow multiple '.'s
-            let existingTextHasDecimalSeparator = textField.text?.rangeOfString(".")
-            let replacementTextHasDecimalSeparator = string.rangeOfString(".")
+            let existingTextHasDecimalSeparator = textField.text?.rangeOfString(decimalSeparator)
+            let replacementTextHasDecimalSeparator = string.rangeOfString(decimalSeparator)
             if existingTextHasDecimalSeparator != nil &&
                 replacementTextHasDecimalSeparator != nil {
                     return false
