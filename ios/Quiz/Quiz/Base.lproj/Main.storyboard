@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -36,13 +36,19 @@
                                     <action selector="showNextQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AkH-69-plO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ND-8R-IEb">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ND-8R-IEb">
                                 <rect key="frame" x="254" y="347" width="93" height="30"/>
                                 <state key="normal" title="Show Answer"/>
                                 <connections>
                                     <action selector="showAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XGn-TP-siQ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNQ-gv-kpN">
+                                <rect key="frame" x="279" y="28" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -50,6 +56,7 @@
                             <constraint firstItem="0ND-8R-IEb" firstAttribute="top" secondItem="nWi-Me-Md6" secondAttribute="bottom" constant="38" id="Dbg-US-CM6"/>
                             <constraint firstItem="0ND-8R-IEb" firstAttribute="centerX" secondItem="wuu-89-Cam" secondAttribute="centerX" id="Lqg-wy-P38"/>
                             <constraint firstItem="OSL-c0-mYX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RJV-hW-exG"/>
+                            <constraint firstItem="eNQ-gv-kpN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WXG-5q-KEV"/>
                             <constraint firstItem="0ND-8R-IEb" firstAttribute="top" secondItem="nWi-Me-Md6" secondAttribute="bottom" constant="38" id="YJR-ms-OZX"/>
                             <constraint firstItem="wuu-89-Cam" firstAttribute="top" secondItem="OSL-c0-mYX" secondAttribute="bottom" constant="19" id="YKu-or-kE6"/>
                             <constraint firstItem="wuu-89-Cam" firstAttribute="top" secondItem="OSL-c0-mYX" secondAttribute="bottom" constant="19" id="YiJ-yz-hoz"/>
@@ -58,12 +65,14 @@
                             <constraint firstItem="OSL-c0-mYX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="nPk-VO-8mT"/>
                             <constraint firstItem="OSL-c0-mYX" firstAttribute="centerX" secondItem="wuu-89-Cam" secondAttribute="centerX" id="nX7-DB-Crt"/>
                             <constraint firstItem="nWi-Me-Md6" firstAttribute="centerX" secondItem="wuu-89-Cam" secondAttribute="centerX" id="pMs-22-fHg"/>
+                            <constraint firstItem="eNQ-gv-kpN" firstAttribute="top" secondItem="OSL-c0-mYX" secondAttribute="top" id="r9n-DM-8F9"/>
                             <constraint firstItem="nWi-Me-Md6" firstAttribute="top" secondItem="wuu-89-Cam" secondAttribute="bottom" constant="191" id="x1P-cR-F5U"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="answerLabel" destination="nWi-Me-Md6" id="AH0-vG-ycA"/>
-                        <outlet property="questionLabel" destination="OSL-c0-mYX" id="z0Z-B4-4tZ"/>
+                        <outlet property="currentQuestionLabel" destination="OSL-c0-mYX" id="qtO-3B-NlU"/>
+                        <outlet property="nextQuestionLabel" destination="eNQ-gv-kpN" id="soZ-FH-exN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
