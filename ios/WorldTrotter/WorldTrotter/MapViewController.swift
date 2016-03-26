@@ -36,7 +36,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         segmentedControl.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         segmentedControl.selectedSegmentIndex = 0
 
-        segmentedControl.addTarget(self, action: "mapTypeChanged:", forControlEvents: .ValueChanged)
+        segmentedControl.addTarget(self, action: #selector(MapViewController.mapTypeChanged(_:)), forControlEvents: .ValueChanged)
 
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segmentedControl)
@@ -58,7 +58,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let centerString = NSLocalizedString("Center", comment: "Center button title")
         locationButton.setTitle(centerString, forState: UIControlState.Normal)
         locationButton.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.25)
-        locationButton.addTarget(self, action: "scrollToUser:", forControlEvents: UIControlEvents.TouchUpInside)
+        locationButton.addTarget(self, action: #selector(MapViewController.scrollToUser(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(locationButton)
 
         // add button to cycle pins
@@ -68,7 +68,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
         cycleButton.setTitle(cycleString, forState: UIControlState.Normal)
         cycleButton.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(0.25)
-        cycleButton.addTarget(self, action: "cyclePins:", forControlEvents: UIControlEvents.TouchUpInside)
+        cycleButton.addTarget(self, action: #selector(MapViewController.cyclePins(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(cycleButton)
 
         // drop pins...
@@ -119,7 +119,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     func cyclePins(sender: UIButton!){
         let pin: MKAnnotation = pins[selectedPin]
-        selectedPin = (++selectedPin % 3)
+        selectedPin = ((selectedPin+1) % 3)
 
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(pin.coordinate, 5000, 5000)
         mapView.setRegion(coordinateRegion, animated: true)
