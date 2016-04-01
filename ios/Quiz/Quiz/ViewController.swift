@@ -68,7 +68,9 @@ class ViewController: UIViewController {
 
         UIView.animateWithDuration(0.5,
                                    delay: 0,
-                                   options: [.CurveEaseIn],
+                                   usingSpringWithDamping: 0.5,
+                                   initialSpringVelocity: 0.6,
+                                   options: [],
                                    animations: {
                                     self.currentQuestionLabel.alpha = 0
                                     self.nextQuestionLabel.alpha = 1
