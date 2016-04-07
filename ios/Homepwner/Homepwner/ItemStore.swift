@@ -10,6 +10,8 @@ import UIKit
 
 class ItemStore {
     var allItems = [Item]()
+    var cheapItems = [Item]()
+    var expItems = [Item]()
 
     init(){
         for _ in 0..<5 {
@@ -19,6 +21,11 @@ class ItemStore {
     func createItem() -> Item {
         let newItem = Item(random: true)
         allItems.append(newItem)
+        if newItem.valueInDollars <= 50 {
+            cheapItems.append(newItem)
+        } else {
+            expItems.append(newItem)
+        }
         return newItem
     }
 
