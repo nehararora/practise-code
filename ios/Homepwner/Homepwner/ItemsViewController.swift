@@ -52,17 +52,20 @@ class ItemsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         print("tableView(_:cellForRowAtIndexPath:) called")
         // get new or recycle cell
-        let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
 
         if indexPath.section == 0 {
-        // set text on cell with description of item at nth index, where n = row this will appear in.
-        let item = itemStore.allItems[indexPath.row]
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "$\(item.valueInDollars)"
+            // set text on cell with description of item at nth index, where n = row this will appear in.
+            let item = itemStore.allItems[indexPath.row]
+            cell.nameLabel.text = item.name
+            cell.serialNumberLabel.text = item.serialNumber
+            cell.valueLabel.text = "$\(item.valueInDollars)"
 
         } else {
-            cell.textLabel?.text = "No more items!"
-            cell.detailTextLabel?.text = ""
+            cell.nameLabel.text = "No more items!"
+            cell.serialNumberLabel.text = ""
+            cell.valueLabel.text = ""
+
         }
         return cell
     }
@@ -101,6 +104,7 @@ class ItemsViewController: UITableViewController {
         let insets = UIEdgeInsets(top: sbHeight, left: 0, bottom: 0, right: 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+        tableView.rowHeight = 65
     }
 
     // override for showing a second footer section
