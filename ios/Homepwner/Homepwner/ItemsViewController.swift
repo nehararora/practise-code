@@ -54,13 +54,19 @@ class ItemsViewController: UITableViewController {
         // get new or recycle cell
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as! ItemCell
 
+        // update labels to match preferred text size
+        cell.updateLabels()
         if indexPath.section == 0 {
             // set text on cell with description of item at nth index, where n = row this will appear in.
             let item = itemStore.allItems[indexPath.row]
             cell.nameLabel.text = item.name
             cell.serialNumberLabel.text = item.serialNumber
             cell.valueLabel.text = "$\(item.valueInDollars)"
-
+            if item.valueInDollars > 50 {
+                cell.valueLabel.textColor = UIColor.redColor()
+            } else {
+                cell.valueLabel.textColor = UIColor.greenColor()
+            }
         } else {
             cell.nameLabel.text = "No more items!"
             cell.serialNumberLabel.text = ""
