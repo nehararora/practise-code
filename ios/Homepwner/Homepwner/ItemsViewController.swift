@@ -145,4 +145,17 @@ class ItemsViewController: UITableViewController {
             return 60
         }
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowItem" {
+
+            // get the item that was tapped by the row
+            if let row = tableView.indexPathForSelectedRow?.row {
+                let item = itemStore.allItems[row]
+                let detailViewController = segue.destinationViewController as! DetailViewController
+
+                detailViewController.item = item
+            }
+        }
+    }
 }
