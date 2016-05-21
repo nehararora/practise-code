@@ -11,6 +11,11 @@ import UIKit
 class ItemsViewController: UITableViewController {
     var itemStore: ItemStore!
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        navigationItem.leftBarButtonItem  = editButtonItem()
+    }
+
     @IBAction func addNewItem(sender: AnyObject) {
         let newItem = itemStore.createItem()
         
@@ -20,16 +25,6 @@ class ItemsViewController: UITableViewController {
         }
     }
 
-    @IBAction func toggleEditingMode(sender: AnyObject) {
-        if editing {
-            sender.setTitle("Edit", forState: .Normal)
-            setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Done", forState: .Normal)
-            setEditing(true, animated: true)
-        }
-
-    }
 
     override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
         return "Remove \(indexPath.row + 1)?"
@@ -105,12 +100,9 @@ class ItemsViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // height of status bar
-        let sbHeight = UIApplication.sharedApplication().statusBarFrame.height
-        let insets = UIEdgeInsets(top: sbHeight, left: 0, bottom: 0, right: 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
-        tableView.rowHeight = 65
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
     }
 
     // override for showing a second footer section
