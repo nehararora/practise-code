@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var nameField: UITextField!
     @IBOutlet var serialNumberField: UITextField!
@@ -43,6 +43,8 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
+        // clear first responder
+        view.endEditing(true)
         // "save" any user made changes
         item.name = nameField.text ?? "" //default to empty
         item.serialNumber = serialNumberField.text
@@ -52,4 +54,17 @@ class DetailViewController: UIViewController {
             item.valueInDollars = 0
         }
     }
+
+    // dismiss keyboard by resigning first responder status for calling text field.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    @IBAction func backgroundTapped(sender: AnyObject) {
+        print("taaled")
+
+        view.endEditing(true)
+    }
+
 }

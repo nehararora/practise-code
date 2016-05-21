@@ -48,7 +48,7 @@
                                 <rect key="frame" x="0.0" y="152" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zbS-mt-jUt" id="NNr-70-YD9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXH-ZD-dAL">
@@ -126,6 +126,9 @@
                                                 <rect key="frame" x="53" y="0.0" width="507" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="DBv-zf-IXZ" id="oro-e4-blp"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -142,6 +145,9 @@
                                                 <rect key="frame" x="53" y="0.0" width="507" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="DBv-zf-IXZ" id="hkR-YB-YSu"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -158,16 +164,21 @@
                                                 <rect key="frame" x="53" y="0.0" width="507" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="DBv-zf-IXZ" id="bki-dD-b11"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Date Created" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxa-dr-Kkm">
                                         <rect key="frame" x="0.0" y="90" width="560" height="418"/>
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="H1V-jX-i6U" firstAttribute="leading" secondItem="2dm-Rd-WIo" secondAttribute="leading" id="xBt-Qf-VhL"/>
                                     <constraint firstItem="2dm-Rd-WIo" firstAttribute="leading" secondItem="Lak-g1-9pO" secondAttribute="leading" id="yAm-t7-mlv"/>
@@ -175,12 +186,16 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="IpV-LF-Igb" firstAttribute="leading" secondItem="xVY-wX-q4E" secondAttribute="leadingMargin" id="4Mz-Nl-tLJ"/>
                             <constraint firstItem="IpV-LF-Igb" firstAttribute="top" secondItem="h5g-Op-av0" secondAttribute="bottom" constant="8" id="VZq-zf-lqW"/>
                             <constraint firstItem="feS-nb-Fq8" firstAttribute="top" secondItem="IpV-LF-Igb" secondAttribute="bottom" constant="20" id="dqY-0M-jKq"/>
                             <constraint firstItem="IpV-LF-Igb" firstAttribute="trailing" secondItem="xVY-wX-q4E" secondAttribute="trailingMargin" id="lUT-0d-bAr"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3SK-zZ-PbX" appends="YES" id="MjK-1c-2c0"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="oxa-dr-Kkm" id="1bi-li-JI6"/>
@@ -190,6 +205,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VoL-50-uP5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3SK-zZ-PbX">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="DBv-zf-IXZ" id="2sU-Fj-JTf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="398" y="1096"/>
         </scene>
