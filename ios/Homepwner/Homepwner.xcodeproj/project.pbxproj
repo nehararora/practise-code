@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800BB8091CF0F10800196234 /* DetailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BB8081CF0F10800196234 /* DetailTextField.swift */; };
+		800BB80B1CF109CD00196234 /* DateSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BB80A1CF109CD00196234 /* DateSelectViewController.swift */; };
 		8033292C1CB79B990097F5A3 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033292B1CB79B990097F5A3 /* ItemCell.swift */; };
 		804062C61CED42D1006D140D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804062C51CED42D1006D140D /* DetailViewController.swift */; };
 		808D29F41CAE66B9001039B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D29F31CAE66B9001039B7 /* AppDelegate.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		800BB8081CF0F10800196234 /* DetailTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTextField.swift; sourceTree = "<group>"; };
+		800BB80A1CF109CD00196234 /* DateSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectViewController.swift; sourceTree = "<group>"; };
 		8033292B1CB79B990097F5A3 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		804062C51CED42D1006D140D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		808D29F01CAE66B9001039B7 /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,8 +68,10 @@
 			children = (
 				808D29F31CAE66B9001039B7 /* AppDelegate.swift */,
 				808D2A051CAE6AEC001039B7 /* ItemsViewController.swift */,
+				800BB8081CF0F10800196234 /* DetailTextField.swift */,
 				8033292B1CB79B990097F5A3 /* ItemCell.swift */,
 				808D29F71CAE66B9001039B7 /* Main.storyboard */,
+				800BB80A1CF109CD00196234 /* DateSelectViewController.swift */,
 				804062C51CED42D1006D140D /* DetailViewController.swift */,
 				808D2A071CAE6EF6001039B7 /* Item.swift */,
 				808D2A091CAE8C2B001039B7 /* ItemStore.swift */,
@@ -153,6 +159,8 @@
 				808D2A0A1CAE8C2B001039B7 /* ItemStore.swift in Sources */,
 				804062C61CED42D1006D140D /* DetailViewController.swift in Sources */,
 				808D29F41CAE66B9001039B7 /* AppDelegate.swift in Sources */,
+				800BB8091CF0F10800196234 /* DetailTextField.swift in Sources */,
+				800BB80B1CF109CD00196234 /* DateSelectViewController.swift in Sources */,
 				8033292C1CB79B990097F5A3 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
