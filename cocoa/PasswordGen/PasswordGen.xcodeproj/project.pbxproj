@@ -1,0 +1,290 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		800BB8191CF13E8B00196234 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BB8181CF13E8B00196234 /* AppDelegate.swift */; };
+		800BB81B1CF13E8B00196234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 800BB81A1CF13E8B00196234 /* Assets.xcassets */; };
+		800BB81E1CF13E8B00196234 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800BB81C1CF13E8B00196234 /* MainMenu.xib */; };
+		800BB8271CF13F8100196234 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BB8251CF13F8100196234 /* MainWindowController.swift */; };
+		800BB8281CF13F8100196234 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800BB8261CF13F8100196234 /* MainWindowController.xib */; };
+		800BB82A1CF1E9DB00196234 /* GeneratePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BB8291CF1E9DB00196234 /* GeneratePassword.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		800BB8151CF13E8B00196234 /* PasswordGen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordGen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		800BB8181CF13E8B00196234 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		800BB81A1CF13E8B00196234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		800BB81D1CF13E8B00196234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		800BB81F1CF13E8B00196234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		800BB8251CF13F8100196234 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		800BB8261CF13F8100196234 /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
+		800BB8291CF1E9DB00196234 /* GeneratePassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratePassword.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		800BB8121CF13E8B00196234 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		800BB80C1CF13E8B00196234 = {
+			isa = PBXGroup;
+			children = (
+				800BB8171CF13E8B00196234 /* PasswordGen */,
+				800BB8161CF13E8B00196234 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		800BB8161CF13E8B00196234 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				800BB8151CF13E8B00196234 /* PasswordGen.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		800BB8171CF13E8B00196234 /* PasswordGen */ = {
+			isa = PBXGroup;
+			children = (
+				800BB8181CF13E8B00196234 /* AppDelegate.swift */,
+				800BB81A1CF13E8B00196234 /* Assets.xcassets */,
+				800BB81C1CF13E8B00196234 /* MainMenu.xib */,
+				800BB81F1CF13E8B00196234 /* Info.plist */,
+				800BB8251CF13F8100196234 /* MainWindowController.swift */,
+				800BB8261CF13F8100196234 /* MainWindowController.xib */,
+				800BB8291CF1E9DB00196234 /* GeneratePassword.swift */,
+			);
+			path = PasswordGen;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		800BB8141CF13E8B00196234 /* PasswordGen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 800BB8221CF13E8B00196234 /* Build configuration list for PBXNativeTarget "PasswordGen" */;
+			buildPhases = (
+				800BB8111CF13E8B00196234 /* Sources */,
+				800BB8121CF13E8B00196234 /* Frameworks */,
+				800BB8131CF13E8B00196234 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PasswordGen;
+			productName = PasswordGen;
+			productReference = 800BB8151CF13E8B00196234 /* PasswordGen.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		800BB80D1CF13E8B00196234 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Nehar Arora";
+				TargetAttributes = {
+					800BB8141CF13E8B00196234 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 800BB8101CF13E8B00196234 /* Build configuration list for PBXProject "PasswordGen" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 800BB80C1CF13E8B00196234;
+			productRefGroup = 800BB8161CF13E8B00196234 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				800BB8141CF13E8B00196234 /* PasswordGen */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		800BB8131CF13E8B00196234 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				800BB81B1CF13E8B00196234 /* Assets.xcassets in Resources */,
+				800BB8281CF13F8100196234 /* MainWindowController.xib in Resources */,
+				800BB81E1CF13E8B00196234 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		800BB8111CF13E8B00196234 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				800BB8271CF13F8100196234 /* MainWindowController.swift in Sources */,
+				800BB82A1CF1E9DB00196234 /* GeneratePassword.swift in Sources */,
+				800BB8191CF13E8B00196234 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		800BB81C1CF13E8B00196234 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				800BB81D1CF13E8B00196234 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		800BB8201CF13E8B00196234 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		800BB8211CF13E8B00196234 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		800BB8231CF13E8B00196234 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PasswordGen/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nehar.PasswordGen;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		800BB8241CF13E8B00196234 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = PasswordGen/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nehar.PasswordGen;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		800BB8101CF13E8B00196234 /* Build configuration list for PBXProject "PasswordGen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800BB8201CF13E8B00196234 /* Debug */,
+				800BB8211CF13E8B00196234 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		800BB8221CF13E8B00196234 /* Build configuration list for PBXNativeTarget "PasswordGen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800BB8231CF13E8B00196234 /* Debug */,
+				800BB8241CF13E8B00196234 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 800BB80D1CF13E8B00196234 /* Project object */;
+}
