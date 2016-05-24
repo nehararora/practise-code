@@ -26,4 +26,3 @@ class DetailTextField: UITextField {
         return true
     }
 }
-

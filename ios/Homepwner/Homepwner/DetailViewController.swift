@@ -71,4 +71,12 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "SelectDate" {
+            print("Seguing \(segue)")
+            let dateSelectViewController = segue.destinationViewController as! DateSelectViewController
+            dateSelectViewController.item = self.item
+        }
+
+    }
 }
