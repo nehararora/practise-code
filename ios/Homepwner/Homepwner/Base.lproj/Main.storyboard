@@ -147,16 +147,25 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" misplaced="YES" text="Date Created" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxa-dr-Kkm">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YoR-Z3-PtJ">
                                         <rect key="frame" x="0.0" y="90" width="560" height="21"/>
-                                        <gestureRecognizers/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="Llx-IU-ppm" appends="YES" id="Xxa-15-fJn"/>
-                                        </connections>
-                                    </label>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" misplaced="YES" text="Date Created" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxa-dr-Kkm">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Llx-IU-ppm" appends="YES" id="Xxa-15-fJn"/>
+                                                </connections>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="oxa-dr-Kkm" firstAttribute="top" secondItem="YoR-Z3-PtJ" secondAttribute="top" constant="8" id="LZg-vm-cKo"/>
+                                            <constraint firstAttribute="bottom" secondItem="oxa-dr-Kkm" secondAttribute="bottom" constant="8" id="fI7-Ze-3e9"/>
+                                        </constraints>
+                                    </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="248" verticalCompressionResistancePriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zox-er-tDe">
                                         <rect key="frame" x="0.0" y="111" width="560" height="398"/>
                                     </imageView>
