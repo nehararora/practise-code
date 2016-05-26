@@ -42,6 +42,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         serialNumberField.text = item.serialNumber
         valueField.text = numberFormatter.stringFromNumber(item.valueInDollars)
         dateLabel.text = dateFormatter.stringFromDate(item.dateCreated)
+
+        // allow tapping date label to change
+        dateLabel.userInteractionEnabled = true
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -71,6 +74,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
 
+    // TODO: not working - background tapped takes over :(
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SelectDate" {
             print("Seguing \(segue)")
