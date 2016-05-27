@@ -141,6 +141,7 @@ class ItemsViewController: UITableViewController {
         if segue.identifier == "ShowItem" {
 
             // get the item that was tapped by the row
+            // TODO: breaks for tap on "No more items!"
             if let row = tableView.indexPathForSelectedRow?.row {
                 let item = itemStore.allItems[row]
                 let detailViewController = segue.destinationViewController as! DetailViewController
