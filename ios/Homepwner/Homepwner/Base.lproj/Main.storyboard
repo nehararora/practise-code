@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zbS-mt-jUt" id="NNr-70-YD9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yXH-ZD-dAL">
@@ -185,6 +185,12 @@
                                     <barButtonItem systemItem="camera" id="Hnv-so-kFM">
                                         <connections>
                                             <action selector="takePicture:" destination="DBv-zf-IXZ" id="6dV-W4-CI0"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7kc-r9-MPy"/>
+                                    <barButtonItem systemItem="trash" id="UK1-bw-C4n">
+                                        <connections>
+                                            <action selector="deleteImage:" destination="DBv-zf-IXZ" id="bjB-qs-L2g"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

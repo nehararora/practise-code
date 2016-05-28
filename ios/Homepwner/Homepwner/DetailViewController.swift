@@ -121,6 +121,14 @@ class DetailViewController: UIViewController, UITextFieldDelegate,
         presentViewController(imagePicker, animated: true, completion: nil)
     }
 
+    @IBAction func deleteImage(sender: AnyObject) {
+        print("delete image")
+        imageStore.deleteForKey(item.itemKey)
+        //view
+        imageView.image = nil
+
+    }
+
     // MARK: - image picker delegate methods
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
