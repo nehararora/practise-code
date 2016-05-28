@@ -9,7 +9,9 @@
 import UIKit
 
 class ItemsViewController: UITableViewController {
+
     var itemStore: ItemStore!
+    var imageStore: ImageStore!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -62,7 +64,7 @@ class ItemsViewController: UITableViewController {
                 cell.valueLabel.textColor = UIColor.greenColor()
             }
         } else {
-            cell.nameLabel.text = "No more items!"
+            cell.nameLabel.text = "No more!"
             cell.serialNumberLabel.text = ""
             cell.valueLabel.text = ""
 
@@ -83,8 +85,10 @@ class ItemsViewController: UITableViewController {
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             ac.addAction(cancelAction)
 
+            // delete item and image
             let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: {(action) -> Void in
                     self.itemStore.removeItem(item)
+                    self.imageStore.deleteForKey(item.itemKey)
                     self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             })
             ac.addAction(deleteAction)
@@ -147,6 +151,9 @@ class ItemsViewController: UITableViewController {
                 let detailViewController = segue.destinationViewController as! DetailViewController
 
                 detailViewController.item = item
+
+                // also pass in image store
+                detailViewController.imageStore = self.imageStore
             }
         }
     }
