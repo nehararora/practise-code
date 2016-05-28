@@ -111,6 +111,15 @@ class DetailViewController: UIViewController, UITextFieldDelegate,
         // take picture if device has camera, if not pick from library
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             imagePicker.sourceType = .Camera
+            // add overlay view
+            print("adding overlay")
+            let x = self.view.center.x
+            let y = self.view.center.y
+            let overlay = UIImageView(frame:CGRectMake(x, y, 100, 100));
+            overlay.center = CGPointMake(imageView.bounds.size.width/2, imageView.bounds.size.height/2)
+            overlay.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.5)
+            imagePicker.cameraOverlayView = overlay
+
         } else {
             imagePicker.sourceType = .PhotoLibrary
         }
