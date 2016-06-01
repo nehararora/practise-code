@@ -8,12 +8,16 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITextFieldDelegate {
+class DetailViewController: UIViewController, UITextFieldDelegate,
+    UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
+    // MARK: - properties
 
     @IBOutlet var nameField: UITextField!
     @IBOutlet var serialNumberField: UITextField!
     @IBOutlet var valueField: UITextField!
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
 
     var item: Item! {
         didSet {
@@ -21,6 +25,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    var imageStore: ImageStore!
+
+    //MARK: - formatters
     let numberFormatter: NSNumberFormatter = {
        let formatter = NSNumberFormatter()
         formatter.numberStyle = .DecimalStyle
@@ -35,13 +42,23 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         formatter.timeStyle = .NoStyle
         return formatter
     }()
+
+    // MARK: - view methods
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // fill in fields
         nameField.text = item.name
         serialNumberField.text = item.serialNumber
         valueField.text = numberFormatter.stringFromNumber(item.valueInDollars)
+
         dateLabel.text = dateFormatter.stringFromDate(item.dateCreated)
+        // allow tapping date label to change
+        dateLabel.userInteractionEnabled = true
+
+        // set item image if present
+        let displayImage = imageStore.imageForKey(item.itemKey)
+        imageView.image = displayImage
+
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -59,11 +76,15 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    // MARK: - text delegate methods
+
     // dismiss keyboard by resigning first responder status for calling text field.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+
+    // MARK: - actions
 
     @IBAction func backgroundTapped(sender: AnyObject) {
         print("taaled")
@@ -77,6 +98,60 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
             let dateSelectViewController = segue.destinationViewController as! DateSelectViewController
             dateSelectViewController.item = self.item
         }
+    }
+
+    @IBAction func takePicture(sender: UIBarButtonItem) {
+        print("take picture!")
+
+        let imagePicker = UIImagePickerController()
+
+        //allow editing
+        imagePicker.allowsEditing = true
+
+        // take picture if device has camera, if not pick from library
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            imagePicker.sourceType = .Camera
+            // add overlay view
+            print("adding overlay")
+            let x = self.view.center.x
+            let y = self.view.center.y
+            let overlay = UIImageView(frame:CGRectMake(x, y, 100, 100));
+            overlay.center = CGPointMake(imageView.bounds.size.width/2, imageView.bounds.size.height/2)
+            overlay.backgroundColor = UIColor.greenColor().colorWithAlphaComponent(0.5)
+            imagePicker.cameraOverlayView = overlay
+
+        } else {
+            imagePicker.sourceType = .PhotoLibrary
+        }
+
+        imagePicker.delegate = self
+
+        // show image picker
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+
+    @IBAction func deleteImage(sender: AnyObject) {
+        print("delete image")
+        imageStore.deleteForKey(item.itemKey)
+        //view
+        imageView.image = nil
 
     }
+
+    // MARK: - image picker delegate methods
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        // grab picked image
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+
+        // store image
+        imageStore.setImage(image, forKey: item.itemKey)
+
+        // add to imageView
+        imageView.image = image
+
+        // get rid of picker
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
 }

@@ -8,17 +8,29 @@
 
 import UIKit
 
-class Item: NSObject {
+class Item: NSObject, NSCoding {
     var name: String
     var valueInDollars: Int
     var serialNumber: String?
     var dateCreated: NSDate
+    let itemKey: String
+
+    required init?(coder aDecoder: NSCoder) {
+        name = aDecoder.decodeObjectForKey("name") as! String
+        dateCreated = aDecoder.decodeObjectForKey("dateCreated") as! NSDate
+        itemKey = aDecoder.decodeObjectForKey("itemKey") as! String
+        serialNumber = aDecoder.decodeObjectForKey("serialNumber") as? String
+        valueInDollars = Int(aDecoder.decodeIntForKey("valueInDollars"))
+        super.init()
+    }
 
     init(name: String, serialNumber: String?, valueInDollars: Int){
         self.name = name
         self.valueInDollars = valueInDollars
         self.serialNumber = serialNumber
         self.dateCreated = NSDate()
+        // create key to be used for storing image in imageStore
+        self.itemKey = NSUUID().UUIDString
 
         super.init()
     }
@@ -40,6 +52,13 @@ class Item: NSObject {
         } else {
             self.init(name: "", serialNumber: nil, valueInDollars: 0)
         }
+    }
 
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(name, forKey: "name")
+        aCoder.encodeObject(dateCreated, forKey: "dateCreated")
+        aCoder.encodeObject(itemKey, forKey: "itemKey")
+        aCoder.encodeObject(serialNumber, forKey: "serialNumber")
+        aCoder.encodeInt(Int32(valueInDollars), forKey: "valueInDollars")
     }
 }
