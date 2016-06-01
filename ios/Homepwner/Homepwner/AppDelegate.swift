@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         print("\(#function) activated")
+
+        // print out bundle path
+        print(" my path is: \(NSBundle.mainBundle().bundlePath)")
         // image store separate from meta-data store
         let imageStore = ImageStore()
 
