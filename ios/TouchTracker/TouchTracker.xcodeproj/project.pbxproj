@@ -12,6 +12,8 @@
 		808FD2F61D01A17300F0D917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808FD2F41D01A17300F0D917 /* Main.storyboard */; };
 		808FD2F81D01A17300F0D917 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808FD2F71D01A17300F0D917 /* Assets.xcassets */; };
 		808FD2FB1D01A17300F0D917 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808FD2F91D01A17300F0D917 /* LaunchScreen.storyboard */; };
+		808FD3031D0304D300F0D917 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808FD3021D0304D300F0D917 /* Line.swift */; };
+		808FD3051D039ABB00F0D917 /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808FD3041D039ABB00F0D917 /* DrawView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		808FD2F71D01A17300F0D917 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		808FD2FA1D01A17300F0D917 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		808FD2FC1D01A17300F0D917 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		808FD3021D0304D300F0D917 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		808FD3041D039ABB00F0D917 /* DrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +58,11 @@
 		808FD2EF1D01A17300F0D917 /* TouchTracker */ = {
 			isa = PBXGroup;
 			children = (
+				808FD3041D039ABB00F0D917 /* DrawView.swift */,
 				808FD2F01D01A17300F0D917 /* AppDelegate.swift */,
 				808FD2F21D01A17300F0D917 /* ViewController.swift */,
 				808FD2F41D01A17300F0D917 /* Main.storyboard */,
+				808FD3021D0304D300F0D917 /* Line.swift */,
 				808FD2F71D01A17300F0D917 /* Assets.xcassets */,
 				808FD2F91D01A17300F0D917 /* LaunchScreen.storyboard */,
 				808FD2FC1D01A17300F0D917 /* Info.plist */,
@@ -136,7 +142,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808FD3031D0304D300F0D917 /* Line.swift in Sources */,
 				808FD2F31D01A17300F0D917 /* ViewController.swift in Sources */,
+				808FD3051D039ABB00F0D917 /* DrawView.swift in Sources */,
 				808FD2F11D01A17300F0D917 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +297,7 @@
 				808FD3011D01A17300F0D917 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
