@@ -9,12 +9,35 @@
 import UIKit
 
 class DrawView: UIView {
+
     var currentLines = [NSValue: Line]()
     var finishedLines = [Line]()
 
+    @IBInspectable var finishedLineColor: UIColor = UIColor.blackColor() {
+        didSet{
+            self.setNeedsDisplay()
+        }
+    }
+
+    @IBInspectable var currentLineColor: UIColor = UIColor.redColor() {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+
+    @IBInspectable var lineThickness: CGFloat = 10 {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+
+    // MARK: - Drawing
+
     func strokeLine(line: Line) {
+
         let path = UIBezierPath()
-        path.lineWidth = 10
+
+        path.lineWidth = self.lineThickness
         path.lineCapStyle = CGLineCap.Round
 
         path.moveToPoint(line.begin)
@@ -23,16 +46,27 @@ class DrawView: UIView {
     }
 
     override func drawRect(rect: CGRect) {
-        // draw lines in black
-        UIColor.blackColor().setStroke()
+
+        // draw lines old lines...
+        self.finishedLineColor.setStroke()
 
         for line in finishedLines {
+            let angle = atan2(line.end.y - line.begin.y,
+                              line.end.x - line.begin.x)
+
+            UIColor(hue: abs(angle), saturation: 1, brightness: 1, alpha: 1).setStroke()
             strokeLine(line)
         }
 
-        UIColor.redColor().setStroke()
+        // draw current line
+        //self.currentLineColor.setStroke()
 
         for (_, line) in currentLines {
+            let angle = atan2(line.end.y - line.begin.y,
+                              line.end.x - line.begin.x)
+
+            print("Angle of line: \(angle)")
+            UIColor(hue: abs(angle), saturation: 1, brightness: 1, alpha: 1).setStroke()
             strokeLine(line)
         }
     }
