@@ -28,12 +28,43 @@ class DrawView: UIView {
         addGestureRecognizer(tapRecognizer)
     }
 
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+
+    func deleteLine(sender: AnyObject) {
+        // remove selected line
+        if let index = selectedLineIndex {
+            finishedLines.removeAtIndex(index)
+            selectedLineIndex = nil
+            self.setNeedsDisplay()
+        }
+    }
+
     func tap(gestureRecognizer: UIGestureRecognizer){
         print("Recognized a tap")
 
         let point = gestureRecognizer.locationInView(self)
         selectedLineIndex = indexOfLineAtPoint(point)
 
+        // get the menu controller
+        let menu = UIMenuController.sharedMenuController()
+
+        if selectedLineIndex != nil {
+            // make drawView the target of menu actions
+            self.becomeFirstResponder()
+
+            //delete item
+            let deleteItem = UIMenuItem(title: "Delete", action: #selector(DrawView.deleteLine(_:)))
+            menu.menuItems = [deleteItem]
+
+            // show menu
+            menu.setTargetRect(CGRect(x: point.x, y: point.y, width: 2, height: 2), inView: self)
+            menu.setMenuVisible(true, animated: true)
+        } else {
+            // if no line is selected, hide
+            menu.setMenuVisible(false, animated: true)
+        }
         setNeedsDisplay()
     }
 
