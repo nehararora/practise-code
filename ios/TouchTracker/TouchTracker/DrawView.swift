@@ -13,6 +13,24 @@ class DrawView: UIView {
     var currentLines = [NSValue: Line]()
     var finishedLines = [Line]()
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DrawView.doubleTap(_:)))
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        doubleTapRecognizer.delaysTouchesBegan = true
+        addGestureRecognizer(doubleTapRecognizer)
+
+    }
+
+    func doubleTap(gestureRecognizer: UIGestureRecognizer){
+        print("Recognized double tap")
+
+        currentLines.removeAll()
+        finishedLines.removeAll()
+        setNeedsDisplay()
+    }
+
     @IBInspectable var finishedLineColor: UIColor = UIColor.blackColor() {
         didSet{
             self.setNeedsDisplay()
