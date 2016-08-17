@@ -14,6 +14,7 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
     var finishedLines = [Line]()
     var selectedLineIndex: Int?
     var moveRecognizer: UIPanGestureRecognizer!
+    var thickness: Float = 1
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -61,13 +62,15 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
         if let index = selectedLineIndex {
             // recognized changes in position
             if gestureRecognizer.state == .Changed {
+
                 let translation = gestureRecognizer.translationInView(self)
                 // apply translation to start, end of selected line
                 finishedLines[index].begin.x += translation.x
                 finishedLines[index].begin.y += translation.y
                 finishedLines[index].end.x += translation.x
                 finishedLines[index].end.y += translation.y
-
+                print("Velocity \(gestureRecognizer.velocityInView(self))")
+                self.thickness = Float(gestureRecognizer.velocityInView(self).x)
                 gestureRecognizer.setTranslation(CGPoint.zero, inView: self)
                 // and redraw
                 self.setNeedsDisplay()
@@ -79,6 +82,8 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
 
     func longPress(gestureRecognizer: UIGestureRecognizer) {
         print("Recognized a long press")
+        // enable moveRecognizer
+        moveRecognizer.enabled = true
         if gestureRecognizer.state == .Began {
             let point = gestureRecognizer.locationInView(self)
             selectedLineIndex = indexOfLineAtPoint(point)
@@ -181,6 +186,7 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
 
             print("Angle of line: \(angle)")
             UIColor(hue: abs(angle), saturation: 1, brightness: 1, alpha: 1).setStroke()
+
             strokeLine(line)
         }
 
@@ -216,6 +222,8 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
     // MARK: - Handle touch events
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         print(#function)
+        // disable the moveRecognizer
+        moveRecognizer.enabled = false
 
         for touch in touches {
             let location = touch.locationInView(self)
@@ -223,6 +231,7 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
             let key = NSValue(nonretainedObject: touch)
             currentLines[key] = newLine
         }
+
         setNeedsDisplay()
     }
 
@@ -248,6 +257,7 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
                 currentLines.removeValueForKey(key)
             }
         }
+        moveRecognizer.enabled = false
         self.setNeedsDisplay()
     }
 
