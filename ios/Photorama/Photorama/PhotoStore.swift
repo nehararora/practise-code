@@ -14,9 +14,9 @@ class PhotoStore {
         return NSURLSession(configuration: config)
     }()
 
-    func processRecentPhotosRequest(data data: NSData?, error: NSError) -> PhotosResult {
+    func processRecentPhotosRequest(data data: NSData?, error: NSError?) -> PhotosResult {
         guard let jsonData = data else {
-            return .Failure(error)
+            return .Failure(error!)
         }
         return FlickerAPI.photosFromJSONData(jsonData)
     }
@@ -28,7 +28,7 @@ class PhotoStore {
         let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
 
-            let result = self.processRecentPhotosRequest(data: data, error: error!)
+            let result = self.processRecentPhotosRequest(data: data, error: error)
             completion(result)
         }
         task.resume()

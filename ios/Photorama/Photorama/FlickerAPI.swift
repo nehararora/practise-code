@@ -65,7 +65,7 @@ struct FlickerAPI {
         do {
             let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
 
-            guard let jsonDictionary = jsonObject as? [NSObject: AnyObject], photos = jsonDictionary["photos"] as? [String: AnyObject], photosArray = photos["photos"] as? [[String: AnyObject]] else {
+            guard let jsonDictionary = jsonObject as? [NSObject: AnyObject], photos = jsonDictionary["photos"] as? [String: AnyObject], photosArray = photos["photo"] as? [[String: AnyObject]] else {
                     // unexpected json
                     return .Failure(FlickrError.InvalidJSONData)
             }
