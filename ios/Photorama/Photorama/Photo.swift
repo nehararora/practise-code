@@ -6,13 +6,14 @@
 //  Copyright © 2016 Nehar Arora. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Photo {
     let title: String
     let photoId: String
     let remoteURL: NSURL
     let dateTaken: NSDate
+    var image: UIImage?
 
     init(title: String, photoId: String, remoteURL:NSURL, dateTaken: NSDate) {
         self.title = title
