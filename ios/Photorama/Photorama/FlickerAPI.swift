@@ -61,7 +61,7 @@ struct FlickerAPI {
         return flickerURL(method: .RecentPhotos, parameters: ["extras": "url_h,date_taken"])
     }
 
-    private static func photosFromJSONData(data: NSData) -> PhotosResult{
+    static func photosFromJSONData(data: NSData) -> PhotosResult{
         do {
             let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(<#T##data: NSData##NSData#>, options: [])
 
@@ -76,6 +76,10 @@ struct FlickerAPI {
                 if let photo = photoFromJSONObject(photoJSON) {
                     finalPhotos.append(photo)
                 }
+            }
+
+            if finalPhotos.count == 0 && photosArray.count > 0 {
+                return .Failure(FlickrError.InvalidJSONData)
             }
 
             return .Success(finalPhotos)
