@@ -63,7 +63,7 @@ struct FlickerAPI {
 
     static func photosFromJSONData(data: NSData) -> PhotosResult{
         do {
-            let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(<#T##data: NSData##NSData#>, options: [])
+            let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
 
             guard let jsonDictionary = jsonObject as? [NSObject: AnyObject], photos = jsonDictionary["photos"] as? [String: AnyObject], photosArray = photos["photos"] as? [[String: AnyObject]] else {
                     // unexpected json
