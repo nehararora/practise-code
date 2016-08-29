@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		806069FB1D63EB1B0051156B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806069FA1D63EB1B0051156B /* AppDelegate.swift */; };
-		806069FD1D63EB1B0051156B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806069FC1D63EB1B0051156B /* ViewController.swift */; };
 		80606A001D63EB1B0051156B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 806069FE1D63EB1B0051156B /* Main.storyboard */; };
 		80606A021D63EB1B0051156B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80606A011D63EB1B0051156B /* Assets.xcassets */; };
 		80606A051D63EB1B0051156B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80606A031D63EB1B0051156B /* LaunchScreen.storyboard */; };
@@ -21,7 +20,6 @@
 /* Begin PBXFileReference section */
 		806069F71D63EB1B0051156B /* Photorama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photorama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		806069FA1D63EB1B0051156B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		806069FC1D63EB1B0051156B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		806069FF1D63EB1B0051156B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80606A011D63EB1B0051156B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80606A041D63EB1B0051156B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,7 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				806069FA1D63EB1B0051156B /* AppDelegate.swift */,
-				806069FC1D63EB1B0051156B /* ViewController.swift */,
 				806069FE1D63EB1B0051156B /* Main.storyboard */,
 				80606A0E1D63F21C0051156B /* FlickerAPI.swift */,
 				80606A121D68AB190051156B /* Photo.swift */,
@@ -152,7 +149,6 @@
 				80606A111D65D1420051156B /* PhotoStore.swift in Sources */,
 				80606A0D1D63EB9C0051156B /* PhotosViewController.swift in Sources */,
 				80606A0F1D63F21C0051156B /* FlickerAPI.swift in Sources */,
-				806069FD1D63EB1B0051156B /* ViewController.swift in Sources */,
 				806069FB1D63EB1B0051156B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +301,7 @@
 				80606A0B1D63EB1B0051156B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
