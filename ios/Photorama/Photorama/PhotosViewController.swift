@@ -8,35 +8,50 @@
 
 import UIKit
 
-class PhotosViewControler: UIViewController {
-    @IBOutlet var imageView: UIImageView!
+class PhotosViewControler: UIViewController, UICollectionViewDelegate {
+    @IBOutlet var collectionView: UICollectionView!
     var store: PhotoStore!
+    let photoDataSource = PhotoDataSource()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        collectionView.dataSource = photoDataSource
+        collectionView.delegate = self
+
         store.fetchRecentPhotos() {
-            (PhotosResult) -> Void in
-            switch PhotosResult {
-            case let .Success(photos):
-                print("Successfully found \(photos.count) recent photos")
-
-                if let firstPhoto = photos.first {
-                    self.store.fetchImageForPhoto(firstPhoto) {
-                        (imageResult) -> Void in
-                        switch imageResult {
-                        case let .Success(image):
-                            NSOperationQueue.mainQueue().addOperationWithBlock{
-                                self.imageView.image = image
-                            }
-                        case let .Failure(error):
-                            print("Error downloading image: \(error)")
-                        }
-                    }
+            (photosResult) -> Void in
+            NSOperationQueue.mainQueue().addOperationWithBlock() {
+                switch photosResult {
+                case let .Success(photos):
+                    print("Successfully found \(photos.count) recent photos.")
+                    self.photoDataSource.photos = photos
+                case let .Failure(error):
+                    self.photoDataSource.photos.removeAll()
+                    print("Error fetching recent photos: \(error)")
                 }
-            case let .Failure(error):
-                print("Error Fetching recent photos \(error)")
+                self.collectionView.reloadSections(NSIndexSet(index:0))
+            }
+        }
 
+    }
+
+    // MARK: Collection View Delegate Methods
+    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        let photo = photoDataSource.photos[indexPath.row]
+
+        // download image data
+        store.fetchImageForPhoto(photo) { (result) -> Void in
+            NSOperationQueue.mainQueue().addOperationWithBlock() {
+                // just in case index path for photo changed
+                let photoIndex = self.photoDataSource.photos.indexOf(photo)!
+                let photoIndexPath = NSIndexPath(forRow: photoIndex, inSection: 0)
+
+                // update if the cell is still visible
+                if let cell = self.collectionView.cellForItemAtIndexPath(photoIndexPath) as? PhotoCollectionViewCell {
+                    cell.updateWithImage(photo.image)
+                }
             }
         }
     }
