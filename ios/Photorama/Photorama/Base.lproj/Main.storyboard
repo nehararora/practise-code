@@ -5,6 +5,42 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--Photo Info View Controller-->
+        <scene sceneID="n4w-ON-mTF">
+            <objects>
+                <viewController id="6CD-Nd-qpJ" customClass="PhotoInfoViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K2S-JY-yRp"/>
+                        <viewControllerLayoutGuide type="bottom" id="hID-o2-apY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="31q-WL-Wi2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cB2-oh-mIk">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="cB2-oh-mIk" secondAttribute="bottom" id="3qF-Wp-dCQ"/>
+                            <constraint firstItem="cB2-oh-mIk" firstAttribute="top" secondItem="31q-WL-Wi2" secondAttribute="top" id="Crt-De-ncn"/>
+                            <constraint firstItem="cB2-oh-mIk" firstAttribute="top" secondItem="31q-WL-Wi2" secondAttribute="top" id="J27-sB-AdT"/>
+                            <constraint firstItem="cB2-oh-mIk" firstAttribute="leading" secondItem="31q-WL-Wi2" secondAttribute="leading" id="ZSm-7p-2Ey"/>
+                            <constraint firstAttribute="trailing" secondItem="cB2-oh-mIk" secondAttribute="trailing" id="a0L-yS-nAe"/>
+                            <constraint firstAttribute="trailing" secondItem="cB2-oh-mIk" secondAttribute="trailing" id="gwH-Pd-pAL"/>
+                            <constraint firstItem="cB2-oh-mIk" firstAttribute="leading" secondItem="31q-WL-Wi2" secondAttribute="leading" id="iBF-3N-IVZ"/>
+                            <constraint firstAttribute="bottom" secondItem="cB2-oh-mIk" secondAttribute="bottom" id="m8g-8l-t8Y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="cB2-oh-mIk" id="XIv-pa-k7k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lhw-Jh-2ha" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1789" y="387"/>
+        </scene>
         <!--Photorama-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -55,6 +91,7 @@
                                         <connections>
                                             <outlet property="imageView" destination="tR3-x5-XgE" id="JTk-Dy-w91"/>
                                             <outlet property="spinner" destination="1Vx-bF-vdy" id="cdG-Nd-LKW"/>
+                                            <segue destination="6CD-Nd-qpJ" kind="show" identifier="ShowPhoto" id="uGR-KF-oRw"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
