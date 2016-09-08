@@ -56,15 +56,9 @@ class PhotoStore {
             (data, response, error) -> Void in
             let result = self.processImageRequest(data: data, error: error)
             if case let .Success(image) = result {
-                print("image: \(image)")
+                //print("image: \(image)")
                 photo.image = image
             }
-            print("Result: \(result)")
-            if let hr = response as? NSHTTPURLResponse {
-                print("Response: \(hr.statusCode), \(hr.allHeaderFields)")
-            }
-
-
             completion(result)
         }
         task.resume()
@@ -79,7 +73,7 @@ class PhotoStore {
                     return .Failure(PhotoError.ImageCreationError)
                 }
         }
-        print (image)
+        //print (image)
         return .Success(image)
     }
 }

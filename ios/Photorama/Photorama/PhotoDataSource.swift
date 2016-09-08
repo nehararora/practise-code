@@ -13,9 +13,22 @@ class PhotoDataSource: NSObject, UICollectionViewDataSource {
     var photos = [Photo]()
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("photos Count: \(photos.count)")
+        guard photos.count > 0 else {
+        return 0
+        }
         return photos.count
-    }
 
+    }
+/*
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        guard photos.count > 0 else{
+            return 1
+        }
+        // TODO: insert sections?
+        return photos.count/4
+    }
+*/
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let identifier = "UICollectionViewCell"
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as! PhotoCollectionViewCell

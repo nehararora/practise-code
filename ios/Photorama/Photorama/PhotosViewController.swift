@@ -16,7 +16,7 @@ class PhotosViewControler: UIViewController, UICollectionViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("Viewdidload called")
         collectionView.dataSource = photoDataSource
         collectionView.delegate = self
 
@@ -37,6 +37,11 @@ class PhotosViewControler: UIViewController, UICollectionViewDelegate {
 
     }
 
+    @IBAction func refreshImages(){
+        print("Refresh called")
+        self.viewDidLoad()
+    }
+
     // MARK: Collection View Delegate Methods
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         let photo = photoDataSource.photos[indexPath.row]
@@ -55,6 +60,7 @@ class PhotosViewControler: UIViewController, UICollectionViewDelegate {
             }
         }
     }
+
 
     // MARK: segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
