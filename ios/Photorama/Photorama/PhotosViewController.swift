@@ -8,8 +8,9 @@
 
 import UIKit
 
-class PhotosViewControler: UIViewController, UICollectionViewDelegate {
+class PhotosViewControler: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet var collectionView: UICollectionView!
+
     var store: PhotoStore!
     let photoDataSource = PhotoDataSource()
 
@@ -37,9 +38,20 @@ class PhotosViewControler: UIViewController, UICollectionViewDelegate {
 
     }
 
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
     @IBAction func refreshImages(){
         print("Refresh called")
         self.viewDidLoad()
+    }
+
+    // MARK: Collection View Delegate FlowLayout methods
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let width = CGFloat(self.view.frame.width / 4.0 - 3.0)
+        let cellSize = CGSize(width: width, height: width)
+        return cellSize
     }
 
     // MARK: Collection View Delegate Methods
@@ -60,7 +72,6 @@ class PhotosViewControler: UIViewController, UICollectionViewDelegate {
             }
         }
     }
-
 
     // MARK: segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
